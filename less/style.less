@@ -1,4 +1,65 @@
 // Includes
 // --------------------------------------------------
 @import "bootstrap/bootstrap.less";
+@import "bootstrap-variables.less";
 @import "font-awesome/font-awesome.less";
+
+// Custom styles
+// --------------------------------------------------
+body {
+	@media (min-width: @screen-md-min) {
+		padding-top: 10em;
+	}
+	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+		padding-top: 8em;
+	}
+	@media (max-width: @screen-xs-max) {
+		padding-top: 6.5em;
+	}
+	
+	background: url('background.gif') repeat fixed center;
+}
+
+// Navbar sizing
+.navbar-brand {
+	@media (min-width: @screen-md-min) {
+		font-size: 3em;
+		line-height: 1em;
+	}
+	@media (max-width: @screen-sm-max) {
+		font-size: 2em;
+		line-height: 0.5em;
+	}
+	margin-left:5px!important;
+}
+.navbar .fa-3x {
+	@media (max-width: @screen-sm-max) {
+		font-size: 2em;
+	}
+}
+
+// Colors for navbar icons
+.navbar-default .fa-inverse {
+	color: @navbar-default-bg;
+}
+.navbar-inverse .fa-inverse {
+	color: @navbar-inverse-bg;
+}
+
+// Uncollapse the navbar
+.navbar-nav {
+	float: left;
+	margin: 0;
+
+	> li {
+		float: left;
+		> a {
+			padding-top:    @navbar-padding-vertical;
+			padding-bottom: @navbar-padding-vertical;
+		}
+	}
+
+	&:extend(.pull-right all);
+}
+.navbar-header:extend(.pull-left all) {}
+
