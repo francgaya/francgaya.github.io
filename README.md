@@ -24,6 +24,7 @@ Day to day:
 npm run dev      # development server, Ctrl+C to stop it
 npm run build    # static output in dist/
 npm run preview  # serve that build locally
+npm run verify   # check the build, after npm run build
 ```
 
 `nvm use` is per terminal, not per run: it sets the `PATH` of the shell you type it in, so it
@@ -57,6 +58,22 @@ public/          copied verbatim, including the CNAME for the custom domain
 - **Progressive enhancement.** The site ships zero JavaScript. The mobile menu, the
   accordions, and the glossary popovers are all native HTML.
 - **Content in the language of the page; identifiers, classes, and comments in English.**
+
+## Verifying a build
+
+`npm run verify` runs `scripts/verify.py` against `dist/`, never against the source. It needs
+Python 3 and `beautifulsoup4` (`pip install beautifulsoup4`), which is why it is a separate
+command rather than part of `npm run build`.
+
+It checks that no JavaScript file is emitted, that no font is fetched from a third-party CDN,
+that every folded passage carries its text in the HTML and none of them ships open, that the
+banned characters are absent, that no internal link or anchor is dead, that the language
+switcher points at the equivalent page, that each glossary term is marked once per page with
+its own popover anchor, and finally that each built page still says exactly what its file in
+`web/content/` says, word by word.
+
+That last check is the one that pays for the script. It caught three lost spaces before a
+glossary term in P-16, which nobody would find by reading the page.
 
 ## Working pages
 

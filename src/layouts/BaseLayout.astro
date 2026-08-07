@@ -38,21 +38,30 @@ const CONTACT = {
 };
 
 // Verbatim from web/content/{en,es}/_common.md.
+//
+// The Spanish CTA lead is NOT a word-for-word rendering of the English one:
+// the source of record ends on "escríbeme", and the source of record wins.
+// P-16 back-translated the English here, which is the exact failure the
+// word-by-word transcription check exists to catch.
 const COPY = {
   en: {
     ctaHeading: "Let's talk",
     ctaLead: 'If any of this is close to what you are building, I am easy to reach.',
     credit: 'Site built by Bits&Roses',
+    skip: 'Skip to content',
   },
   es: {
     ctaHeading: '¿Hablamos?',
-    ctaLead: 'Si algo de esto se parece a lo que estás construyendo, es fácil dar conmigo.',
+    ctaLead: 'Si algo de esto se parece a lo que estás construyendo, escríbeme.',
     credit: 'Web desarrollada por Bits&Roses',
+    skip: 'Saltar al contenido',
   },
 }[locale];
 
 const alternate = alternateOf(current, locale);
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// hreflang has to be absolute to be honoured, unlike an in-page link.
+const alternateUrl = new URL(alternate, Astro.site);
 ---
 
 <!doctype html>
@@ -63,7 +72,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang={locale === 'en' ? 'es' : 'en'} href={alternate} />
+    <link rel="alternate" hreflang={locale === 'en' ? 'es' : 'en'} href={alternateUrl} />
+    <link rel="alternate" hreflang={locale} href={canonical} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#133232" />
@@ -74,7 +84,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-control focus:bg-surface-deep focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:font-semibold focus:text-ink-on-deep"
     >
-      Skip to content
+      {COPY.skip}
     </a>
 
     <SiteHeader locale={locale} current={current} />
@@ -95,5 +105,30 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </main>
 
     <SiteFooter email={CONTACT.email} linkedin={CONTACT.linkedin} credit={COPY.credit} />
+
+    {/*
+      The only script on the site, and it is a progressive enhancement:
+      the switcher already works without it, it just lands at the top of the
+      equivalent page. This carries the reader's position across.
+
+      Cheap because anchors are English in BOTH languages, which is a P-15b
+      decision being cashed in here (adr-001-stack.md, section 6.4).
+
+      is:inline on purpose: bundling it would emit a JavaScript file, and the
+      verification counts emitted files. Eight lines in the head of the
+      document are auditable; a hashed bundle is not.
+    */}
+    <script is:inline>
+      (function () {
+        function carryHash() {
+          var hash = window.location.hash;
+          document.querySelectorAll('[data-lang-switch]').forEach(function (link) {
+            link.hash = hash ? hash.slice(1) : '';
+          });
+        }
+        carryHash();
+        window.addEventListener('hashchange', carryHash);
+      })();
+    </script>
   </body>
 </html>

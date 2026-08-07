@@ -15,6 +15,11 @@ interface Props {
 }
 
 const { overline } = Astro.props;
+
+// /about has no page lead: its first block is the photo, and the opening line
+// belongs to the first section rather than to the page (IA section 4.5). An
+// unconditional lead would put an empty box with a top margin under the title.
+const hasLead = Astro.slots.has('lead');
 ---
 
 <section class="on-deep bg-surface-deep">
@@ -30,9 +35,13 @@ const { overline } = Astro.props;
       <h1 class:list={['text-ink-on-deep', overline && 'mt-4']}>
         <slot name="title" />
       </h1>
-      <div class="mt-6 text-lead text-ink-on-deep-muted">
-        <slot name="lead" />
-      </div>
+      {
+        hasLead && (
+          <div class="mt-6 text-lead text-ink-on-deep-muted">
+            <slot name="lead" />
+          </div>
+        )
+      }
     </div>
   </div>
 </section>

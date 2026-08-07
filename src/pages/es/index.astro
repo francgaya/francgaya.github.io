@@ -1,0 +1,141 @@
+---
+/**
+ * Inicio, Spanish. Sibling of src/pages/index.astro.
+ *
+ * The Spanish pages are not a translation layer over the English ones: each
+ * one is transcribed from its own file in web/content/es/, because the two
+ * were written as siblings and diverge in places (the CTA lead is the clearest
+ * case). Sharing a component and duplicating the copy is the right way round.
+ *
+ * Copy transcribed verbatim from web/content/es/index.md.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Card from '../../components/Card.astro';
+
+const CARDS = [
+  {
+    href: '/es/lo-que-hago/#firmware',
+    title: 'Desarrollo de firmware',
+    line: 'Del pinout del microcontrolador a la interfaz de usuario, en C bare metal.',
+  },
+  {
+    href: '/es/lo-que-hago/#safety',
+    title: 'Seguridad funcional y certificación',
+    line: 'Conceptos de seguridad del control electrónico, defendidos ante VDE, UL y el esquema CB.',
+  },
+  {
+    href: '/es/lo-que-hago/#architecture',
+    title: 'Arquitectura de producto y de sistema',
+    line: 'Arquitectura, requisitos y especificación de sistema, en propiedad y no heredados.',
+  },
+  {
+    href: '/es/lo-que-hago/#customer',
+    title: 'Interlocución técnica con cliente',
+    line: 'Contrapropuestas, defensa de decisiones y el asiento técnico en preventa.',
+  },
+  {
+    href: '/es/lo-que-hago/#requirements',
+    title: 'Ingeniería de requisitos y proceso',
+    line: 'Seis años como usuario clave corporativo de una plataforma de gestión de requisitos.',
+  },
+  {
+    href: '/es/lo-que-hago/#mentoring',
+    title: 'Formar ingenieros',
+    line: 'Definición de pinout y teoría de termopares, enseñadas a quien viene detrás.',
+  },
+];
+
+const WAYS = [
+  ['Arquitecto', ', definiendo un producto cuando todavía no hay nada que construir.'],
+  [
+    'Desarrollador líder',
+    ' dentro de un equipo, responsable del conjunto mientras otros lo son de sus partes.',
+  ],
+  [
+    'Desarrollador único',
+    ' de un producto completo, desde las dos placas hasta la interfaz de usuario.',
+  ],
+  ['El especialista', ' al que se llama para una tecnología concreta, en un proyecto que es de otro.'],
+];
+---
+
+<BaseLayout
+  locale="es"
+  current="home"
+  title="Franc Gaya, arquitecto de producto de sistemas embebidos"
+  description="Ingeniero de firmware y arquitecto de sistema y producto para electrónica de electrodomésticos. Arquitectura, requisitos, seguridad funcional y la interlocución técnica con el fabricante."
+>
+  <PageHeader>
+    <Fragment slot="title">Franc Gaya</Fragment>
+    <Fragment slot="lead">
+      <p class="font-display text-h2 font-semibold text-highlight">
+        Arquitecto de producto de sistemas embebidos, electrodomésticos y equipamiento profesional
+      </p>
+      <p class="mt-4 text-[0.9375rem] font-semibold uppercase tracking-[0.1em] text-ink-on-deep">
+        Barcelona, España
+      </p>
+      <p class="mt-6">
+        Hago que un electrodoméstico funcione por dentro, y respondo del resultado: el control
+        electrónico, lo que tiene que demostrar ante un certificador, y la conversación con el
+        fabricante que va a venderlo.
+      </p>
+    </Fragment>
+  </PageHeader>
+
+  <div class="mx-auto max-w-shell px-6 pt-16">
+    <div class="mx-auto max-w-prose space-y-20">
+      <p class="text-lead text-ink">
+        Soy ingeniero de firmware y arquitecto de sistema y producto para electrónica de
+        electrodomésticos. Soy responsable de la arquitectura y de los requisitos de los productos
+        que desarrollo, y de la gobernanza técnica que viene con ellos: dónde acaba el hardware y
+        empieza el software, qué tiene que demostrar el concepto de seguridad, y qué se le puede
+        prometer a un cliente con honestidad.
+      </p>
+
+      <section>
+        <h2 class="text-h2 text-heading">Lo que hago</h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {CARDS.map((card) => <Card href={card.href} title={card.title}>{card.line}</Card>)}
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-h2 text-heading">Cuatro formas de trabajar</h2>
+        <p class="mt-4 text-lead text-ink">
+          Cada proyecto necesita una forma distinta de ingeniero, y con los años he sido las cuatro:
+        </p>
+        <ul class="evidence-list mt-6 text-ink">
+          {
+            WAYS.map(([role, rest]) => (
+              <li>
+                <strong class="font-semibold">{role}</strong>
+                {rest}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-6 text-ink">
+          Son ciertas las cuatro a la vez, y ninguna deja de serlo cuando cambia mi asignación de
+          proyecto.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-h2 text-heading">La trayectoria, en tres líneas</h2>
+        <p class="mt-4 text-ink">
+          Electrónica de control de electrodoméstico desde 2012. Application Reference Engineer
+          desde 2017, con la promoción sobre una plataforma de control de hornos. Interlocutor
+          técnico de fabricantes de electrodomésticos en Europa, Asia y América, en hornos, cocinas,
+          refrigeración, generación de vapor, lavavajillas, lavandería y equipamiento de cocina
+          profesional.
+        </p>
+        <p class="mt-6">
+          <a href="/es/trayectoria/" class="text-link underline decoration-1 underline-offset-4">
+            La trayectoria completa, en orden
+          </a>
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

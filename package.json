@@ -11,7 +11,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "verify": "python3 scripts/verify.py"
   },
   "dependencies": {
     "@fontsource-variable/ibm-plex-sans": "5.3.0",

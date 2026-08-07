@@ -26,7 +26,7 @@ export const ROUTES: readonly Route[] = [
   { id: 'what-i-do', en: '/what-i-do/', es: '/es/lo-que-hago/',  labelEn: 'What I do',  labelEs: 'Lo que hago' },
   { id: 'career',    en: '/career/',    es: '/es/trayectoria/',  labelEn: 'Career',     labelEs: 'Trayectoria' },
   { id: 'toolkit',   en: '/toolkit/',   es: '/es/herramientas/', labelEn: 'Toolkit',    labelEs: 'Herramientas' },
-  { id: 'about',     en: '/about/',     es: '/es/sobre-mi/',     labelEn: 'About',      labelEs: 'Sobre mi' },
+  { id: 'about',     en: '/about/',     es: '/es/sobre-mi/',     labelEn: 'About',      labelEs: 'Sobre mí' },
 ];
 
 /** Navigation entries for one language, in menu order. */

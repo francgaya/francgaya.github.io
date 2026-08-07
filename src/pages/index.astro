@@ -1,0 +1,149 @@
+---
+/**
+ * Home, English. The one page that has to work in under a minute.
+ *
+ * It does not tell anything whole (information-architecture.md section 4.1).
+ * Blocks 3 and 5 are indexes into pages that carry the body, and the reason
+ * that is not the repetition Franc banned in section 1 is that the ban applies
+ * BETWEEN competencies and experience, not between a summary and its detail.
+ *
+ * Copy transcribed verbatim from web/content/en/index.md.
+ *
+ * Colour: the six cards are quiet, and the only coral of the page is the CTA
+ * button at the bottom. No section rules here, so the coral quota is spent on
+ * the one action.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Card from '../components/Card.astro';
+
+const CARDS = [
+  {
+    href: '/what-i-do/#firmware',
+    title: 'Firmware development',
+    line: 'From the microcontroller pinout to the user interface, in bare-metal C.',
+  },
+  {
+    href: '/what-i-do/#safety',
+    title: 'Functional safety and certification',
+    line: 'Safety concepts for electronic controls, defended before VDE, UL, and the CB scheme.',
+  },
+  {
+    href: '/what-i-do/#architecture',
+    title: 'Product and system architecture',
+    line: 'Architecture, requirements, and the system specification, owned rather than received.',
+  },
+  {
+    href: '/what-i-do/#customer',
+    title: 'Customer-facing technical authority',
+    line: 'Counter-proposals, defense of decisions, and the technical seat in pre-sales.',
+  },
+  {
+    href: '/what-i-do/#requirements',
+    title: 'Requirements engineering and process',
+    line: 'Six years as corporate key user of a requirements management platform.',
+  },
+  {
+    href: '/what-i-do/#mentoring',
+    title: 'Growing engineers',
+    line: 'Pinout definition and thermocouple theory, taught to whoever comes next.',
+  },
+];
+
+const WAYS = [
+  ['Architect', ', defining a product before there is anything to build.'],
+  ['Lead developer', ' inside a team, owning the whole while others own parts.'],
+  ['Sole developer', ' of a complete product, from the two boards up to the user interface.'],
+  ['The specialist', ' called in for one technology, on a project that belongs to somebody else.'],
+];
+---
+
+<BaseLayout
+  locale="en"
+  current="home"
+  title="Franc Gaya, Embedded Systems Product Architect"
+  description="Firmware engineer and system and product architect for appliance electronics. Architecture, requirements, functional safety, and the technical conversation with the manufacturer."
+>
+  <!-- 1. Hero. Name, role line, location, and the proposition, in that order. -->
+  <PageHeader>
+    <Fragment slot="title">Franc Gaya</Fragment>
+    <Fragment slot="lead">
+      <p class="font-display text-h2 font-semibold text-highlight">
+        Embedded Systems Product Architect, Home Appliances &amp; Professional Equipment
+      </p>
+      <p class="mt-4 text-[0.9375rem] font-semibold uppercase tracking-[0.1em] text-ink-on-deep">
+        Barcelona, Spain
+      </p>
+      <p class="mt-6">
+        I make appliances work from the inside, and I answer for the result: the electronic
+        control, what it has to prove to a certifier, and the conversation with the manufacturer
+        who is going to sell it.
+      </p>
+    </Fragment>
+  </PageHeader>
+
+  <div class="mx-auto max-w-shell px-6 pt-16">
+    <div class="mx-auto max-w-prose space-y-20">
+      <!-- 2. The sentence that defines the role, in the engineering sense.
+           "firmware" is the first noun of it, and that is the blindfold against
+           the SaaS reading of "architect" (are-role-dossier 14.4.b). -->
+      <p class="text-lead text-ink">
+        I am a firmware engineer and a system and product architect for appliance electronics. I
+        own the architecture and the requirements of the products I develop, plus the technical
+        governance that comes with them: where the hardware ends and the software begins, what the
+        safety concept has to demonstrate, and what can honestly be promised to a customer.
+      </p>
+
+      <!-- 3. Six cards. Title plus ONE line, linking to the anchor. Never the
+           body of the bullet: that lives on /what-i-do and nowhere else. -->
+      <section>
+        <h2 class="text-h2 text-heading">What I do</h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {CARDS.map((card) => <Card href={card.href} title={card.title}>{card.line}</Card>)}
+        </div>
+      </section>
+
+      <!-- 4. The block that puts the most distance between this site and the CV,
+           and costs no space: it answers how he fits into a team, and none of
+           the four expires when the project assignment changes. -->
+      <section>
+        <h2 class="text-h2 text-heading">Four ways of working</h2>
+        <p class="mt-4 text-lead text-ink">
+          Every project needs a different shape of engineer, and over the years I have been all
+          four of them:
+        </p>
+        <ul class="evidence-list mt-6 text-ink">
+          {
+            WAYS.map(([role, rest]) => (
+              <li>
+                <strong class="font-semibold">{role}</strong>
+                {rest}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-6 text-ink">
+          They are all true at once, and none of them stops being true when my project assignment
+          changes.
+        </p>
+      </section>
+
+      <!-- 5. Career in three lines, and the link out. -->
+      <section>
+        <h2 class="text-h2 text-heading">Career, in three lines</h2>
+        <p class="mt-4 text-ink">
+          Appliance control electronics since 2012. Application Reference Engineer since 2017,
+          promoted into the role on an oven control platform. Technical counterpart to appliance
+          manufacturers across Europe, Asia, and the Americas, on ovens, range cookers,
+          refrigeration, steam generation, dishwashing, laundry, and professional cooking
+          equipment.
+        </p>
+        <p class="mt-6">
+          <a href="/career/" class="text-link underline decoration-1 underline-offset-4">
+            The whole trajectory, in order
+          </a>
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
