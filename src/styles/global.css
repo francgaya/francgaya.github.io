@@ -295,14 +295,26 @@
   }
   /* Without anchor positioning the popover centres itself in the viewport,
      which is the user-agent default and perfectly usable. Where anchoring is
-     supported it sits next to the term instead. */
+     supported it sits directly under the term, left edge aligned with it.
+
+     The anchor NAME is set inline, per instance, in Term.astro. It has to be
+     unique: give every term the same name and they all resolve to the last one
+     in the document, which is why the glosses were landing at the bottom of the
+     page instead of under the word.
+
+     Explicit top and left rather than position-area: the area grid centres the
+     box inside the region it spans, which is not the same as aligning it with
+     the term. */
   @supports (anchor-name: --a) {
-    .term { anchor-name: --term; }
     .term-gloss {
-      position-anchor: --term;
-      position-area: block-end span-inline-end;
-      position-try-fallbacks: flip-block, flip-inline;
-      margin: 0.35rem 0 0 0;
+      inset: auto;
+      top: anchor(bottom);
+      left: anchor(left);
+      margin: 0.4rem 0 0 0;
+      max-width: min(22rem, calc(100vw - 2rem));
+      /* Flip above the line near the bottom of the viewport, and to the right
+         edge of the term near the right-hand side of it. */
+      position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
     }
   }
 

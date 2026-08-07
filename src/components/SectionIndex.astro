@@ -6,6 +6,14 @@
  * stays centred and does not shift position between pages. Hidden below
  * 1280px, where there is no gutter to put it in.
  *
+ * The offsets have to be stated, not zeroed: an absolutely positioned box
+ * resolves against the PADDING box of its containing block, so left-0 and top-0
+ * put it inside the page padding rather than level with the content. They match
+ * the px-6 and pt-16 of the wrapper on purpose.
+ *
+ * Width: at the 1120px shell the gutter is 156px, so 144 wide with 16 of inner
+ * padding leaves the index clear of the prose column.
+ *
  * It is allowed to repeat the six titles because it LINKS: "a title appears
  * once per page; if it appears twice, one of the two is an index and has to
  * link rather than repeat" (information-architecture.md section 13).
@@ -21,7 +29,7 @@ const { label, items } = Astro.props;
 ---
 
 <nav
-  class="pointer-events-none absolute left-0 top-0 hidden h-full w-44 xl:block"
+  class="pointer-events-none absolute bottom-0 left-6 top-16 hidden w-36 pr-4 xl:block"
   aria-label={label}
 >
   <div class="pointer-events-auto sticky top-28">

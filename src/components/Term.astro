@@ -35,11 +35,28 @@ if (!gloss) {
 }
 
 const popoverId = `gloss-${key.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+// One anchor name per term. Shared names all resolve to the last element in the
+// document, so the gloss would open under the last term on the page instead of
+// under the one that was clicked. Inline because the name is per instance and a
+// class built at runtime is invisible to the compiler.
+const anchor = `--${popoverId}`;
 ---
 
-<button type="button" class="term" popovertarget={popoverId} aria-details={popoverId}>
+<button
+  type="button"
+  class="term"
+  popovertarget={popoverId}
+  aria-details={popoverId}
+  style={`anchor-name: ${anchor}`}
+>
   <slot />
-</button><span id={popoverId} popover class="term-gloss">
+</button><span
+  id={popoverId}
+  popover
+  class="term-gloss"
+  style={`position-anchor: ${anchor}`}
+>
   <span class="block font-display font-semibold text-heading">{key}</span>
   <span class="mt-1 block">{gloss}</span>
 </span>
