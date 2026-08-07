@@ -1,0 +1,9 @@
+# Build output and tooling caches. The generated CSS and HTML are never committed:
+# the repository is read as source, and a committed artifact drifts silently.
+node_modules/
+dist/
+.astro/
+
+# OS and editor noise
+.DS_Store
+*.log

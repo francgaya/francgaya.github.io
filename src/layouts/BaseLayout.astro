@@ -1,0 +1,99 @@
+---
+/**
+ * The one layout. Header, page body, CTA, footer.
+ *
+ * The shared blocks live here and are written once, which is the whole reason
+ * this site is generated rather than hand-written: the CTA, the footer, and
+ * the menu exist in one file, not in ten.
+ */
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { alternateOf, type Locale, type Route } from '../i18n/routes';
+
+interface Props {
+  locale: Locale;
+  current: Route['id'];
+  title: string;
+  description: string;
+  /** The UI kit is an internal working page. */
+  noindex?: boolean;
+  /** The kit renders its own CTA as a specimen instead. */
+  showCta?: boolean;
+}
+
+const {
+  locale,
+  current,
+  title,
+  description,
+  noindex = false,
+  showCta = true,
+} = Astro.props;
+
+const CONTACT = {
+  email: 'mail@francgaya.com',
+  linkedin: 'linkedin.com/in/francgaya',
+};
+
+// Verbatim from web/content/{en,es}/_common.md.
+const COPY = {
+  en: {
+    ctaHeading: "Let's talk",
+    ctaLead: 'If any of this is close to what you are building, I am easy to reach.',
+    credit: 'Site built by Bits&Roses',
+  },
+  es: {
+    ctaHeading: '¿Hablamos?',
+    ctaLead: 'Si algo de esto se parece a lo que estás construyendo, es fácil dar conmigo.',
+    credit: 'Web desarrollada por Bits&Roses',
+  },
+}[locale];
+
+const alternate = alternateOf(current, locale);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={locale === 'en' ? 'es' : 'en'} href={alternate} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#133232" />
+  </head>
+
+  <body class="min-h-screen">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-control focus:bg-surface-deep focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:font-semibold focus:text-ink-on-deep"
+    >
+      Skip to content
+    </a>
+
+    <SiteHeader locale={locale} current={current} />
+
+    <main id="main">
+      <slot />
+
+      {
+        showCta && (
+          <CallToAction
+            heading={COPY.ctaHeading}
+            lead={COPY.ctaLead}
+            email={CONTACT.email}
+            linkedin={CONTACT.linkedin}
+          />
+        )
+      }
+    </main>
+
+    <SiteFooter email={CONTACT.email} linkedin={CONTACT.linkedin} credit={COPY.credit} />
+  </body>
+</html>

@@ -1,0 +1,45 @@
+---
+/**
+ * L2 glossary term.
+ *
+ * A <button> driving a native popover. Chosen over a CSS hover tooltip because
+ * information-architecture.md section 6 rule 4 requires a touch equivalent:
+ * a popover answers to a tap, closes on Escape, and is reachable by keyboard,
+ * all without a line of JavaScript.
+ *
+ * Where anchor positioning is available the gloss appears beside the term;
+ * where it is not, the user agent centres the popover, which is its default
+ * behaviour and perfectly readable. Nothing degrades to nothing.
+ *
+ * The popover is a <span>, not a <div>, because these sit inside paragraphs
+ * and inside list items, where only phrasing content is valid.
+ *
+ * Convention: a term is marked once per page, on its first occurrence.
+ */
+import { GLOSSARY } from '../data/glossary.en';
+
+interface Props {
+  /** Key in the glossary. Defaults to the visible text. */
+  term?: string;
+}
+
+const { term } = Astro.props;
+const rendered = await Astro.slots.render('default');
+const key = term ?? rendered.replace(/<[^>]*>/g, '').trim();
+const gloss = GLOSSARY[key];
+
+if (!gloss) {
+  throw new Error(
+    `Term "${key}" is not in the glossary. Add it to web/content/*/_common.md first.`
+  );
+}
+
+const popoverId = `gloss-${key.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+---
+
+<button type="button" class="term" popovertarget={popoverId} aria-details={popoverId}>
+  <slot />
+</button><span id={popoverId} popover class="term-gloss">
+  <span class="block font-display font-semibold text-heading">{key}</span>
+  <span class="mt-1 block">{gloss}</span>
+</span>

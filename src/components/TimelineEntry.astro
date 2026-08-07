@@ -1,0 +1,35 @@
+---
+/**
+ * One entry of /career: role, organisation and dates, body, optional fold.
+ *
+ * A hairline rail on the left instead of dots and connectors. Dates are set in
+ * the display face at a small size, so the eye can scan them down the column
+ * without them competing with the role.
+ *
+ * Density is a requirement here, not a preference: the vocational diploma has
+ * to weigh less than the engineering degree, and the way that is done is by
+ * how much sits at L0, not by which section it is in
+ * (information-architecture.md section 4.3).
+ */
+interface Props {
+  role: string;
+  org: string;
+  dates: string;
+}
+
+const { role, org, dates } = Astro.props;
+---
+
+<article class="relative border-l border-rule pb-10 pl-6 last:pb-0">
+  <span
+    class="absolute -left-[3px] top-2 block h-[5px] w-[5px] rounded-[1px] bg-accent"
+    aria-hidden="true"></span>
+  <p class="font-display text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gray-500">
+    {dates}
+  </p>
+  <h3 class="mt-2 text-h3 text-heading">{role}</h3>
+  <p class="mt-1 text-[0.9375rem] font-semibold text-ink-muted">{org}</p>
+  <div class="prose-block mt-4 text-ink">
+    <slot />
+  </div>
+</article>

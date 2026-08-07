@@ -1,0 +1,41 @@
+---
+/**
+ * The compound component of /what-i-do, instanced six times.
+ *
+ * Shape fixed by information-architecture.md section 4.2:
+ *   h2 title, one first-person claim, two to four lines of evidence,
+ *   then one or two folded passages.
+ *
+ * Evidence arrives as a slot rather than an array of strings, so a bullet can
+ * carry a glossary term. Most of the L2 vocabulary a non-technical reader
+ * trips over (pinout, Class B, PEC, CB scheme) appears in these bullets and
+ * nowhere earlier.
+ *
+ * The coral rule above the title is the single coral mark of the block, and
+ * the reason no primary button appears on this page: six of these already sit
+ * at the ceiling that adr-002 section 3 allows for that colour.
+ */
+interface Props {
+  /** English anchor, in both languages. */
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<section id={id} class="scroll-mt-28">
+  <div class="section-rule" aria-hidden="true"></div>
+
+  <h2 class="mt-5 text-h2 text-heading">{title}</h2>
+
+  <p class="mt-4 text-lead text-ink">
+    <slot name="claim" />
+  </p>
+
+  <ul class="evidence-list mt-6 text-ink">
+    <slot name="evidence" />
+  </ul>
+
+  <slot />
+</section>

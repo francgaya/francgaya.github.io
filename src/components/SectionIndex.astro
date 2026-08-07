@@ -1,0 +1,48 @@
+---
+/**
+ * In-page index for the one page with six sibling sections.
+ *
+ * It sits in the left gutter, outside the prose column, so the column itself
+ * stays centred and does not shift position between pages. Hidden below
+ * 1280px, where there is no gutter to put it in.
+ *
+ * It is allowed to repeat the six titles because it LINKS: "a title appears
+ * once per page; if it appears twice, one of the two is an index and has to
+ * link rather than repeat" (information-architecture.md section 13).
+ *
+ * No active-item tracking: that would need scroll JavaScript for a decoration.
+ */
+interface Props {
+  label: string;
+  items: { id: string; title: string }[];
+}
+
+const { label, items } = Astro.props;
+---
+
+<nav
+  class="pointer-events-none absolute left-0 top-0 hidden h-full w-44 xl:block"
+  aria-label={label}
+>
+  <div class="pointer-events-auto sticky top-28">
+    <p
+      class="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-gray-500"
+    >
+      {label}
+    </p>
+    <ul class="mt-4 space-y-2.5">
+      {
+        items.map((item) => (
+          <li>
+            <a
+              href={`#${item.id}`}
+              class="block text-[0.8125rem] leading-snug text-ink-muted hover:text-link"
+            >
+              {item.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,38 @@
+---
+/**
+ * Page header band, on a deep surface.
+ *
+ * The deep end is what stops three saturated colours from reading as a
+ * consumer app: the lively colours are signals sitting on top of it, never the
+ * ground itself (adr-002 section 3.1). Giving every page this band also gives
+ * the sticky header something to sit against on scroll.
+ *
+ * The lime overline is optional and used only where real copy exists for it.
+ * Nothing here invents text.
+ */
+interface Props {
+  overline?: string;
+}
+
+const { overline } = Astro.props;
+---
+
+<section class="on-deep bg-surface-deep">
+  <div class="mx-auto max-w-shell px-6 pb-16 pt-14">
+    <div class="max-w-prose">
+      {
+        overline && (
+          <p class="font-display text-overline font-semibold uppercase tracking-[0.14em] text-highlight">
+            {overline}
+          </p>
+        )
+      }
+      <h1 class:list={['text-ink-on-deep', overline && 'mt-4']}>
+        <slot name="title" />
+      </h1>
+      <div class="mt-6 text-lead text-ink-on-deep-muted">
+        <slot name="lead" />
+      </div>
+    </div>
+  </div>
+</section>

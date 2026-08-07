@@ -1,0 +1,114 @@
+---
+/**
+ * Sticky header: wordmark, five flat nav entries, language switcher.
+ *
+ * Mobile menu is a native <details>, so it opens with JavaScript off.
+ * The active entry is teal ink with a coral underline: coral marks position
+ * and identity, which is the one job it keeps everywhere on the site.
+ *
+ * The switcher is a plain <a> to the mapped route. Carrying the anchor across
+ * is a progressive enhancement and belongs to P-16b.
+ */
+import { navFor, alternateOf, SWITCH_LABEL, type Locale, type Route } from '../i18n/routes';
+
+interface Props {
+  locale: Locale;
+  current: Route['id'];
+}
+
+const { locale, current } = Astro.props;
+const nav = navFor(locale);
+const alternate = alternateOf(current, locale);
+---
+
+<header class="sticky top-0 z-40 border-b border-rule bg-surface/95 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-shell items-center justify-between gap-6 px-6 py-3">
+    <a
+      href={nav[0].href}
+      class="font-display text-[1.0625rem] font-semibold tracking-tight text-heading"
+    >
+      Franc Gaya
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav class="hidden lg:block" aria-label="Main">
+      <ul class="flex items-center gap-7">
+        {
+          nav.slice(1).map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={item.id === current ? 'page' : undefined}
+                class:list={[
+                  'font-display text-[0.9375rem] font-semibold pb-1 border-b-2 transition-colors',
+                  item.id === current
+                    ? 'text-link border-marker'
+                    : 'text-ink-muted border-transparent hover:text-link',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a
+            href={alternate}
+            hreflang={locale === 'en' ? 'es' : 'en'}
+            data-lang-switch
+            class="rounded-control border border-rule px-3 py-1.5 font-display text-[0.8125rem] font-semibold text-ink-muted hover:border-accent-strong hover:text-link"
+          >
+            {SWITCH_LABEL[locale]}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile navigation. No JavaScript: a native disclosure. -->
+    <details class="group relative lg:hidden">
+      <summary
+        class="flex cursor-pointer items-center gap-2 rounded-control border border-rule px-3 py-2 font-display text-[0.875rem] font-semibold text-ink-muted marker:content-none"
+      >
+        <span class="sr-only">Menu</span>
+        <span aria-hidden="true" class="grid gap-[3px]">
+          <span class="block h-[2px] w-4 bg-current"></span>
+          <span class="block h-[2px] w-4 bg-current"></span>
+          <span class="block h-[2px] w-4 bg-current"></span>
+        </span>
+      </summary>
+      <nav
+        class="absolute right-0 top-[calc(100%+0.5rem)] w-60 rounded-card border border-rule bg-surface p-2"
+        aria-label="Main, mobile"
+      >
+        <ul>
+          {
+            nav.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={item.id === current ? 'page' : undefined}
+                  class:list={[
+                    'block rounded-control px-3 py-2 font-display text-[0.9375rem] font-semibold',
+                    item.id === current ? 'text-link' : 'text-ink-muted',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+          <li class="mt-1 border-t border-rule pt-1">
+            <a
+              href={alternate}
+              hreflang={locale === 'en' ? 'es' : 'en'}
+              data-lang-switch
+              class="block rounded-control px-3 py-2 font-display text-[0.9375rem] font-semibold text-ink-muted"
+            >
+              {SWITCH_LABEL[locale]}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>

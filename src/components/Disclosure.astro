@@ -1,0 +1,40 @@
+---
+/**
+ * L1 folded passage.
+ *
+ * Native <details>, so the content is in the HTML from the start: it indexes,
+ * it prints, it is there in view-source, and it works with JavaScript off.
+ * information-architecture.md section 2, principle 6.
+ *
+ * The summary says what is inside ("How I do it", "An example"), never
+ * "Read more": a fold with no promise attached does not get opened.
+ * Same document, section 6, rule 3.
+ */
+interface Props {
+  summary: string;
+  /** Anchor of its own, so a deep link can open it. */
+  id?: string;
+  class?: string;
+}
+
+const { summary, id, class: className = '' } = Astro.props;
+---
+
+<details
+  id={id}
+  class:list={[
+    'disclosure group mt-6 rounded-card bg-surface-quiet',
+    'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent-strong has-[:focus-visible]:outline-offset-2',
+    className,
+  ]}
+>
+  <summary
+    class="flex items-center gap-3 px-5 py-4 font-display text-h3 font-semibold text-heading select-none focus-visible:outline-none"
+  >
+    <span class="disclosure-sign" aria-hidden="true"></span>
+    <span>{summary}</span>
+  </summary>
+  <div class="prose-block px-5 pb-6 pt-1 text-ink">
+    <slot />
+  </div>
+</details>

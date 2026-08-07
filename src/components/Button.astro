@@ -1,0 +1,32 @@
+---
+/**
+ * Three variants, and each one is tied to the surface it is legal on.
+ *
+ *   primary     coral fill, near-black ink. Measured 5.24. ONE per screen:
+ *               at equal area coral eats the other two (adr-002 section 3).
+ *   ghost       outline in teal ink, for a light surface. 7.70.
+ *   ghost-deep  outline in lime, for a deep surface. 8.54. Lime never appears
+ *               on white in any role.
+ */
+interface Props {
+  href: string;
+  variant?: 'primary' | 'ghost' | 'ghost-deep';
+  class?: string;
+  rel?: string;
+}
+
+const { href, variant = 'primary', class: className = '', rel } = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center rounded-control px-5 py-3 font-display text-[0.9375rem] font-semibold transition-colors';
+
+const variants = {
+  primary: 'bg-marker text-gray-950 hover:bg-coral-500 hover:text-white',
+  ghost: 'border border-link text-link hover:bg-teal-50',
+  'ghost-deep': 'border border-highlight text-highlight hover:bg-teal-800',
+};
+---
+
+<a href={href} rel={rel} class:list={[base, variants[variant], className]}>
+  <slot />
+</a>

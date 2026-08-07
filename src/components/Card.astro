@@ -1,0 +1,25 @@
+---
+/**
+ * Quiet card, for the six links on the home page.
+ *
+ * No shadow anywhere on this site: a flat surface separated by colour and a
+ * one-pixel rule. Saturated colour plus drop shadows is the exact look the
+ * visual language is avoiding (adr-002 section 7).
+ */
+interface Props {
+  href: string;
+  title: string;
+}
+
+const { href, title } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group block rounded-card border border-rule p-5 transition-colors hover:border-accent-strong hover:bg-surface-quiet"
+>
+  <h3 class="text-h3 text-heading group-hover:text-link">{title}</h3>
+  <p class="mt-2 text-[0.9375rem] text-ink-muted">
+    <slot />
+  </p>
+</a>

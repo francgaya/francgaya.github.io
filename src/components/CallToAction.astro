@@ -1,0 +1,40 @@
+---
+/**
+ * The shared CTA. One block, same text on all five pages, written once here
+ * rather than copied five times: five copies diverge the moment one is edited.
+ * web/content/en/_common.md, and information-architecture.md section 5.5.
+ *
+ * It closes the PAGE and never the last section. On /career that means it sits
+ * outside all three sections, at page level.
+ *
+ * Tone is a requirement, not a preference: it invites contact without
+ * declaring a job search (privacy-boundary section 9.2).
+ *
+ * This is where the site's one primary coral button lives.
+ */
+import Button from './Button.astro';
+
+interface Props {
+  heading: string;
+  lead: string;
+  email: string;
+  linkedin: string;
+}
+
+const { heading, lead, email, linkedin } = Astro.props;
+---
+
+<section class="on-deep mt-24 bg-surface-deep">
+  <div class="mx-auto max-w-shell px-6 py-16">
+    <div class="max-w-prose">
+      <h2 class="text-h2 text-ink-on-deep">{heading}</h2>
+      <p class="mt-4 text-lead text-ink-on-deep-muted">{lead}</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button href={`mailto:${email}`} variant="primary">{email}</Button>
+        <Button href={`https://${linkedin}`} variant="ghost-deep" rel="me noopener">
+          {linkedin}
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

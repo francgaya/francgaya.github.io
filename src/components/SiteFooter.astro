@@ -1,0 +1,55 @@
+---
+/**
+ * Footer, on all five pages. Contact, copyright, and the Bits&Roses credit.
+ *
+ * Two deliberate details:
+ *   No separator characters between the links. The middle dot is the Catalan
+ *   geminated l and the em dash is banned outright, so the separation is done
+ *   with layout instead of punctuation.
+ *   The Bits&Roses credit ships WITHOUT a link: bitsnroses.com is not
+ *   published yet. A footer pointing at a dead domain is worse than a footer
+ *   with no link. When it goes live it gets linked, over https.
+ */
+interface Props {
+  email: string;
+  linkedin: string;
+  credit: string;
+}
+
+const { email, linkedin, credit } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="on-deepest bg-surface-deepest">
+  <div
+    class="mx-auto flex max-w-shell flex-col gap-8 px-6 py-12 sm:flex-row sm:items-end sm:justify-between"
+  >
+    <div>
+      <p class="font-display text-[1.0625rem] font-semibold text-ink-on-deep">Franc Gaya</p>
+      <ul class="mt-4 space-y-2">
+        <li>
+          <a
+            href={`mailto:${email}`}
+            class="text-[0.9375rem] text-ink-on-deepest-muted underline decoration-1 underline-offset-4 hover:text-highlight"
+          >
+            {email}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`https://${linkedin}`}
+            rel="me noopener"
+            class="text-[0.9375rem] text-ink-on-deepest-muted underline decoration-1 underline-offset-4 hover:text-highlight"
+          >
+            {linkedin}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="text-[0.875rem] text-ink-on-deepest-muted sm:text-right">
+      <p>&copy; {year} Franc Gaya</p>
+      <p class="mt-2">{credit}</p>
+    </div>
+  </div>
+</footer>

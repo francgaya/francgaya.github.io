@@ -1,0 +1,316 @@
+@import "tailwindcss";
+
+/* Self-hosted variable fonts. Never the Google CDN: the Landgericht Muenchen I
+   ruled on 2022-01-20 (case 3 O 17493/20) that serving them from Google's CDN
+   breaches the GDPR, and the target audience for this site is in DACH.
+   See web/design/adr-002-visual-language.md, section 6.3. */
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/ibm-plex-sans";
+
+/* ============================================================================
+   THEME
+   Two layers, and the distinction matters:
+
+   1. RAMPS. Frozen in adr-002-visual-language.md, section 9. Copied verbatim,
+      in OKLCH, hex in the comment for eyeballing. Nothing here is a P-16
+      decision, and nothing here is negotiable in this task.
+
+   2. PURPOSE TOKENS. P-16 decides these. Components never reference a ramp
+      step directly, they reference a purpose. Changing the temperament later
+      means editing this block and nothing else.
+   ========================================================================= */
+@theme {
+  /* ---- ramps: teal, primary. Low chroma ceiling in sRGB, which is exactly
+     why it is the colour allowed to cover large areas. ---- */
+  --color-teal-50:  oklch(0.975 0.0110 193.0); /* #EFF9F9 */
+  --color-teal-100: oklch(0.945 0.0335 193.0); /* #CEF6F4 */
+  --color-teal-200: oklch(0.895 0.0854 193.0); /* #79F4F0 */
+  --color-teal-300: oklch(0.820 0.1160 193.0); /* #40DEDB */
+  --color-teal-400: oklch(0.700 0.1203 193.0); /* #00B5B3 */
+  --color-teal-500: oklch(0.600 0.0952 193.0); /* #229290 */
+  --color-teal-600: oklch(0.509 0.0764 193.0); /* #207472 */
+  --color-teal-700: oklch(0.435 0.0629 193.0); /* #1B5C5B */
+  --color-teal-800: oklch(0.360 0.0491 193.0); /* #154644 */
+  --color-teal-900: oklch(0.295 0.0334 193.0); /* #133232 */
+  --color-teal-950: oklch(0.215 0.0197 193.0); /* #0C1D1C */
+
+  /* ---- ramps: lime, secondary. Only ever on a dark surface. ---- */
+  --color-lime-50:  oklch(0.975 0.0270 126.0); /* #F4F9EC */
+  --color-lime-100: oklch(0.945 0.0800 126.0); /* #E0F7C0 */
+  --color-lime-200: oklch(0.895 0.1512 126.0); /* #C1F06F */
+  --color-lime-300: oklch(0.833 0.1795 126.0); /* #ABDC4A */
+  --color-lime-400: oklch(0.700 0.1782 126.0); /* #83B100 */
+  --color-lime-500: oklch(0.600 0.1355 126.0); /* #6B8E1D */
+  --color-lime-600: oklch(0.509 0.1067 126.0); /* #56711C */
+  --color-lime-700: oklch(0.435 0.0871 126.0); /* #445A18 */
+  --color-lime-800: oklch(0.360 0.0688 126.0); /* #334412 */
+  --color-lime-900: oklch(0.295 0.0489 126.0); /* #263110 */
+  --color-lime-950: oklch(0.215 0.0288 126.0); /* #151C0A */
+
+  /* ---- ramps: coral, contrast. Anchored exactly on the value Franc gave. ---- */
+  --color-coral-50:  oklch(0.975 0.0086 28.3); /* #F9F6F5 */
+  --color-coral-100: oklch(0.945 0.0243 28.3); /* #F6EAE8 */
+  --color-coral-200: oklch(0.895 0.0561 28.3); /* #F6D3CE */
+  --color-coral-300: oklch(0.820 0.0975 28.3); /* #FAAEA3 */
+  --color-coral-400: oklch(0.669 0.2162 28.3); /* #FE4C40, Franc's colour */
+  --color-coral-500: oklch(0.600 0.1923 28.3); /* #E92722 */
+  --color-coral-600: oklch(0.509 0.1553 28.3); /* #B8251F */
+  --color-coral-700: oklch(0.435 0.1289 28.3); /* #931F1A */
+  --color-coral-800: oklch(0.360 0.1041 28.3); /* #6F1813 */
+  --color-coral-900: oklch(0.295 0.0796 28.3); /* #501611 */
+  --color-coral-950: oklch(0.215 0.0491 28.3); /* #2E0E0B */
+
+  /* ---- ramps: neutrals carrying a trace of the teal hue ---- */
+  --color-gray-50:  oklch(0.975 0.0039 193.0); /* #F4F8F7 */
+  --color-gray-100: oklch(0.945 0.0065 193.0); /* #E8EEEE */
+  --color-gray-200: oklch(0.895 0.0094 193.0); /* #D6DEDE */
+  --color-gray-300: oklch(0.820 0.0117 193.0); /* #BCC7C6 */
+  --color-gray-400: oklch(0.700 0.0130 193.0); /* #96A1A0 */
+  --color-gray-500: oklch(0.600 0.0120 193.0); /* #788382 */
+  --color-gray-600: oklch(0.509 0.0114 193.0); /* #5F6868 */
+  --color-gray-700: oklch(0.435 0.0111 193.0); /* #4B5353 */
+  --color-gray-800: oklch(0.360 0.0107 193.0); /* #373F3F */
+  --color-gray-900: oklch(0.295 0.0094 193.0); /* #272E2E */
+  --color-gray-950: oklch(0.215 0.0075 193.0); /* #161B1A */
+
+  /* ==========================================================================
+     PURPOSE TOKENS, decided in P-16.
+
+     Naming rule: <role>[-on-deep] for anything that changes meaning on a dark
+     surface, so a component never has to know which ramp it is standing on.
+
+     The colour rule of adr-002 section 3 is enforced here rather than in each
+     component: "teal covers, lime qualifies, coral points". Coral is spent on
+     POSITION AND IDENTITY marks only (which section you are in, which page you
+     are on, the one primary action). Ornament inside prose (list bullets,
+     disclosure markers) steps down to teal, because /what-i-do puts six coral
+     section rules on one page and that is already the ceiling section 3 allows.
+     ====================================================================== */
+  --color-surface:          var(--color-white);
+  --color-surface-quiet:    var(--color-gray-50);
+  --color-surface-deep:     var(--color-teal-900);
+  --color-surface-deepest:  var(--color-gray-950);
+
+  --color-ink:              var(--color-gray-900);
+  --color-ink-muted:        var(--color-gray-700);
+  --color-ink-on-deep:      var(--color-white);
+  --color-ink-on-deep-muted: var(--color-teal-100);
+  --color-ink-on-deepest-muted: var(--color-gray-300);
+
+  --color-heading:          var(--color-teal-800);
+  --color-link:             var(--color-teal-700);
+
+  --color-marker:           var(--color-coral-400); /* section rule, active nav, primary button */
+  --color-accent:           var(--color-teal-400);  /* decorative ornament only */
+  --color-accent-strong:    var(--color-teal-700);  /* ornament that carries state or focus */
+  --color-highlight:        var(--color-lime-300);  /* deep surfaces only */
+
+  --color-rule:             var(--color-gray-200);
+  --color-rule-on-deep:     var(--color-teal-800);
+
+  /* ---- type ---- */
+  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* 17px and not 16: the longest folded passage on the site is 338 words.
+     This is a site to be read, not scanned. adr-002 section 6.4. */
+  --text-base: 1.0625rem;          /* 17px */
+  --text-base--line-height: 1.65;
+  --text-lead: 1.1875rem;          /* 19px */
+  --text-lead--line-height: 1.6;
+  --text-h3: 1.25rem;              /* 20px */
+  --text-h3--line-height: 1.35;
+  --text-h2: 1.875rem;             /* 30px */
+  --text-h2--line-height: 1.2;
+  --text-overline: 0.8125rem;      /* 13px */
+  --text-overline--line-height: 1.2;
+
+  /* ---- geometry ---- */
+  --radius-control: 8px;
+  --radius-card: 12px;
+
+  --container-prose: 47.5rem;      /* 760px, 65 to 70 characters at 17px */
+  --container-shell: 70rem;        /* 1120px */
+}
+
+/* ============================================================================
+   BASE
+   Element defaults, so that prose written as plain markup already looks right
+   and components do not have to restate the obvious.
+   ========================================================================= */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* The header is sticky, so an anchor jump has to clear it. */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(2.125rem, 5vw, 3.25rem); /* 34px to 52px */
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+
+  p { text-wrap: pretty; }
+
+  /* One focus treatment for the whole site.
+     NOT teal-400: measured at 2.54 against white, which fails the 3:1 that
+     WCAG 2.2 requires of a focus indicator. teal-700 measures 7.70.
+     See the contrast table in web/design/README-p16.md. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-strong);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  .on-deep :focus-visible,
+  .on-deepest :focus-visible {
+    outline-color: var(--color-highlight);
+  }
+
+  ::selection {
+    background-color: var(--color-teal-100);
+    color: var(--color-teal-950);
+  }
+}
+
+/* ============================================================================
+   COMPONENT UTILITIES
+   Only the patterns that repeat and that Tailwind cannot express in one class.
+   Everything else stays inline in the component, where it can be read.
+   ========================================================================= */
+@layer components {
+
+  /* ---- prose: the body copy of a folded passage or a page intro ---- */
+  .prose-block > * + * { margin-top: 1.1em; }
+  .prose-block strong { font-weight: 600; color: var(--color-ink); }
+  .prose-block a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+  .prose-block a:hover { text-decoration-thickness: 2px; }
+
+  /* ---- evidence list: the L0 bullets of a competency ----
+     The square is decorative: the list is already a list to a screen reader,
+     so the 3:1 rule does not apply to it and teal-400 is allowed here. */
+  .evidence-list { list-style: none; padding: 0; }
+  .evidence-list > li {
+    position: relative;
+    padding-left: 1.6rem;
+  }
+  .evidence-list > li + li { margin-top: 0.7rem; }
+  .evidence-list > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 1px;
+    background-color: var(--color-accent);
+  }
+
+  /* ---- disclosure: the L1 accordion ----
+     Native <details>. The content is in the HTML from the start, so it is
+     indexed, printed, and visible in view-source. information-architecture.md
+     section 2, principle 6. */
+  .disclosure > summary { list-style: none; cursor: pointer; }
+  .disclosure > summary::-webkit-details-marker { display: none; }
+  .disclosure > summary::marker { content: ""; }
+
+  /* The marker carries state, so it does have to meet 3:1: teal-700, 7.70. */
+  .disclosure-sign {
+    position: relative;
+    flex: none;
+    width: 1.375rem;
+    height: 1.375rem;
+  }
+  .disclosure-sign::before,
+  .disclosure-sign::after {
+    content: "";
+    position: absolute;
+    inset: 50% 0 auto 0;
+    height: 2px;
+    margin-top: -1px;
+    background-color: var(--color-accent-strong);
+    transition: transform 150ms ease;
+  }
+  .disclosure-sign::after { transform: rotate(90deg); }
+  .disclosure[open] .disclosure-sign::after { transform: rotate(0deg); }
+
+  /* ---- glossary term: L2 ----
+     A <button> with the native Popover API, so it answers to a tap as well as
+     to a pointer, closes on Escape, and needs no JavaScript.
+     information-architecture.md section 6, rule 4. */
+  .term {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: help;
+    text-decoration: underline dotted;
+    text-decoration-color: var(--color-accent-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+  }
+  .term:hover { text-decoration-style: solid; }
+
+  .term-gloss {
+    max-width: 22rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  /* Without anchor positioning the popover centres itself in the viewport,
+     which is the user-agent default and perfectly usable. Where anchoring is
+     supported it sits next to the term instead. */
+  @supports (anchor-name: --a) {
+    .term { anchor-name: --term; }
+    .term-gloss {
+      position-anchor: --term;
+      position-area: block-end span-inline-end;
+      position-try-fallbacks: flip-block, flip-inline;
+      margin: 0.35rem 0 0 0;
+    }
+  }
+
+  /* ---- section rule: the one coral mark of a competency block ---- */
+  .section-rule {
+    width: 2.75rem;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--color-marker);
+  }
+}
