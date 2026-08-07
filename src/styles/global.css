@@ -118,6 +118,12 @@
   --text-base--line-height: 1.65;
   --text-lead: 1.1875rem;          /* 19px */
   --text-lead--line-height: 1.6;
+  /* The accordion summary. ADR-002 gives it a family and a weight but no size,
+     so the size is a P-16 decision, and it has to clear two neighbours at once:
+     below the h3 it can sit under (on /career the entries are h3), and above
+     the 17px body it introduces. 18 is the only step that does both. */
+  --text-summary: 1.125rem;        /* 18px */
+  --text-summary--line-height: 1.4;
   --text-h3: 1.25rem;              /* 20px */
   --text-h3--line-height: 1.35;
   --text-h2: 1.875rem;             /* 30px */
