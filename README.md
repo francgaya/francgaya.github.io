@@ -11,16 +11,27 @@ compiled in GitHub Actions and served from GitHub Pages.
 The Node version is declared once, in `.nvmrc`, and read by both `nvm use` locally and
 `actions/setup-node` in CI, so the two environments cannot drift apart.
 
+First time, and after any change to `package.json` or `package-lock.json`:
+
 ```sh
-nvm use          # Node 24
-npm ci           # exact versions from the lockfile
-npm run dev      # development server
-npm run build    # static output in dist/
-npm run preview  # serve the build locally
+nvm use          # Node 24, from .nvmrc
+npm ci           # wipes node_modules and reinstalls the exact locked versions
 ```
 
-CI runs the same three commands. A build you cannot reproduce on your own machine is a
-build you cannot debug on the day it breaks.
+Day to day:
+
+```sh
+npm run dev      # development server, Ctrl+C to stop it
+npm run build    # static output in dist/
+npm run preview  # serve that build locally
+```
+
+`nvm use` is per terminal, not per run: it sets the `PATH` of the shell you type it in, so it
+is needed once in every new terminal. `npm ci` is not part of the daily loop, only of the two
+cases above.
+
+CI runs `nvm use`'s equivalent, `npm ci`, and `npm run build`, in that order. A build you
+cannot reproduce on your own machine is a build you cannot debug on the day it breaks.
 
 ## Layout
 
