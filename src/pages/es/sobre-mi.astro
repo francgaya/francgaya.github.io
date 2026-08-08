@@ -6,6 +6,9 @@
  * Same image asset as the English page, so Astro emits one set of variants for
  * both.
  *
+ * WIDTH, changed 2026-08-08: same as the English page. Full-shell body, photo
+ * capped at 760. See about.astro for the reasoning and the cost.
+ *
  * Copy transcribed verbatim from web/content/es/sobre-mi.md.
  */
 import { Image } from 'astro:assets';
@@ -20,13 +23,13 @@ import portrait from '../../assets/franc-and-cosmo.jpg';
   </PageHeader>
 
   <div class="mx-auto max-w-shell px-6 pt-16">
-    <div class="mx-auto max-w-prose space-y-20">
+    <div class="space-y-20">
       <Image
         src={portrait}
         alt="Franc y Cosmo"
         widths={[480, 760, 1520]}
         sizes="(min-width: 800px) 760px, 100vw"
-        class="w-full rounded-card"
+        class="w-full max-w-prose rounded-card"
         loading="eager"
       />
 

@@ -9,6 +9,15 @@
  *
  * Copy transcribed verbatim from web/content/en/index.md.
  *
+ * WIDTH, changed 2026-08-08 on Franc's call. The body spans the full shell
+ * rather than a centred 760px column: with no side index the left gutter is
+ * empty, and a centred column reads as crooked against the left-aligned hero.
+ * The measure argument that makes this expensive on /about does not bite here,
+ * where the longest block of running text is four lines.
+ *
+ * The card grid goes 1 / 2 / 3 across the breakpoints, which is what the
+ * wireframe specified and what the extra width now allows.
+ *
  * Colour: the six cards are quiet, and the only coral of the page is the CTA
  * button at the bottom. No section rules here, so the coral quota is spent on
  * the one action.
@@ -70,7 +79,7 @@ const WAYS = [
   </PageHeader>
 
   <div class="mx-auto max-w-shell px-6 pt-16">
-    <div class="mx-auto max-w-prose space-y-20">
+    <div class="space-y-20">
       <!-- 2. The sentence that defines the role, in the engineering sense.
            "firmware" is the first noun of it, and that is the blindfold against
            the SaaS reading of "architect" (are-role-dossier 14.4.b). -->
@@ -81,7 +90,7 @@ const WAYS = [
       <section>
         <div class="section-rule" aria-hidden="true"></div>
         <h2 class="mt-5 text-h2 text-heading">What I do</h2>
-        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CARDS.map((card) => <Card href={card.href} title={card.title}>{card.line}</Card>)}
         </div>
       </section>

@@ -14,6 +14,19 @@
  * web/content/assets/franc-and-cosmo.jpg, EXIF already stripped there: the
  * original HEIC carried GPS, and this repository is public.
  *
+ * WIDTH, changed 2026-08-08 on Franc's call. The body spans the full shell
+ * instead of sitting in a centred 760px column. With no side index there is
+ * nothing in the left gutter, so a centred column reads as crooked against the
+ * hero, which is left-aligned.
+ *
+ * ⚠️ It costs the measure: at 1072px the line runs 95 to 100 characters, and
+ * adr-002 section 6.4 set 760 precisely to keep it at 65 to 70. Taken with that
+ * on the table, because this page is getting more images and the text will end
+ * up in columns beside them. Revisit if it does not.
+ *
+ * The photo keeps 760, now as an explicit cap on the image rather than one
+ * inherited from a wrapper.
+ *
  * Copy transcribed verbatim from web/content/en/about.md.
  */
 import { Image } from 'astro:assets';
@@ -32,13 +45,13 @@ import portrait from '../assets/franc-and-cosmo.jpg';
   </PageHeader>
 
   <div class="mx-auto max-w-shell px-6 pt-16">
-    <div class="mx-auto max-w-prose space-y-20">
+    <div class="space-y-20">
       <Image
         src={portrait}
         alt="Franc and Cosmo"
         widths={[480, 760, 1520]}
         sizes="(min-width: 800px) 760px, 100vw"
-        class="w-full rounded-card"
+        class="w-full max-w-prose rounded-card"
         loading="eager"
       />
 
