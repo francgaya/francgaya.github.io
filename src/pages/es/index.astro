@@ -60,38 +60,19 @@ const WAYS = [
 ];
 ---
 
-<BaseLayout
-  locale="es"
-  current="home"
-  title="Franc Gaya, arquitecto de producto de sistemas embebidos"
-  description="Ingeniero de firmware y arquitecto de sistema y producto para electrónica de electrodomésticos. Arquitectura, requisitos, seguridad funcional y la interlocución técnica con el fabricante."
->
+<BaseLayout locale="es" current="home" title="Franc Gaya, arquitecto de producto de sistemas embebidos" description="Ingeniero de firmware y arquitecto de sistema y producto para electrónica de electrodomésticos. Arquitectura, requisitos, seguridad funcional y la interlocución técnica con el fabricante.">
   <PageHeader>
     <Fragment slot="title">Franc Gaya</Fragment>
     <Fragment slot="lead">
-      <p class="font-display text-h2 font-semibold text-highlight">
-        Arquitecto de producto de sistemas embebidos, electrodomésticos y equipamiento profesional
-      </p>
-      <p class="mt-4 text-[0.9375rem] font-semibold uppercase tracking-[0.1em] text-ink-on-deep">
-        Barcelona, España
-      </p>
-      <p class="mt-6">
-        Hago que un electrodoméstico funcione por dentro, y respondo del resultado: el control
-        electrónico, lo que tiene que demostrar ante un certificador, y la conversación con el
-        fabricante que va a venderlo.
-      </p>
+      <p class="font-display text-h2 font-semibold text-highlight">Arquitecto de producto de sistemas embebidos, electrodomésticos y equipamiento profesional</p>
+      <p class="mt-4 text-[0.9375rem] font-semibold uppercase tracking-[0.1em] text-ink-on-deep">Barcelona, España</p>
+      <p class="mt-6">Hago que un electrodoméstico funcione por dentro, y respondo del resultado: el control electrónico, lo que tiene que demostrar ante un certificador, y la conversación con el fabricante que va a venderlo.</p>
     </Fragment>
   </PageHeader>
 
   <div class="mx-auto max-w-shell px-6 pt-16">
     <div class="mx-auto max-w-prose space-y-20">
-      <p class="text-lead text-ink">
-        Soy ingeniero de firmware y arquitecto de sistema y producto para electrónica de
-        electrodomésticos. Soy responsable de la arquitectura y de los requisitos de los productos
-        que desarrollo, y de la gobernanza técnica que viene con ellos: dónde acaba el hardware y
-        empieza el software, qué tiene que demostrar el concepto de seguridad, y qué se le puede
-        prometer a un cliente con honestidad.
-      </p>
+      <p class="text-lead text-ink">Soy ingeniero de firmware y arquitecto de sistema y producto para electrónica de electrodomésticos. Soy responsable de la arquitectura y de los requisitos de los productos que desarrollo, y de la gobernanza técnica que viene con ellos: dónde acaba el hardware y empieza el software, qué tiene que demostrar el concepto de seguridad, y qué se le puede prometer a un cliente con honestidad.</p>
 
       <section>
         <h2 class="text-h2 text-heading">Lo que hago</h2>
@@ -102,39 +83,21 @@ const WAYS = [
 
       <section>
         <h2 class="text-h2 text-heading">Cuatro formas de trabajar</h2>
-        <p class="mt-4 text-lead text-ink">
-          Cada proyecto necesita una forma distinta de ingeniero, y con los años he sido las cuatro:
-        </p>
+        <p class="mt-4 text-lead text-ink">Cada proyecto necesita una forma distinta de ingeniero, y con los años he sido las cuatro:</p>
         <ul class="evidence-list mt-6 text-ink">
           {
             WAYS.map(([role, rest]) => (
-              <li>
-                <strong class="font-semibold">{role}</strong>
-                {rest}
-              </li>
+              <li><strong class="font-semibold">{role}</strong> {rest}</li>
             ))
           }
         </ul>
-        <p class="mt-6 text-ink">
-          Son ciertas las cuatro a la vez, y ninguna deja de serlo cuando cambia mi asignación de
-          proyecto.
-        </p>
+        <p class="mt-6 text-ink">Son ciertas las cuatro a la vez, y ninguna deja de serlo cuando cambia mi asignación de proyecto.</p>
       </section>
 
       <section>
         <h2 class="text-h2 text-heading">La trayectoria, en tres líneas</h2>
-        <p class="mt-4 text-ink">
-          Electrónica de control de electrodoméstico desde 2012. Application Reference Engineer
-          desde 2017, con la promoción sobre una plataforma de control de hornos. Interlocutor
-          técnico de fabricantes de electrodomésticos en Europa, Asia y América, en hornos, cocinas,
-          refrigeración, generación de vapor, lavavajillas, lavandería y equipamiento de cocina
-          profesional.
-        </p>
-        <p class="mt-6">
-          <a href="/es/trayectoria/" class="text-link underline decoration-1 underline-offset-4">
-            La trayectoria completa, en orden
-          </a>
-        </p>
+        <p class="mt-4 text-ink">Electrónica de control de electrodoméstico desde 2012. Application Reference Engineer desde 2017, con la promoción sobre una plataforma de control de hornos. Interlocutor técnico de fabricantes de electrodomésticos en Europa, Asia y América, en hornos, cocinas, refrigeración, generación de vapor, lavavajillas, lavandería y equipamiento de cocina profesional.</p>
+        <p class="mt-6"><a href="/es/trayectoria/" class="text-link underline decoration-1 underline-offset-4"> La trayectoria completa, en orden </a></p>
       </section>
     </div>
   </div>

@@ -51,35 +51,14 @@ const alternate = alternateOf(current, locale);
             </li>
           ))
         }
-        <li>
-          <a
-            href={alternate}
-            hreflang={locale === 'en' ? 'es' : 'en'}
-            data-lang-switch
-            class="rounded-control border border-rule px-3 py-1.5 font-display text-[0.8125rem] font-semibold text-ink-muted hover:border-accent-strong hover:text-link"
-          >
-            {SWITCH_LABEL[locale]}
-          </a>
-        </li>
+        <li><a href={alternate} hreflang={locale === 'en' ? 'es' : 'en'} data-lang-switch class="rounded-control border border-rule px-3 py-1.5 font-display text-[0.8125rem] font-semibold text-ink-muted hover:border-accent-strong hover:text-link" > {SWITCH_LABEL[locale]} </a></li>
       </ul>
     </nav>
 
     <!-- Mobile navigation. No JavaScript: a native disclosure. -->
     <details class="group relative lg:hidden">
-      <summary
-        class="flex cursor-pointer items-center gap-2 rounded-control border border-rule px-3 py-2 font-display text-[0.875rem] font-semibold text-ink-muted marker:content-none"
-      >
-        <span class="sr-only">Menu</span>
-        <span aria-hidden="true" class="grid gap-[3px]">
-          <span class="block h-[2px] w-4 bg-current"></span>
-          <span class="block h-[2px] w-4 bg-current"></span>
-          <span class="block h-[2px] w-4 bg-current"></span>
-        </span>
-      </summary>
-      <nav
-        class="absolute right-0 top-[calc(100%+0.5rem)] w-60 rounded-card border border-rule bg-surface p-2"
-        aria-label="Main, mobile"
-      >
+      <summary class="flex cursor-pointer items-center gap-2 rounded-control border border-rule px-3 py-2 font-display text-[0.875rem] font-semibold text-ink-muted marker:content-none"><span class="sr-only">Menu</span> <span aria-hidden="true" class="grid gap-[3px]"> <span class="block h-[2px] w-4 bg-current"></span> <span class="block h-[2px] w-4 bg-current"></span> <span class="block h-[2px] w-4 bg-current"></span> </span></summary>
+      <nav class="absolute right-0 top-[calc(100%+0.5rem)] w-60 rounded-card border border-rule bg-surface p-2" aria-label="Main, mobile">
         <ul>
           {
             nav.map((item) => (
@@ -97,16 +76,7 @@ const alternate = alternateOf(current, locale);
               </li>
             ))
           }
-          <li class="mt-1 border-t border-rule pt-1">
-            <a
-              href={alternate}
-              hreflang={locale === 'en' ? 'es' : 'en'}
-              data-lang-switch
-              class="block rounded-control px-3 py-2 font-display text-[0.9375rem] font-semibold text-ink-muted"
-            >
-              {SWITCH_LABEL[locale]}
-            </a>
-          </li>
+          <li class="mt-1 border-t border-rule pt-1"><a href={alternate} hreflang={locale === 'en' ? 'es' : 'en'} data-lang-switch class="block rounded-control px-3 py-2 font-display text-[0.9375rem] font-semibold text-ink-muted" > {SWITCH_LABEL[locale]} </a></li>
         </ul>
       </nav>
     </details>

@@ -19,7 +19,5 @@ const { href, title } = Astro.props;
   class="group block rounded-card border border-rule p-5 transition-colors hover:border-accent-strong hover:bg-surface-quiet"
 >
   <h3 class="text-h3 text-heading group-hover:text-link">{title}</h3>
-  <p class="mt-2 text-[0.9375rem] text-ink-muted">
-    <slot />
-  </p>
+  <p class="mt-2 text-[0.9375rem] text-ink-muted"><slot /></p>
 </a>

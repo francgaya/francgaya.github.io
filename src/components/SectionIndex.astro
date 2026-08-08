@@ -33,22 +33,11 @@ const { label, items } = Astro.props;
   aria-label={label}
 >
   <div class="pointer-events-auto sticky top-28">
-    <p
-      class="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-gray-500"
-    >
-      {label}
-    </p>
+    <p class="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-gray-500">{label}</p>
     <ul class="mt-4 space-y-2.5">
       {
         items.map((item) => (
-          <li>
-            <a
-              href={`#${item.id}`}
-              class="block text-[0.8125rem] leading-snug text-ink-muted hover:text-link"
-            >
-              {item.title}
-            </a>
-          </li>
+          <li><a href={`#${item.id}`} class="block text-[0.8125rem] leading-snug text-ink-muted hover:text-link" > {item.title} </a></li>
         ))
       }
     </ul>

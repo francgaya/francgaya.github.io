@@ -36,19 +36,10 @@ const SECTIONS = [
 ];
 ---
 
-<BaseLayout
-  locale="en"
-  current="what-i-do"
-  title="What I do | Franc Gaya"
-  description="Firmware, functional safety and certification, product and system architecture, customer-facing technical authority, requirements engineering, and growing engineers."
->
+<BaseLayout locale="en" current="what-i-do" title="What I do | Franc Gaya" description="Firmware, functional safety and certification, product and system architecture, customer-facing technical authority, requirements engineering, and growing engineers.">
   <PageHeader>
     <Fragment slot="title">What I do</Fragment>
-    <Fragment slot="lead">
-      Six things, in the order in which they matter. Each one opens up: the visible part is what
-      I do, and what is folded underneath is how I do it, which is the part that is actually
-      mine.
-    </Fragment>
+    <Fragment slot="lead">Six things, in the order in which they matter. Each one opens up: the visible part is what I do, and what is folded underneath is how I do it, which is the part that is actually mine.</Fragment>
   </PageHeader>
 
   <div class="relative mx-auto max-w-shell px-6 pt-16">
@@ -58,408 +49,133 @@ const SECTIONS = [
       <!-- 1. Firmware. First is not a preference: if the opening block is not
            hands-on, "Architect" reads as a drift into management. -->
       <Competency id="firmware" title="Firmware development">
-        <Fragment slot="claim">
-          I write the firmware, and before anyone can write a line of it, I decide what it will
-          have to live with.
-        </Fragment>
+        <Fragment slot="claim">I write the firmware, and before anyone can write a line of it, I decide what it will have to live with.</Fragment>
 
         <Fragment slot="evidence">
-          <li>
-            I define the microcontroller <Term>pinout</Term>, which closes the boundary between
-            hardware and software before a PCB exists.
-          </li>
-          <li>
-            <Term term="bare metal">Bare-metal</Term> C: drivers and <Term>HAL</Term> over UART,
-            I2C, SPI, DMA, capacitive touch, QSPI flash, SDRAM, and RGB displays.
-          </li>
-          <li>
-            On top of that, control algorithms for cooling, washing, and heating,{' '}
-            <Term>PID</Term> loops, the communication protocol between boards, and the user
-            interface.
-          </li>
-          <li>
-            I have done this as the sole developer of a complete product, as lead developer
-            inside a team, and as the specialist called in for one technology.
-          </li>
+          <li>I define the microcontroller <Term>pinout</Term>, which closes the boundary between hardware and software before a PCB exists.</li>
+          <li><Term term="bare metal">Bare-metal</Term> C: drivers and <Term>HAL</Term> over UART, I2C, SPI, DMA, capacitive touch, QSPI flash, SDRAM, and RGB displays.</li>
+          <li>On top of that, control algorithms for cooling, washing, and heating, <Term>PID</Term> loops, the communication protocol between boards, and the user interface.</li>
+          <li>I have done this as the sole developer of a complete product, as lead developer inside a team, and as the specialist called in for one technology.</li>
         </Fragment>
 
         <Disclosure id="firmware-pinout" summary="Why the pinout is an architecture decision">
-          <p>
-            A pinout looks like a table of pin numbers. It is really the first architecture
-            decision of the project, and the cheapest place either to get it right or to get it
-            wrong.
-          </p>
-          <p>
-            Filling it in requires three things at once. The mapping constraints of the
-            microcontroller: which peripheral can physically reach which pin, which pins are
-            shared between functions, which ones are spent on a debug interface you will need
-            later. The topology of the board: what connects to what, what has to be isolated
-            from the mains, what the layout can actually route without a trace longer than the
-            signal tolerates. And the functional and safety requirements of the product: which
-            signals belong to a safety function and therefore cannot share a resource with
-            anything else, because sharing it would mean a single failure takes out both.
-          </p>
-          <p>
-            Get it right and the firmware team inherits a board that lets them work. Get it
-            wrong and it surfaces months later, when the PCB exists, the tooling is paid for,
-            and the only remaining fix is a software workaround that somebody will maintain for
-            the life of the product.
-          </p>
-          <p>
-            That asymmetry is the whole argument. It is not a programming task, it is an
-            architecture task that happens to be written down as a table, and it is the reason I
-            have done it in every project where I have been the lead developer since 2017.
-          </p>
+          <p>A pinout looks like a table of pin numbers. It is really the first architecture decision of the project, and the cheapest place either to get it right or to get it wrong.</p>
+          <p>Filling it in requires three things at once. The mapping constraints of the microcontroller: which peripheral can physically reach which pin, which pins are shared between functions, which ones are spent on a debug interface you will need later. The topology of the board: what connects to what, what has to be isolated from the mains, what the layout can actually route without a trace longer than the signal tolerates. And the functional and safety requirements of the product: which signals belong to a safety function and therefore cannot share a resource with anything else, because sharing it would mean a single failure takes out both.</p>
+          <p>Get it right and the firmware team inherits a board that lets them work. Get it wrong and it surfaces months later, when the PCB exists, the tooling is paid for, and the only remaining fix is a software workaround that somebody will maintain for the life of the product.</p>
+          <p>That asymmetry is the whole argument. It is not a programming task, it is an architecture task that happens to be written down as a table, and it is the reason I have done it in every project where I have been the lead developer since 2017.</p>
         </Disclosure>
 
         <Disclosure id="firmware-example" summary="An example, tuning a temperature loop">
-          <p>
-            Tuning a temperature loop is the part of my work that most resembles engineering
-            school, and the part I enjoy most.
-          </p>
-          <p>
-            The cavity is the plant, and it is a slow one: minutes of dead time, and a response
-            that changes with the heating function selected and with the size of the cavity.
-            Tuning the PID by trial and error on the real appliance costs hours per attempt and
-            produces a number that holds for exactly one configuration.
-          </p>
-          <p>
-            So I do not tune on the appliance. First an open-loop test: increasing power steps,
-            each held until the temperature settles, all of it recorded. Then a{' '}
-            <Term term="FOPDT">first order plus dead time</Term> model fitted to that response, using
-            a numerical method rather than reading the curve by eye, so that the result is
-            repeatable and someone else can reproduce it. Then the loop is tuned in simulation
-            against that model, on a simulator that runs the same control code as the product.
-            Only the final correction happens on the real appliance.
-          </p>
-          <p>
-            The part that is not in the textbook is the acceptance criterion. The classic tuning
-            rules optimize for a small overshoot; appliance manufacturers want a fast heat-up and
-            will trade a small overshoot for it every single time. So the coefficients get biased
-            toward speed, deliberately, and that is a product decision wearing a control
-            engineer's clothes.
-          </p>
-          <p>
-            I wrote the scripts, set the method, and then handed it over. It has since been run
-            by other engineers, on products I did not develop, which is the only real test of
-            whether a method was a method or just something I happened to be good at.
-          </p>
+          <p>Tuning a temperature loop is the part of my work that most resembles engineering school, and the part I enjoy most.</p>
+          <p>The cavity is the plant, and it is a slow one: minutes of dead time, and a response that changes with the heating function selected and with the size of the cavity. Tuning the PID by trial and error on the real appliance costs hours per attempt and produces a number that holds for exactly one configuration.</p>
+          <p>So I do not tune on the appliance. First an open-loop test: increasing power steps, each held until the temperature settles, all of it recorded. Then a <Term term="FOPDT">first order plus dead time</Term> model fitted to that response, using a numerical method rather than reading the curve by eye, so that the result is repeatable and someone else can reproduce it. Then the loop is tuned in simulation against that model, on a simulator that runs the same control code as the product. Only the final correction happens on the real appliance.</p>
+          <p>The part that is not in the textbook is the acceptance criterion. The classic tuning rules optimize for a small overshoot; appliance manufacturers want a fast heat-up and will trade a small overshoot for it every single time. So the coefficients get biased toward speed, deliberately, and that is a product decision wearing a control engineer's clothes.</p>
+          <p>I wrote the scripts, set the method, and then handed it over. It has since been run by other engineers, on products I did not develop, which is the only real test of whether a method was a method or just something I happened to be good at.</p>
         </Disclosure>
       </Competency>
 
       <!-- 2 and 3 are the moat: IEC 60335 and VDE do not exist in LinkedIn's
            skill taxonomy, so they only exist inside a text. This is that text. -->
       <Competency id="safety" title="Functional safety and certification">
-        <Fragment slot="claim">
-          I design the safety concept of the electronic control, and I am the one who defends it
-          in front of the certification body.
-        </Fragment>
+        <Fragment slot="claim">I design the safety concept of the electronic control, and I am the one who defends it in front of the certification body.</Fragment>
 
         <Fragment slot="evidence">
-          <li>
-            <Term>Class B</Term> software to IEC 60730-1 and the IEC 60335 series, implemented
-            against both the general requirements of the appliance standard and the
-            product-specific ones.
-          </li>
+          <li><Term>Class B</Term> software to IEC 60730-1 and the IEC 60335 series, implemented against both the general requirements of the appliance standard and the product-specific ones.</li>
           <li>Design and evaluation of protective electronic circuits (<Term>PEC</Term>).</li>
-          <li>
-            Concepts defended before <Term term="VDE, UL">VDE, UL</Term>, and the{' '}
-            <Term term="CB scheme">CB scheme</Term>.
-          </li>
-          <li>
-            I set what a certification covers, and the criterion for what kind of change forces
-            it to be done again.
-          </li>
+          <li>Concepts defended before <Term term="VDE, UL">VDE, UL</Term>, and the <Term term="CB scheme">CB scheme</Term>.</li>
+          <li>I set what a certification covers, and the criterion for what kind of change forces it to be done again.</li>
         </Fragment>
 
         <Disclosure id="safety-boundary" summary="Where the control's certification ends">
-          <p>
-            The most common misunderstanding about my job is that the electronic control
-            certifies the appliance. It does not. It certifies a part, and the appliance
-            manufacturer completes the rest. Somebody has to decide exactly where that line
-            falls, write it down, and then defend it in both directions.
-          </p>
-          <p>
-            The clearest example I know is pyrolytic cleaning. During a pyrolysis cycle an oven
-            runs far above any cooking temperature and the door has to stay locked. Locking it is
-            the control's responsibility: the safety function, its Class B implementation, its
-            failure modes, and the evidence for all of that are mine. The force that lock has to
-            withstand is not: that is mechanical, it belongs to the appliance, and it is the
-            manufacturer's to specify and to prove.
-          </p>
-          <p>
-            Neither half is safe on its own. A lock that never fails, on a latch that yields, is
-            a certified control on an unsafe appliance, and that is precisely the gap that opens
-            when each side quietly assumes the other one covered it.
-          </p>
-          <p>
-            Reading the standard is the easy part of this. Knowing which clause is yours, and
-            being able to say so to a customer who would prefer it landed on your side, is the
-            actual skill.
-          </p>
+          <p>The most common misunderstanding about my job is that the electronic control certifies the appliance. It does not. It certifies a part, and the appliance manufacturer completes the rest. Somebody has to decide exactly where that line falls, write it down, and then defend it in both directions.</p>
+          <p>The clearest example I know is pyrolytic cleaning. During a pyrolysis cycle an oven runs far above any cooking temperature and the door has to stay locked. Locking it is the control's responsibility: the safety function, its Class B implementation, its failure modes, and the evidence for all of that are mine. The force that lock has to withstand is not: that is mechanical, it belongs to the appliance, and it is the manufacturer's to specify and to prove.</p>
+          <p>Neither half is safe on its own. A lock that never fails, on a latch that yields, is a certified control on an unsafe appliance, and that is precisely the gap that opens when each side quietly assumes the other one covered it.</p>
+          <p>Reading the standard is the easy part of this. Knowing which clause is yours, and being able to say so to a customer who would prefer it landed on your side, is the actual skill.</p>
         </Disclosure>
 
         <Disclosure id="safety-recertification" summary="What forces a recertification">
-          <p>
-            A certification has a scope, and the scope is a document rather than a feeling. So
-            the useful question about any change is not "is this risky?" but "does this fall
-            inside what was assessed, and does the evidence still hold?"
-          </p>
-          <p>
-            Two changes that look alike from a distance sit on opposite sides of that line.
-            Changing the algorithm that takes the system to a safe state touches the certified
-            function: it has to be re-evaluated, re-documented, and submitted again. Changing a
-            threshold value that the same algorithm compares against, within a range that was
-            already assessed, does not.
-          </p>
-          <p>
-            The first costs months and a certification fee. The second is a parameter. Knowing
-            which is which is what makes a product line viable, because it is the difference
-            between quoting a new development and quoting a variant of an existing one. It is a
-            technical criterion with an immediate commercial consequence, and it is one of the
-            few places where my answer decides whether something gets sold at all.
-          </p>
-          <p>
-            The same discipline runs the other way, and that direction is less comfortable. A
-            rating on a datasheet is not a validated specification. If a component is rated for
-            one figure and the product was only ever tested at another, the number that counts is
-            the tested one, and saying so while somebody is waiting to quote is part of the job.
-          </p>
+          <p>A certification has a scope, and the scope is a document rather than a feeling. So the useful question about any change is not "is this risky?" but "does this fall inside what was assessed, and does the evidence still hold?"</p>
+          <p>Two changes that look alike from a distance sit on opposite sides of that line. Changing the algorithm that takes the system to a safe state touches the certified function: it has to be re-evaluated, re-documented, and submitted again. Changing a threshold value that the same algorithm compares against, within a range that was already assessed, does not.</p>
+          <p>The first costs months and a certification fee. The second is a parameter. Knowing which is which is what makes a product line viable, because it is the difference between quoting a new development and quoting a variant of an existing one. It is a technical criterion with an immediate commercial consequence, and it is one of the few places where my answer decides whether something gets sold at all.</p>
+          <p>The same discipline runs the other way, and that direction is less comfortable. A rating on a datasheet is not a validated specification. If a component is rated for one figure and the product was only ever tested at another, the number that counts is the tested one, and saying so while somebody is waiting to quote is part of the job.</p>
         </Disclosure>
       </Competency>
 
       <Competency id="architecture" title="Product and system architecture">
-        <Fragment slot="claim">
-          I own the architecture, the requirements, and the system specification of the products
-          I develop, and I am the one who has to defend them when they are questioned.
-        </Fragment>
+        <Fragment slot="claim">I own the architecture, the requirements, and the system specification of the products I develop, and I am the one who has to defend them when they are questioned.</Fragment>
 
         <Fragment slot="evidence">
-          <li>
-            The split of functions across microcontrollers, and the decision of what is solved in
-            hardware and what in software.
-          </li>
-          <li>
-            System specifications for products built for one customer, and for catalog products
-            sold to several.
-          </li>
-          <li>
-            Technical reference for Product Managers across multiple departments: feasibility
-            studies, adapting an existing product, and defining a new one.
-          </li>
-          <li>
-            Writing the specification when the customer's own is ambiguous, and getting it
-            adopted as the reference.
-          </li>
+          <li>The split of functions across microcontrollers, and the decision of what is solved in hardware and what in software.</li>
+          <li>System specifications for products built for one customer, and for catalog products sold to several.</li>
+          <li>Technical reference for Product Managers across multiple departments: feasibility studies, adapting an existing product, and defining a new one.</li>
+          <li>Writing the specification when the customer's own is ambiguous, and getting it adopted as the reference.</li>
         </Fragment>
 
         <Disclosure id="architecture-decisions" summary="What actually gets decided here">
-          <p>
-            Architecture in this field is a small number of decisions that are expensive to
-            reverse, all of them taken while there is still nothing to look at.
-          </p>
-          <p>
-            <strong>Where the intelligence lives.</strong> A product with a power board and a user
-            interface board can put the logic on either side, or on both. An interface that only
-            draws what it is told is cheaper to change and keeps the risk in one place; one that
-            can think for itself survives a slow link and lets the two halves be developed in
-            parallel. Both are defensible. What is not defensible is drifting into one of them
-            without ever deciding.
-          </p>
-          <p>
-            <strong>What is hardware and what is software.</strong> Part of that boundary is fixed
-            by the safety standard, part by cost, and part by which side of the project has
-            capacity this year. The last one is a real input, and architectures that pretend
-            otherwise do not get built.
-          </p>
-          <p>
-            <strong>How the boards talk to each other.</strong> Where the link between boards is
-            proprietary, I designed the mediator that lets each software module own the frames for
-            its own peripheral, instead of every peripheral's protocol piling up in one file. That
-            is the difference between a protocol you can extend and one you rewrite.
-          </p>
-          <p>
-            <strong>What varies between models.</strong> A product family is not N separate
-            firmwares. I work with a technique that keeps a single base firmware and moves
-            everything model-specific into a parameter table, so a new model is a data file rather
-            than a fork, and a new feature is implemented once.
-          </p>
+          <p>Architecture in this field is a small number of decisions that are expensive to reverse, all of them taken while there is still nothing to look at.</p>
+          <p><strong>Where the intelligence lives.</strong> A product with a power board and a user interface board can put the logic on either side, or on both. An interface that only draws what it is told is cheaper to change and keeps the risk in one place; one that can think for itself survives a slow link and lets the two halves be developed in parallel. Both are defensible. What is not defensible is drifting into one of them without ever deciding.</p>
+          <p><strong>What is hardware and what is software.</strong> Part of that boundary is fixed by the safety standard, part by cost, and part by which side of the project has capacity this year. The last one is a real input, and architectures that pretend otherwise do not get built.</p>
+          <p><strong>How the boards talk to each other.</strong> Where the link between boards is proprietary, I designed the mediator that lets each software module own the frames for its own peripheral, instead of every peripheral's protocol piling up in one file. That is the difference between a protocol you can extend and one you rewrite.</p>
+          <p><strong>What varies between models.</strong> A product family is not N separate firmwares. I work with a technique that keeps a single base firmware and moves everything model-specific into a parameter table, so a new model is a data file rather than a fork, and a new feature is implemented once.</p>
         </Disclosure>
 
-        <Disclosure
-          id="architecture-example"
-          summary="An example, from one customer to a platform"
-        >
-          <p>
-            Here is an architecture problem that does not look technical at first sight: what has
-            to change when a product built for a single customer starts being offered to several.
-          </p>
-          <p>
-            Physically, nothing. What changes is that every assumption quietly baked in for the
-            original customer turns into a constraint. The sensor type. The switching thresholds.
-            The current the output was validated for. And the certification, which was granted
-            with one manufacturer's application attached to it.
-          </p>
-          <p>
-            Turning that into a platform is mostly a scoping question, asked one assumption at a
-            time: is this a parameter or is it design, and what does the certification say about
-            moving it. This is where the recertification criterion above pays for itself. If a
-            change stays inside the assessed scope, a new customer is a variant, a software
-            change, and a certification update. If it does not, you are quoting a development,
-            and you say so early.
-          </p>
-          <p>
-            I did that work as the product's technical authority without writing a line of its
-            firmware, which is the cleanest evidence I have that this role is separable from
-            implementation. The engineer who did write it is the one I had taught to define a
-            pinout.
-          </p>
+        <Disclosure id="architecture-example" summary="An example, from one customer to a platform">
+          <p>Here is an architecture problem that does not look technical at first sight: what has to change when a product built for a single customer starts being offered to several.</p>
+          <p>Physically, nothing. What changes is that every assumption quietly baked in for the original customer turns into a constraint. The sensor type. The switching thresholds. The current the output was validated for. And the certification, which was granted with one manufacturer's application attached to it.</p>
+          <p>Turning that into a platform is mostly a scoping question, asked one assumption at a time: is this a parameter or is it design, and what does the certification say about moving it. This is where the recertification criterion above pays for itself. If a change stays inside the assessed scope, a new customer is a variant, a software change, and a certification update. If it does not, you are quoting a development, and you say so early.</p>
+          <p>I did that work as the product's technical authority without writing a line of its firmware, which is the cleanest evidence I have that this role is separable from implementation. The engineer who did write it is the one I had taught to define a pinout.</p>
         </Disclosure>
       </Competency>
 
       <!-- 4 moves ahead of 5 on the web: customer-facing technical authority is
            the chosen differentiator, and it explains why 5 and 6 exist. -->
       <Competency id="customer" title="Customer-facing technical authority">
-        <Fragment slot="claim">
-          I am the manufacturer's technical counterpart: the engineer they argue with, and the
-          one who has to make the answer hold.
-        </Fragment>
+        <Fragment slot="claim">I am the manufacturer's technical counterpart: the engineer they argue with, and the one who has to make the answer hold.</Fragment>
 
         <Fragment slot="evidence">
-          <li>
-            Counter-proposals to customer specifications, with the argument and the evidence
-            attached.
-          </li>
-          <li>
-            Defense of architecture and schedule decisions, in front of the people paying for
-            them.
-          </li>
-          <li>
-            Field quality crises: diagnosis, containment, and the communication that both
-            require.
-          </li>
-          <li>
-            The technical seat in pre-sales: feasibility, support to the quotation, custom
-            samples, and diagnosing failures on samples the customer has already tested.
-          </li>
+          <li>Counter-proposals to customer specifications, with the argument and the evidence attached.</li>
+          <li>Defense of architecture and schedule decisions, in front of the people paying for them.</li>
+          <li>Field quality crises: diagnosis, containment, and the communication that both require.</li>
+          <li>The technical seat in pre-sales: feasibility, support to the quotation, custom samples, and diagnosing failures on samples the customer has already tested.</li>
           <li>Manufacturers across Europe, Asia, and the Americas.</li>
         </Fragment>
 
         <Disclosure id="customer-specs" summary="How I handle a specification I disagree with">
-          <p>
-            Customer specifications arrive in every possible shape, and the useful distinction is
-            not good or bad. It is what kind of problem each one is.
-          </p>
-          <p>
-            <strong>Wrong in the detail, right in the intent.</strong> These are cheap. Implement
-            the intent, write down what you did instead and why, get it approved, move on.
-          </p>
-          <p>
-            <strong>Ambiguous or contradictory</strong>, which is the common case. A specification
-            written like a user manual describes what the appliance should look like from the
-            outside and leaves the behavior implicit, so every reader fills the gaps differently
-            and the gaps only surface during integration. The answer is not to complain about the
-            document, it is to produce the missing one: the system-level state machine, written up
-            as a design document and sent back as a proposal. In my experience it gets adopted,
-            and then it becomes the reference both sides argue against, which is worth
-            considerably more than having been right about it.
-          </p>
-          <p>
-            <strong>Impossible at that cost, in that time, or inside that certification.</strong>
-            These need a counter-proposal, never a refusal: what I can do, what it costs, what I
-            need in exchange, and what evidence backs the number. A no with an alternative
-            attached is a negotiation. A no on its own is an escalation, and it will be escalated
-            over my head.
-          </p>
-          <p>
-            <strong>And sometimes the specification is fine and I am the one who is wrong.</strong>
-            Saying so quickly is cheaper than defending the position, and it buys the credit I
-            need for the times I am not.
-          </p>
+          <p>Customer specifications arrive in every possible shape, and the useful distinction is not good or bad. It is what kind of problem each one is.</p>
+          <p><strong>Wrong in the detail, right in the intent.</strong> These are cheap. Implement the intent, write down what you did instead and why, get it approved, move on.</p>
+          <p><strong>Ambiguous or contradictory</strong>, which is the common case. A specification written like a user manual describes what the appliance should look like from the outside and leaves the behavior implicit, so every reader fills the gaps differently and the gaps only surface during integration. The answer is not to complain about the document, it is to produce the missing one: the system-level state machine, written up as a design document and sent back as a proposal. In my experience it gets adopted, and then it becomes the reference both sides argue against, which is worth considerably more than having been right about it.</p>
+          <p><strong>Impossible at that cost, in that time, or inside that certification.</strong> These need a counter-proposal, never a refusal: what I can do, what it costs, what I need in exchange, and what evidence backs the number. A no with an alternative attached is a negotiation. A no on its own is an escalation, and it will be escalated over my head.</p>
+          <p><strong>And sometimes the specification is fine and I am the one who is wrong.</strong> Saying so quickly is cheaper than defending the position, and it buys the credit I need for the times I am not.</p>
         </Disclosure>
 
         <Disclosure id="customer-presales" summary="Pre-sales">
-          <p>
-            Before a project exists there is a quotation, and a quotation needs engineering behind
-            it.
-          </p>
-          <p>
-            What I contribute there: whether a given microcontroller and a given control concept
-            can actually carry the product being asked for; the technical content of the offer, so
-            that what gets promised is what can be built; custom samples defined against the
-            customer's real operating points instead of the catalog ones; and diagnosis when a
-            sample comes back reported as faulty, which as often as not turns out to be how it was
-            wired for the test.
-          </p>
-          <p>
-            Not all of it converts, and that is the normal shape of this work. The decision to
-            invest in a development is not an engineering decision, and closing is not mine to
-            claim. What is mine is that the technical answer the customer received was accurate,
-            including on the occasions when the accurate answer was that the current product does
-            not fit without a redesign.
-          </p>
+          <p>Before a project exists there is a quotation, and a quotation needs engineering behind it.</p>
+          <p>What I contribute there: whether a given microcontroller and a given control concept can actually carry the product being asked for; the technical content of the offer, so that what gets promised is what can be built; custom samples defined against the customer's real operating points instead of the catalog ones; and diagnosis when a sample comes back reported as faulty, which as often as not turns out to be how it was wired for the test.</p>
+          <p>Not all of it converts, and that is the normal shape of this work. The decision to invest in a development is not an engineering decision, and closing is not mine to claim. What is mine is that the technical answer the customer received was accurate, including on the occasions when the accurate answer was that the current product does not fit without a redesign.</p>
         </Disclosure>
       </Competency>
 
       <Competency id="requirements" title="Requirements engineering and process">
-        <Fragment slot="claim">
-          Six years as the corporate key user for requirements management, which is long enough
-          to have seen what an implementation costs and what it actually buys.
-        </Fragment>
+        <Fragment slot="claim">Six years as the corporate key user for requirements management, which is long enough to have seen what an implementation costs and what it actually buys.</Fragment>
 
         <Fragment slot="evidence">
-          <li>
-            Corporate key user, representing my business unit to group headquarters and to the
-            vendor.
-          </li>
-          <li>
-            <Term>V-Model</Term>: traceability from a line in the customer's specification down to
-            the test that proves it, and back.
-          </li>
+          <li>Corporate key user, representing my business unit to group headquarters and to the vendor.</li>
+          <li><Term>V-Model</Term>: traceability from a line in the customer's specification down to the test that proves it, and back.</li>
           <li>Certified by Siemens in Requirements Management using the V-Model.</li>
         </Fragment>
 
-        <Disclosure
-          id="requirements-lessons"
-          summary="What you learn implementing requirements management"
-        >
-          <p>
-            Requirements management is sold as traceability and bought as compliance, and the
-            distance between those two is where implementations fail.
-          </p>
-          <p>
-            <strong>What it buys when it works</strong> is a chain you can walk in both directions:
-            from a line in the customer's specification, to the system requirement that interprets
-            it, to the design that implements it, to the test that proves it, and back again. When
-            a customer asks why the product behaves the way it does, or a certifier asks what
-            evidence covers a function, the answer is a query rather than an archaeological dig.
-          </p>
-          <p>
-            <strong>What it costs is not the license.</strong> Every requirement has to be written
-            by somebody who understands both the customer's intent and the system, and that is
-            engineering time that produces no code. Baselines have to be real, which means diagrams
-            and attachments frozen together with the text and not merely referenced, or the
-            baseline is a snapshot of nothing. Both of those are invisible in a tool demonstration
-            and unavoidable in practice.
-          </p>
-          <p>
-            <strong>Why implementations fail</strong>, from having watched one closely: the tool
-            gets chosen before the needs are collected; the process comes from the vendor rather
-            than from how the teams actually work; and the migration happens before anyone has
-            validated that the migrated data is correct. Each of those is avoidable, and each is
-            avoided by the same unpopular act, which is being willing to argue for a later date. I
-            have made that argument in writing, and I would make it again.
-          </p>
+        <Disclosure id="requirements-lessons" summary="What you learn implementing requirements management">
+          <p>Requirements management is sold as traceability and bought as compliance, and the distance between those two is where implementations fail.</p>
+          <p><strong>What it buys when it works</strong> is a chain you can walk in both directions: from a line in the customer's specification, to the system requirement that interprets it, to the design that implements it, to the test that proves it, and back again. When a customer asks why the product behaves the way it does, or a certifier asks what evidence covers a function, the answer is a query rather than an archaeological dig.</p>
+          <p><strong>What it costs is not the license.</strong> Every requirement has to be written by somebody who understands both the customer's intent and the system, and that is engineering time that produces no code. Baselines have to be real, which means diagrams and attachments frozen together with the text and not merely referenced, or the baseline is a snapshot of nothing. Both of those are invisible in a tool demonstration and unavoidable in practice.</p>
+          <p><strong>Why implementations fail</strong>, from having watched one closely: the tool gets chosen before the needs are collected; the process comes from the vendor rather than from how the teams actually work; and the migration happens before anyone has validated that the migrated data is correct. Each of those is avoidable, and each is avoided by the same unpopular act, which is being willing to argue for a later date. I have made that argument in writing, and I would make it again.</p>
         </Disclosure>
       </Competency>
 
       <!-- 6 stays last and stays shortest. The differentiator is the customer
            relationship, not people management. -->
       <Competency id="mentoring" title="Growing engineers">
-        <Fragment slot="claim">
-          Two engineers, one recruited and one mentored, and the same two things taught first to
-          both.
-        </Fragment>
+        <Fragment slot="claim">Two engineers, one recruited and one mentored, and the same two things taught first to both.</Fragment>
 
         <Fragment slot="evidence">
           <li>Recruited and onboarded a firmware engineer for a dedicated product line, in 2025.</li>
@@ -468,35 +184,15 @@ const SECTIONS = [
 
         <Disclosure id="mentoring-first" summary="What I teach first, and why those two things">
           <p>Two things, in this order, and the order is the point.</p>
-          <p>
-            <strong>Pinout definition.</strong> Not how to fill in the table, which takes an
-            afternoon, but why the table is an architecture decision: what it locks in, who else
-            depends on it, and what it costs to change once a board exists. An engineer who has
-            understood that has understood the boundary between hardware and software, and that is
-            most of what separates writing firmware from owning a product.
-          </p>
-          <p>
-            <strong
-              >Thermocouple theory, and specifically <Term>cold junction compensation</Term>.</strong
-            > It is the cleanest example I know of a problem that cannot be solved from inside the
-            firmware. You are compensating with a temperature measured somewhere on the board, and
-            if there is a thermal gradient across that board, the temperature you are compensating
-            with is not the one at the junction. No amount of code fixes it. You have to hold the
-            sensor, the circuit, and the layout in your head at the same time. Once someone has seen
-            one bug of that shape, they stop looking for the cause only inside their own file.
-          </p>
+          <p><strong>Pinout definition.</strong> Not how to fill in the table, which takes an afternoon, but why the table is an architecture decision: what it locks in, who else depends on it, and what it costs to change once a board exists. An engineer who has understood that has understood the boundary between hardware and software, and that is most of what separates writing firmware from owning a product.</p>
+          <p><strong>Thermocouple theory, and specifically <Term>cold junction compensation</Term>.</strong> It is the cleanest example I know of a problem that cannot be solved from inside the firmware. You are compensating with a temperature measured somewhere on the board, and if there is a thermal gradient across that board, the temperature you are compensating with is not the one at the junction. No amount of code fixes it. You have to hold the sensor, the circuit, and the layout in your head at the same time. Once someone has seen one bug of that shape, they stop looking for the cause only inside their own file.</p>
           <p>Everything else they can get from the codebase.</p>
         </Disclosure>
       </Competency>
 
       <!-- Closing line. /what-i-do links out to /toolkit and /career, and never
            the other way round: a capability that points at a job dates it. -->
-      <p class="border-t border-rule pt-10 text-lead text-ink-muted">
-        The inventory of what I use, standards included, lives on its own page:
-        <a href="/toolkit/" class="text-link underline decoration-1 underline-offset-4">Toolkit</a
-        >. Where and when I did all of the above is in
-        <a href="/career/" class="text-link underline decoration-1 underline-offset-4">Career</a>.
-      </p>
+      <p class="border-t border-rule pt-10 text-lead text-ink-muted">The inventory of what I use, standards included, lives on its own page: <a href="/toolkit/" class="text-link underline decoration-1 underline-offset-4">Toolkit</a>. Where and when I did all of the above is in <a href="/career/" class="text-link underline decoration-1 underline-offset-4">Career</a>.</p>
     </div>
   </div>
 </BaseLayout>

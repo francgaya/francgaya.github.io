@@ -58,6 +58,25 @@ public/          copied verbatim, including the CNAME for the custom domain
 - **Progressive enhancement.** The site ships zero JavaScript. The mobile menu, the
   accordions, and the glossary popovers are all native HTML.
 - **Content in the language of the page; identifiers, classes, and comments in English.**
+- **One paragraph, one line.** A `<p>`, `<li>`, heading, `<summary>` or text-bearing
+  `<Fragment>` keeps its opening tag, its text, and its closing tag on a single line, however
+  long that line gets. Turn word wrap on in the editor; do not wrap it in the file.
+
+  This is not a preference. HTML collapses the newline between running text and an inline
+  element into nothing, so
+
+  ```astro
+  lives on its own page:
+  <a href="/toolkit/">Toolkit</a>
+  ```
+
+  renders as `page:Toolkit`. The escapes are a literal `&#32;` or the hanging-bracket trick
+  (`</a` on one line, `>` on the next) that code formatters emit for exactly this reason, and
+  both are harder to read than the long line they avoid. Comments and attribute lists holding a
+  JSX expression are exempt: neither is rendered text, so neither can lose a space.
+
+  `scripts/reflow.py` applied this to the existing files once; `npm run verify` is what proves
+  no space has been lost since.
 
 ## Verifying a build
 

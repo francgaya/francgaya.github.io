@@ -14,21 +14,10 @@ import TimelineEntry from '../../components/TimelineEntry.astro';
 import Disclosure from '../../components/Disclosure.astro';
 ---
 
-<BaseLayout
-  locale="es"
-  current="career"
-  title="Trayectoria | Franc Gaya"
-  description="Dieciséis años en electrónica de control de electrodoméstico, una reconversión de mecánico a ingeniero electrónico, y la formación y las certificaciones que hay detrás."
->
+<BaseLayout locale="es" current="career" title="Trayectoria | Franc Gaya" description="Dieciséis años en electrónica de control de electrodoméstico, una reconversión de mecánico a ingeniero electrónico, y la formación y las certificaciones que hay detrás.">
   <PageHeader>
     <Fragment slot="title">Trayectoria</Fragment>
-    <Fragment slot="lead">
-      Dónde y cuándo, en orden. Lo que sé hacer está en la página anterior:
-      <a
-        href="/es/lo-que-hago/"
-        class="underline decoration-1 underline-offset-4 hover:text-highlight">Lo que hago</a
-      >.
-    </Fragment>
+    <Fragment slot="lead">Dónde y cuándo, en orden. Lo que sé hacer está en la página anterior: <a href="/es/lo-que-hago/" class="underline decoration-1 underline-offset-4 hover:text-highlight">Lo que hago</a>.</Fragment>
   </PageHeader>
 
   <div class="mx-auto max-w-shell px-6 pt-16">
@@ -38,144 +27,45 @@ import Disclosure from '../../components/Disclosure.astro';
         <h2 class="mt-5 text-h2 text-heading">Experiencia</h2>
 
         <div class="mt-10">
-          <TimelineEntry
-            role="Application Reference Engineer (ARE), arquitecto de producto y sistema"
-            org="E.G.O. Appliance Controls, Lliçà de Vall (Barcelona), España"
-            dates="Noviembre de 2017 a hoy"
-          >
-            <p>
-              El rol de ARE existe porque una organización de especialistas deja a nadie respondiendo
-              del conjunto técnico de un proyecto: cada ingeniero es dueño de una placa o de una
-              capa, y los huecos entre ellas no son de nadie. El ARE es esa persona. Arquitectura,
-              requisitos, frontera entre hardware y software, certificación y la relación técnica
-              directa con el cliente.
-            </p>
-            <p>
-              Promocioné desde firmware, sobre una plataforma de control de hornos, y conservé el
-              trabajo de firmware: el rol se añadió encima, no en lugar de. Desde entonces he
-              trabajado en hornos, cocinas, refrigeración, generación de vapor, lavavajillas,
-              lavandería industrial y equipamiento de cocina profesional. Qué hago en cada uno está
-              en <a href="/es/lo-que-hago/">Lo que hago</a>.
-            </p>
+          <TimelineEntry role="Application Reference Engineer (ARE), arquitecto de producto y sistema" org="E.G.O. Appliance Controls, Lliçà de Vall (Barcelona), España" dates="Noviembre de 2017 a hoy">
+            <p>El rol de ARE existe porque una organización de especialistas deja a nadie respondiendo del conjunto técnico de un proyecto: cada ingeniero es dueño de una placa o de una capa, y los huecos entre ellas no son de nadie. El ARE es esa persona. Arquitectura, requisitos, frontera entre hardware y software, certificación y la relación técnica directa con el cliente.</p>
+            <p>Promocioné desde firmware, sobre una plataforma de control de hornos, y conservé el trabajo de firmware: el rol se añadió encima, no en lugar de. Desde entonces he trabajado en hornos, cocinas, refrigeración, generación de vapor, lavavajillas, lavandería industrial y equipamiento de cocina profesional. Qué hago en cada uno está en <a href="/es/lo-que-hago/">Lo que hago</a>.</p>
 
-            <Disclosure
-              id="are-whole"
-              summary="Qué cambia entre ser el desarrollador y responder del conjunto"
-            >
+            <Disclosure id="are-whole" summary="Qué cambia entre ser el desarrollador y responder del conjunto">
               <p>El trabajo no se vuelve menos técnico. Se vuelve menos acotado.</p>
-              <p>
-                Como desarrollador, la pregunta es si lo que estoy construyendo es correcto. Como
-                responsable del conjunto, correcto es necesario y no se acerca a ser suficiente. La
-                pregunta pasa a ser si es lo correcto: si se puede certificar, si el cliente lo va a
-                aceptar, si el ingeniero que lo herede dentro de cuatro años podrá mantenerlo, y si
-                la decisión que estoy a punto de tomar cierra la puerta a algo que vamos a necesitar
-                más adelante.
-              </p>
-              <p>
-                Dos consecuencias que tardé en aprender. La primera es que casi todas mis decisiones
-                caras ocurren antes de que haya nada que probar, así que el lazo de realimentación se
-                mide en años y la única defensa real es dejar escrito el porqué. La segunda es que el
-                trabajo deja de llegar por una sola dirección: mis propios proyectos, productos
-                antiguos cuyos problemas reaparecen, y consultas de gestión de producto y de la
-                dirección de I+D que no están atadas a ningún proyecto mío. Medir esa carga y ponerle
-                un límite acabó siendo parte del puesto, y es la parte de la que nadie te avisa.
-              </p>
+              <p>Como desarrollador, la pregunta es si lo que estoy construyendo es correcto. Como responsable del conjunto, correcto es necesario y no se acerca a ser suficiente. La pregunta pasa a ser si es lo correcto: si se puede certificar, si el cliente lo va a aceptar, si el ingeniero que lo herede dentro de cuatro años podrá mantenerlo, y si la decisión que estoy a punto de tomar cierra la puerta a algo que vamos a necesitar más adelante.</p>
+              <p>Dos consecuencias que tardé en aprender. La primera es que casi todas mis decisiones caras ocurren antes de que haya nada que probar, así que el lazo de realimentación se mide en años y la única defensa real es dejar escrito el porqué. La segunda es que el trabajo deja de llegar por una sola dirección: mis propios proyectos, productos antiguos cuyos problemas reaparecen, y consultas de gestión de producto y de la dirección de I+D que no están atadas a ningún proyecto mío. Medir esa carga y ponerle un límite acabó siendo parte del puesto, y es la parte de la que nadie te avisa.</p>
             </Disclosure>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Ingeniero de firmware (software embebido)"
-            org="E.G.O. Appliance Controls, Lliçà de Vall (Barcelona), España"
-            dates="Noviembre de 2012 a octubre de 2017"
-          >
-            <p>
-              Firmware en C bare metal para electrónica de control de electrodoméstico, de lavadoras
-              a hornos: HAL, drivers de periférico, algoritmos de control e interfaces de usuario
-              sobre microcontroladores de 8 y 16 bits. De aquí salió la experiencia de plataforma y
-              de concepto de seguridad sobre la que se construyó el rol de ARE en 2017.
-            </p>
+          <TimelineEntry role="Ingeniero de firmware (software embebido)" org="E.G.O. Appliance Controls, Lliçà de Vall (Barcelona), España" dates="Noviembre de 2012 a octubre de 2017">
+            <p>Firmware en C bare metal para electrónica de control de electrodoméstico, de lavadoras a hornos: HAL, drivers de periférico, algoritmos de control e interfaces de usuario sobre microcontroladores de 8 y 16 bits. De aquí salió la experiencia de plataforma y de concepto de seguridad sobre la que se construyó el rol de ARE en 2017.</p>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Ingeniero de firmware y hardware, proyecto UAV"
-            org="SingularAircraft (Singular Ideas), Hospitalet de Llobregat, España"
-            dates="De mayo a octubre de 2012"
-          >
-            <p>
-              El único puesto de mi carrera con hardware y firmware a partes iguales, y el único
-              fuera del electrodoméstico. Construí el enlace entre el receptor de radio y los
-              actuadores y sensores del avión, e hice yo mismo la instalación eléctrica y de datos
-              del aparato.
-            </p>
+          <TimelineEntry role="Ingeniero de firmware y hardware, proyecto UAV" org="SingularAircraft (Singular Ideas), Hospitalet de Llobregat, España" dates="De mayo a octubre de 2012">
+            <p>El único puesto de mi carrera con hardware y firmware a partes iguales, y el único fuera del electrodoméstico. Construí el enlace entre el receptor de radio y los actuadores y sensores del avión, e hice yo mismo la instalación eléctrica y de datos del aparato.</p>
 
             <Disclosure id="uav-detail" summary="Qué necesitaba el avión, en realidad">
-              <p>
-                Demodulación PPM de la señal del receptor de radio, un lazo PID de control de
-                posición, control de válvulas electrohidráulicas para las superficies de mando,
-                control del servo del acelerador, despliegue del tren de aterrizaje, carga de agua y
-                compuertas, codificadores digitales externos para realimentar posición, y
-                configuración remota por RS-232. Más el diseño de la PCB y el cableado eléctrico y de
-                datos completo del avión.
-              </p>
-              <p>
-                Seis meses, un microcontrolador de 8 bits y un avión que tenía que volar. Fue además
-                el primer lazo PID de mi carrera, lo que traza una línea recta desde allí hasta los
-                lazos de temperatura que calibro ahora.
-              </p>
+              <p>Demodulación PPM de la señal del receptor de radio, un lazo PID de control de posición, control de válvulas electrohidráulicas para las superficies de mando, control del servo del acelerador, despliegue del tren de aterrizaje, carga de agua y compuertas, codificadores digitales externos para realimentar posición, y configuración remota por RS-232. Más el diseño de la PCB y el cableado eléctrico y de datos completo del avión.</p>
+              <p>Seis meses, un microcontrolador de 8 bits y un avión que tenía que volar. Fue además el primer lazo PID de mi carrera, lo que traza una línea recta desde allí hasta los lazos de temperatura que calibro ahora.</p>
             </Disclosure>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Ingeniero de firmware, iluminación LED y domótica"
-            org="SAKMA Electrónica Industrial, Hospitalet de Llobregat, España"
-            dates="Diciembre de 2010 a mayo de 2012"
-          >
-            <p>
-              Mi primer empleo de ingeniero: firmware para luminarias LED, control domótico y
-              dispositivos de señalización, todos diseñados y fabricados en la propia casa.
-            </p>
+          <TimelineEntry role="Ingeniero de firmware, iluminación LED y domótica" org="SAKMA Electrónica Industrial, Hospitalet de Llobregat, España" dates="Diciembre de 2010 a mayo de 2012">
+            <p>Mi primer empleo de ingeniero: firmware para luminarias LED, control domótico y dispositivos de señalización, todos diseñados y fabricados en la propia casa.</p>
 
             <Disclosure id="sakma-detail" summary="Qué construí allí, y qué se me quedó">
-              <p>
-                Controladores de iluminación DALI y DMX, incluido un controlador DMX de doce canales.
-                Una sonda de temperatura y humedad para displays matriciales. Un regulador de
-                intensidad de luz. Un bootloader y actualizador de firmware. Un enlace de
-                comunicación a través de la propia luz. Y una estación de ensayo para la línea de
-                producción.
-              </p>
-              <p>
-                Tres cosas empezaron allí y me han seguido desde entonces: bootloaders, estaciones de
-                ensayo de fin de línea, y buses de comunicación propietarios entre placas. Quince
-                años después sigo haciendo las tres, sobre microcontroladores bastante más grandes.
-              </p>
+              <p>Controladores de iluminación DALI y DMX, incluido un controlador DMX de doce canales. Una sonda de temperatura y humedad para displays matriciales. Un regulador de intensidad de luz. Un bootloader y actualizador de firmware. Un enlace de comunicación a través de la propia luz. Y una estación de ensayo para la línea de producción.</p>
+              <p>Tres cosas empezaron allí y me han seguido desde entonces: bootloaders, estaciones de ensayo de fin de línea, y buses de comunicación propietarios entre placas. Quince años después sigo haciendo las tres, sobre microcontroladores bastante más grandes.</p>
             </Disclosure>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Prácticas de ingeniería"
-            org="Aquatec (grupo AGBAR), FECSA-ENDESA y EUETIB-UPC, Barcelona"
-            dates="2009 a 2010"
-          >
-            <p>
-              Migración de pantallas SCADA de una estación potabilizadora (Aquatec). Campañas de
-              actualización de potencia y equipos de medida (FECSA-ENDESA). Clases de repaso de
-              matemáticas a estudiantes de primero de ingeniería, con beca EnginyCat (EUETIB-UPC),
-              que es la primera vez que enseñé algo a alguien.
-            </p>
+          <TimelineEntry role="Prácticas de ingeniería" org="Aquatec (grupo AGBAR), FECSA-ENDESA y EUETIB-UPC, Barcelona" dates="2009 a 2010">
+            <p>Migración de pantallas SCADA de una estación potabilizadora (Aquatec). Campañas de actualización de potencia y equipos de medida (FECSA-ENDESA). Clases de repaso de matemáticas a estudiantes de primero de ingeniería, con beca EnginyCat (EUETIB-UPC), que es la primera vez que enseñé algo a alguien.</p>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Mecánico de automoción y frigorista"
-            org="Barcelona"
-            dates="2005 a 2008"
-          >
-            <p>
-              Coches, después la flota de limpieza viaria de Barcelona, después equipos de frío para
-              vehículos isotermos. Una reconversión completa de mecánico a ingeniero electrónico,
-              hecha en paralelo a la carrera. <a href="/es/sobre-mi/"
-                >La versión larga está en Sobre mí</a
-              >.
-            </p>
+          <TimelineEntry role="Mecánico de automoción y frigorista" org="Barcelona" dates="2005 a 2008">
+            <p>Coches, después la flota de limpieza viaria de Barcelona, después equipos de frío para vehículos isotermos. Una reconversión completa de mecánico a ingeniero electrónico, hecha en paralelo a la carrera. <a href="/es/sobre-mi/">La versión larga está en Sobre mí</a>.</p>
           </TimelineEntry>
         </div>
       </section>
@@ -185,65 +75,23 @@ import Disclosure from '../../components/Disclosure.astro';
         <h2 class="mt-5 text-h2 text-heading">Formación</h2>
 
         <div class="mt-10">
-          <TimelineEntry
-            role="Ingeniero Técnico Industrial en Electrónica Industrial"
-            org="EUETIB, Universitat Politècnica de Catalunya (UPC), Barcelona"
-            dates="2006 a 2010"
-          >
-            <p>
-              Mejor expediente académico de la promoción de 2010. Título propio de la universidad,
-              intensificación en Informática y Telemática. Proyecto final de carrera: una videoconsola
-              retro completa, hardware y software, sobre un microcontrolador Microchip PIC.
-            </p>
+          <TimelineEntry role="Ingeniero Técnico Industrial en Electrónica Industrial" org="EUETIB, Universitat Politècnica de Catalunya (UPC), Barcelona" dates="2006 a 2010">
+            <p>Mejor expediente académico de la promoción de 2010. Título propio de la universidad, intensificación en Informática y Telemática. Proyecto final de carrera: una videoconsola retro completa, hardware y software, sobre un microcontrolador Microchip PIC.</p>
 
-            <Disclosure
-              id="final-project"
-              summary="El proyecto final, que era un producto y no un programa"
-            >
-              <p>
-                Era un producto y no un programa, y por eso sigue teniendo sitio en esta página
-                dieciséis años después.
-              </p>
-              <p>
-                El enunciado era una videoconsola retro y el entregable era la máquina: esquemático y
-                PCB, un microcontrolador PIC, una pantalla de matriz de LEDs, controles de botón y el
-                ensamblador debajo de todo. Dos juegos corren sobre un sistema base pequeño que se
-                ocupa de la pantalla, los controles y el almacenamiento de puntuaciones, y la base se
-                diseñó a propósito para que otra persona pudiera añadir un tercer juego sin tocarla.
-              </p>
-              <p>
-                Que es, salvando dieciséis años y unos cuantos órdenes de magnitud, el mismo argumento
-                que hago hoy sobre un firmware base y una tabla de parámetros.
-              </p>
-              <p>
-                Acabó publicado dos veces: el propio proyecto, y una comunicación de congreso sobre
-                introducir el diseño de videoconsolas retro como proyecto de fin de carrera en el plan
-                de estudios de electrónica.
-              </p>
+            <Disclosure id="final-project" summary="El proyecto final, que era un producto y no un programa">
+              <p>Era un producto y no un programa, y por eso sigue teniendo sitio en esta página dieciséis años después.</p>
+              <p>El enunciado era una videoconsola retro y el entregable era la máquina: esquemático y PCB, un microcontrolador PIC, una pantalla de matriz de LEDs, controles de botón y el ensamblador debajo de todo. Dos juegos corren sobre un sistema base pequeño que se ocupa de la pantalla, los controles y el almacenamiento de puntuaciones, y la base se diseñó a propósito para que otra persona pudiera añadir un tercer juego sin tocarla.</p>
+              <p>Que es, salvando dieciséis años y unos cuantos órdenes de magnitud, el mismo argumento que hago hoy sobre un firmware base y una tabla de parámetros.</p>
+              <p>Acabó publicado dos veces: el propio proyecto, y una comunicación de congreso sobre introducir el diseño de videoconsolas retro como proyecto de fin de carrera en el plan de estudios de electrónica.</p>
             </Disclosure>
           </TimelineEntry>
 
           <TimelineEntry role="CFGS en Automoción" org="C.E. Monlau, Barcelona" dates="2004 a 2006">
-            <p>
-              Crédito de síntesis: diseño de un sistema de frenado antibloqueo (ABS) y control de
-              tracción.
-            </p>
+            <p>Crédito de síntesis: diseño de un sistema de frenado antibloqueo (ABS) y control de tracción.</p>
 
-            <Disclosure
-              id="abs-project"
-              summary="Por qué un sistema de frenado está en la página de un ingeniero embebido"
-            >
-              <p>
-                Diseñar un ABS en 2006 fue mi primer lazo cerrado sobre un sistema físico. Medir la
-                velocidad de una rueda, compararla con lo que está haciendo el vehículo, actuar sobre
-                una válvula, y hacerlo lo bastante rápido como para que la física no se te escape. Un
-                sensor, un actuador, una ley de control y una restricción de tiempo real dura.
-              </p>
-              <p>
-                Veinte años después calibro lazos PID en hornos y en circuitos de frío. Es el mismo
-                problema con una planta más lenta, y es la razón por la que describo lo que vino
-                después como un cambio de dominio y no como un cambio de interés.
-              </p>
+            <Disclosure id="abs-project" summary="Por qué un sistema de frenado está en la página de un ingeniero embebido">
+              <p>Diseñar un ABS en 2006 fue mi primer lazo cerrado sobre un sistema físico. Medir la velocidad de una rueda, compararla con lo que está haciendo el vehículo, actuar sobre una válvula, y hacerlo lo bastante rápido como para que la física no se te escape. Un sensor, un actuador, una ley de control y una restricción de tiempo real dura.</p>
+              <p>Veinte años después calibro lazos PID en hornos y en circuitos de frío. Es el mismo problema con una planta más lenta, y es la razón por la que describo lo que vino después como un cambio de dominio y no como un cambio de interés.</p>
             </Disclosure>
           </TimelineEntry>
         </div>
@@ -254,15 +102,8 @@ import Disclosure from '../../components/Disclosure.astro';
         <h2 class="mt-5 text-h2 text-heading">Certificaciones y desarrollo profesional</h2>
 
         <div class="mt-10">
-          <TimelineEntry
-            role="Requirements Management using V-Model (Polarion 22.2)"
-            org="Siemens"
-            dates="Noviembre de 2023"
-          >
-            <p>
-              Curso oficial para usuarios clave corporativos. Es el respaldo formal del trabajo de
-              ingeniería de requisitos de <a href="/es/lo-que-hago/#requirements">Lo que hago</a>.
-            </p>
+          <TimelineEntry role="Requirements Management using V-Model (Polarion 22.2)" org="Siemens" dates="Noviembre de 2023">
+            <p>Curso oficial para usuarios clave corporativos. Es el respaldo formal del trabajo de ingeniería de requisitos de <a href="/es/lo-que-hago/#requirements">Lo que hago</a>.</p>
           </TimelineEntry>
         </div>
       </section>

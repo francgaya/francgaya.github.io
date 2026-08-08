@@ -146,10 +146,28 @@ def words_from_markdown(path: pathlib.Path) -> list[str]:
     return normalise(raw)
 
 
+# Tags that produce a line break of their own. Text either side of one of these
+# is separated whether or not there is whitespace in the source; text either
+# side of anything else (a, strong, button, span) is NOT.
+BLOCK_TAGS = (
+    "p|div|li|ul|ol|h[1-6]|section|article|header|footer|main|nav|figure|"
+    "details|summary|br|hr|dl|dt|dd|blockquote|table|tr|td|th|aside|form"
+)
+
+
 def words_from_html(path: pathlib.Path) -> list[str]:
     """Body words of a built page: the main region minus the shared CTA, which
-    lives in _common.md and is verified separately."""
-    soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+    lives in _common.md and is verified separately.
+
+    A space is injected before every BLOCK tag and nowhere else, then the text
+    is extracted with NO separator. That combination is the point: extracting
+    with a separator (get_text(" ")) invents a space between every pair of
+    nodes, which silently repairs a lost space between running text and an
+    inline element and hides the very bug this check exists to find.
+    """
+    raw = path.read_text(encoding="utf-8")
+    raw = re.sub(rf"<(/?)({BLOCK_TAGS})\b", r" <\1\2", raw)
+    soup = BeautifulSoup(raw, "html.parser")
     main = soup.find("main")
     for cta in main.select("section.on-deep.bg-surface-deep"):
         # The page header band is also on-deep; only the CTA has a mt-24.
@@ -161,7 +179,7 @@ def words_from_html(path: pathlib.Path) -> list[str]:
     # The section index repeats the six titles by design, and it LINKS.
     for idx in main.select("nav[aria-label]"):
         idx.decompose()
-    return normalise(main.get_text(" "))
+    return normalise(main.get_text(""))
 
 
 def normalise(text: str) -> list[str]:

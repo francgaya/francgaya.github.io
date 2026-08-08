@@ -27,18 +27,10 @@ const SECTIONS = [
 ];
 ---
 
-<BaseLayout
-  locale="es"
-  current="what-i-do"
-  title="Lo que hago | Franc Gaya"
-  description="Firmware, seguridad funcional y certificación, arquitectura de producto y de sistema, interlocución técnica con cliente, ingeniería de requisitos y formación de ingenieros."
->
+<BaseLayout locale="es" current="what-i-do" title="Lo que hago | Franc Gaya" description="Firmware, seguridad funcional y certificación, arquitectura de producto y de sistema, interlocución técnica con cliente, ingeniería de requisitos y formación de ingenieros.">
   <PageHeader>
     <Fragment slot="title">Lo que hago</Fragment>
-    <Fragment slot="lead">
-      Seis cosas, en el orden en que importan. Cada una se despliega: lo visible es qué hago, y lo
-      que queda plegado debajo es cómo lo hago, que es la parte que de verdad es mía.
-    </Fragment>
+    <Fragment slot="lead">Seis cosas, en el orden en que importan. Cada una se despliega: lo visible es qué hago, y lo que queda plegado debajo es cómo lo hago, que es la parte que de verdad es mía.</Fragment>
   </PageHeader>
 
   <div class="relative mx-auto max-w-shell px-6 pt-16">
@@ -46,394 +38,127 @@ const SECTIONS = [
 
     <div class="mx-auto max-w-prose space-y-20">
       <Competency id="firmware" title="Desarrollo de firmware">
-        <Fragment slot="claim">
-          Escribo el firmware, y antes de que nadie pueda escribir una línea decido con qué va a
-          tener que convivir.
-        </Fragment>
+        <Fragment slot="claim">Escribo el firmware, y antes de que nadie pueda escribir una línea decido con qué va a tener que convivir.</Fragment>
 
         <Fragment slot="evidence">
-          <li>
-            Defino el <Term>pinout</Term> del microcontrolador, que cierra la frontera entre
-            hardware y software antes de que exista una PCB.
-          </li>
-          <li>
-            C <Term>bare metal</Term>: drivers y <Term>HAL</Term> sobre UART, I2C, SPI, DMA, táctil
-            capacitivo, flash QSPI, SDRAM y pantallas RGB.
-          </li>
-          <li>
-            Encima de eso, algoritmos de control de frío, lavado y calor, lazos <Term>PID</Term>, el
-            protocolo de comunicación entre placas y la interfaz de usuario.
-          </li>
-          <li>
-            Lo he hecho como desarrollador único de un producto completo, como desarrollador líder
-            dentro de un equipo y como el especialista al que se llama para una tecnología concreta.
-          </li>
+          <li>Defino el <Term>pinout</Term> del microcontrolador, que cierra la frontera entre hardware y software antes de que exista una PCB.</li>
+          <li>C <Term>bare metal</Term>: drivers y <Term>HAL</Term> sobre UART, I2C, SPI, DMA, táctil capacitivo, flash QSPI, SDRAM y pantallas RGB.</li>
+          <li>Encima de eso, algoritmos de control de frío, lavado y calor, lazos <Term>PID</Term>, el protocolo de comunicación entre placas y la interfaz de usuario.</li>
+          <li>Lo he hecho como desarrollador único de un producto completo, como desarrollador líder dentro de un equipo y como el especialista al que se llama para una tecnología concreta.</li>
         </Fragment>
 
         <Disclosure id="firmware-pinout" summary="Por qué el pinout es una decisión de arquitectura">
-          <p>
-            Un pinout parece una tabla de números de patilla. En realidad es la primera decisión de
-            arquitectura del proyecto, y el sitio más barato tanto para acertar como para
-            equivocarse.
-          </p>
-          <p>
-            Rellenarlo exige tres cosas a la vez. Las restricciones de mapeo del microcontrolador:
-            qué periférico puede alcanzar físicamente qué patilla, cuáles están compartidas entre
-            funciones, cuáles se gastan en una interfaz de depuración que vas a necesitar más
-            adelante. La topología de la placa: qué conecta con qué, qué tiene que estar aislado de
-            la red, y qué es capaz de rutar la maqueta sin una pista más larga de lo que tolera la
-            señal. Y los requisitos funcionales y de seguridad del producto: qué señales pertenecen
-            a una función de seguridad y por tanto no pueden compartir recurso con nada más, porque
-            compartirlo significaría que un solo fallo se lleva las dos por delante.
-          </p>
-          <p>
-            Si está bien, el equipo de firmware hereda una placa que le deja trabajar. Si está mal,
-            aparece meses después, cuando la PCB ya existe, el utillaje está pagado, y el único
-            arreglo posible es un parche por software que alguien va a mantener durante toda la vida
-            del producto.
-          </p>
-          <p>
-            Esa asimetría es el argumento entero. No es una tarea de programador, es una tarea de
-            arquitectura que resulta que se escribe en forma de tabla, y es la razón por la que la
-            he hecho en todos los proyectos en los que he sido desarrollador líder desde 2017.
-          </p>
+          <p>Un pinout parece una tabla de números de patilla. En realidad es la primera decisión de arquitectura del proyecto, y el sitio más barato tanto para acertar como para equivocarse.</p>
+          <p>Rellenarlo exige tres cosas a la vez. Las restricciones de mapeo del microcontrolador: qué periférico puede alcanzar físicamente qué patilla, cuáles están compartidas entre funciones, cuáles se gastan en una interfaz de depuración que vas a necesitar más adelante. La topología de la placa: qué conecta con qué, qué tiene que estar aislado de la red, y qué es capaz de rutar la maqueta sin una pista más larga de lo que tolera la señal. Y los requisitos funcionales y de seguridad del producto: qué señales pertenecen a una función de seguridad y por tanto no pueden compartir recurso con nada más, porque compartirlo significaría que un solo fallo se lleva las dos por delante.</p>
+          <p>Si está bien, el equipo de firmware hereda una placa que le deja trabajar. Si está mal, aparece meses después, cuando la PCB ya existe, el utillaje está pagado, y el único arreglo posible es un parche por software que alguien va a mantener durante toda la vida del producto.</p>
+          <p>Esa asimetría es el argumento entero. No es una tarea de programador, es una tarea de arquitectura que resulta que se escribe en forma de tabla, y es la razón por la que la he hecho en todos los proyectos en los que he sido desarrollador líder desde 2017.</p>
         </Disclosure>
 
         <Disclosure id="firmware-example" summary="Un ejemplo, calibrar un lazo de temperatura">
-          <p>
-            Calibrar un lazo de temperatura es la parte de mi trabajo que más se parece a la escuela
-            de ingeniería, y la que más me gusta.
-          </p>
-          <p>
-            La cavidad es la planta, y es lenta: minutos de retardo puro, y una respuesta que cambia
-            con la función de calentamiento seleccionada y con el tamaño de la cavidad. Ajustar el
-            PID a base de prueba y error sobre el aparato real cuesta horas por intento y da un
-            número que solo vale para una configuración.
-          </p>
-          <p>
-            Así que no ajusto sobre el aparato. Primero un ensayo en lazo abierto: escalones
-            crecientes de potencia, cada uno mantenido hasta que la temperatura se estabiliza, todo
-            registrado. Después, un modelo de <Term term="FOPDT">primer orden con retardo</Term>
-            ajustado a esa respuesta, con un método numérico y no leyendo la curva a ojo, para que
-            el resultado sea repetible y otra persona pueda reproducirlo. Después el lazo se ajusta
-            en simulación contra ese modelo, sobre un simulador que ejecuta el mismo código de
-            control que el producto. Solo la corrección final ocurre sobre el aparato real.
-          </p>
-          <p>
-            La parte que no está en el libro es el criterio de aceptación. Las reglas clásicas de
-            ajuste optimizan para un sobreimpulso pequeño; los fabricantes de electrodomésticos
-            quieren un calentamiento rápido y cambian un sobreimpulso pequeño por él siempre. Así
-            que los coeficientes se sesgan hacia la velocidad, deliberadamente, y eso es una
-            decisión de producto disfrazada de ingeniería de control.
-          </p>
-          <p>
-            Escribí los scripts, fijé el método y luego lo entregué. Desde entonces lo han usado
-            otros ingenieros, en productos que yo no desarrollé, que es la única prueba real de si
-            aquello era un método o simplemente algo que se me daba bien.
-          </p>
+          <p>Calibrar un lazo de temperatura es la parte de mi trabajo que más se parece a la escuela de ingeniería, y la que más me gusta.</p>
+          <p>La cavidad es la planta, y es lenta: minutos de retardo puro, y una respuesta que cambia con la función de calentamiento seleccionada y con el tamaño de la cavidad. Ajustar el PID a base de prueba y error sobre el aparato real cuesta horas por intento y da un número que solo vale para una configuración.</p>
+          <p>Así que no ajusto sobre el aparato. Primero un ensayo en lazo abierto: escalones crecientes de potencia, cada uno mantenido hasta que la temperatura se estabiliza, todo registrado. Después, un modelo de <Term term="FOPDT">primer orden con retardo</Term> ajustado a esa respuesta, con un método numérico y no leyendo la curva a ojo, para que el resultado sea repetible y otra persona pueda reproducirlo. Después el lazo se ajusta en simulación contra ese modelo, sobre un simulador que ejecuta el mismo código de control que el producto. Solo la corrección final ocurre sobre el aparato real.</p>
+          <p>La parte que no está en el libro es el criterio de aceptación. Las reglas clásicas de ajuste optimizan para un sobreimpulso pequeño; los fabricantes de electrodomésticos quieren un calentamiento rápido y cambian un sobreimpulso pequeño por él siempre. Así que los coeficientes se sesgan hacia la velocidad, deliberadamente, y eso es una decisión de producto disfrazada de ingeniería de control.</p>
+          <p>Escribí los scripts, fijé el método y luego lo entregué. Desde entonces lo han usado otros ingenieros, en productos que yo no desarrollé, que es la única prueba real de si aquello era un método o simplemente algo que se me daba bien.</p>
         </Disclosure>
       </Competency>
 
       <Competency id="safety" title="Seguridad funcional y certificación">
-        <Fragment slot="claim">
-          Diseño el concepto de seguridad del control electrónico, y soy quien lo defiende delante
-          del organismo de certificación.
-        </Fragment>
+        <Fragment slot="claim">Diseño el concepto de seguridad del control electrónico, y soy quien lo defiende delante del organismo de certificación.</Fragment>
 
         <Fragment slot="evidence">
-          <li>
-            Software <Term>Class B</Term> según IEC 60730-1 y la serie IEC 60335, implementado
-            contra los requisitos generales de la norma del aparato y contra los específicos de
-            producto.
-          </li>
+          <li>Software <Term>Class B</Term> según IEC 60730-1 y la serie IEC 60335, implementado contra los requisitos generales de la norma del aparato y contra los específicos de producto.</li>
           <li>Diseño y evaluación de circuitos electrónicos de protección (<Term>PEC</Term>).</li>
-          <li>
-            Conceptos defendidos ante <Term term="VDE, UL">VDE, UL</Term> y el{' '}
-            <Term term="esquema CB">esquema CB</Term>.
-          </li>
-          <li>
-            Fijo qué cubre una certificación, y el criterio de qué tipo de cambio obliga a rehacerla.
-          </li>
+          <li>Conceptos defendidos ante <Term term="VDE, UL">VDE, UL</Term> y el <Term term="esquema CB">esquema CB</Term>.</li>
+          <li>Fijo qué cubre una certificación, y el criterio de qué tipo de cambio obliga a rehacerla.</li>
         </Fragment>
 
         <Disclosure id="safety-boundary" summary="Dónde acaba lo que certifica el control">
-          <p>
-            El malentendido más común sobre mi trabajo es creer que el control electrónico certifica
-            el aparato. No lo hace. Certifica una parte, y el fabricante del electrodoméstico
-            completa el resto. Alguien tiene que decidir exactamente dónde cae esa línea, escribirlo,
-            y luego defenderlo en las dos direcciones.
-          </p>
-          <p>
-            El ejemplo más claro que conozco es la limpieza pirolítica. Durante un ciclo de pirólisis
-            un horno trabaja muy por encima de cualquier temperatura de cocinado y la puerta tiene
-            que permanecer bloqueada. Bloquearla es responsabilidad del control: la función de
-            seguridad, su implementación Class B, sus modos de fallo y la evidencia de todo eso son
-            míos. La fuerza que ese bloqueo tiene que aguantar no: eso es mecánico, pertenece al
-            aparato, y es del fabricante especificarlo y demostrarlo.
-          </p>
-          <p>
-            Ninguna de las dos mitades es segura por su cuenta. Un bloqueo que no falla nunca, sobre
-            un pestillo que cede, es un control certificado en un aparato inseguro, y ese es justo el
-            hueco que se abre cuando cada lado da por hecho, en silencio, que el otro lo había
-            cubierto.
-          </p>
-          <p>
-            Leer la norma es la parte fácil de esto. Saber qué cláusula es la tuya, y ser capaz de
-            decírselo a un cliente que preferiría que cayera de tu lado, es la habilidad de verdad.
-          </p>
+          <p>El malentendido más común sobre mi trabajo es creer que el control electrónico certifica el aparato. No lo hace. Certifica una parte, y el fabricante del electrodoméstico completa el resto. Alguien tiene que decidir exactamente dónde cae esa línea, escribirlo, y luego defenderlo en las dos direcciones.</p>
+          <p>El ejemplo más claro que conozco es la limpieza pirolítica. Durante un ciclo de pirólisis un horno trabaja muy por encima de cualquier temperatura de cocinado y la puerta tiene que permanecer bloqueada. Bloquearla es responsabilidad del control: la función de seguridad, su implementación Class B, sus modos de fallo y la evidencia de todo eso son míos. La fuerza que ese bloqueo tiene que aguantar no: eso es mecánico, pertenece al aparato, y es del fabricante especificarlo y demostrarlo.</p>
+          <p>Ninguna de las dos mitades es segura por su cuenta. Un bloqueo que no falla nunca, sobre un pestillo que cede, es un control certificado en un aparato inseguro, y ese es justo el hueco que se abre cuando cada lado da por hecho, en silencio, que el otro lo había cubierto.</p>
+          <p>Leer la norma es la parte fácil de esto. Saber qué cláusula es la tuya, y ser capaz de decírselo a un cliente que preferiría que cayera de tu lado, es la habilidad de verdad.</p>
         </Disclosure>
 
         <Disclosure id="safety-recertification" summary="Qué obliga a recertificar">
-          <p>
-            Una certificación tiene un alcance, y el alcance es un documento y no una sensación. Así
-            que la pregunta útil ante cualquier cambio no es "¿esto es arriesgado?", sino "¿cae
-            dentro de lo que se evaluó, y sigue valiendo la evidencia?".
-          </p>
-          <p>
-            Dos cambios que de lejos parecen iguales caen a lados opuestos de esa línea. Cambiar el
-            algoritmo que lleva el sistema a estado seguro toca la función certificada: hay que
-            reevaluarlo, volver a documentarlo y presentarlo otra vez. Cambiar el valor de un umbral
-            con el que ese mismo algoritmo compara, dentro de un rango que ya se evaluó, no.
-          </p>
-          <p>
-            Lo primero cuesta meses y una tasa de certificación. Lo segundo es un parámetro. Saber
-            cuál es cuál es lo que hace viable una línea de producto, porque es la diferencia entre
-            ofertar un desarrollo nuevo y ofertar una variante de uno que ya existe. Es un criterio
-            técnico con consecuencia comercial inmediata, y uno de los pocos sitios donde mi
-            respuesta decide si algo llega a venderse.
-          </p>
-          <p>
-            La misma disciplina funciona en el otro sentido, y esa dirección es más incómoda. Un
-            valor nominal de una hoja de características no es una especificación validada. Si un
-            componente admite una cifra sobre el papel y el producto solo se ensayó con otra, la que
-            cuenta es la ensayada, y decirlo mientras alguien espera para ofertar es parte del
-            trabajo.
-          </p>
+          <p>Una certificación tiene un alcance, y el alcance es un documento y no una sensación. Así que la pregunta útil ante cualquier cambio no es "¿esto es arriesgado?", sino "¿cae dentro de lo que se evaluó, y sigue valiendo la evidencia?".</p>
+          <p>Dos cambios que de lejos parecen iguales caen a lados opuestos de esa línea. Cambiar el algoritmo que lleva el sistema a estado seguro toca la función certificada: hay que reevaluarlo, volver a documentarlo y presentarlo otra vez. Cambiar el valor de un umbral con el que ese mismo algoritmo compara, dentro de un rango que ya se evaluó, no.</p>
+          <p>Lo primero cuesta meses y una tasa de certificación. Lo segundo es un parámetro. Saber cuál es cuál es lo que hace viable una línea de producto, porque es la diferencia entre ofertar un desarrollo nuevo y ofertar una variante de uno que ya existe. Es un criterio técnico con consecuencia comercial inmediata, y uno de los pocos sitios donde mi respuesta decide si algo llega a venderse.</p>
+          <p>La misma disciplina funciona en el otro sentido, y esa dirección es más incómoda. Un valor nominal de una hoja de características no es una especificación validada. Si un componente admite una cifra sobre el papel y el producto solo se ensayó con otra, la que cuenta es la ensayada, y decirlo mientras alguien espera para ofertar es parte del trabajo.</p>
         </Disclosure>
       </Competency>
 
       <Competency id="architecture" title="Arquitectura de producto y de sistema">
-        <Fragment slot="claim">
-          Soy responsable de la arquitectura, los requisitos y la especificación de sistema de los
-          productos que desarrollo, y soy quien tiene que defenderlos cuando se ponen en duda.
-        </Fragment>
+        <Fragment slot="claim">Soy responsable de la arquitectura, los requisitos y la especificación de sistema de los productos que desarrollo, y soy quien tiene que defenderlos cuando se ponen en duda.</Fragment>
 
         <Fragment slot="evidence">
-          <li>
-            El reparto de funciones entre microcontroladores, y la decisión de qué se resuelve en
-            hardware y qué en software.
-          </li>
-          <li>
-            Especificaciones de sistema, tanto de productos hechos para un cliente como de productos
-            de catálogo que se venden a varios.
-          </li>
-          <li>
-            Referente técnico para Product Managers de varios departamentos: estudios de viabilidad,
-            adaptación de un producto existente y definición de uno nuevo.
-          </li>
-          <li>
-            Escribir la especificación cuando la del cliente es ambigua, y conseguir que se adopte
-            como referencia.
-          </li>
+          <li>El reparto de funciones entre microcontroladores, y la decisión de qué se resuelve en hardware y qué en software.</li>
+          <li>Especificaciones de sistema, tanto de productos hechos para un cliente como de productos de catálogo que se venden a varios.</li>
+          <li>Referente técnico para Product Managers de varios departamentos: estudios de viabilidad, adaptación de un producto existente y definición de uno nuevo.</li>
+          <li>Escribir la especificación cuando la del cliente es ambigua, y conseguir que se adopte como referencia.</li>
         </Fragment>
 
         <Disclosure id="architecture-decisions" summary="Qué se decide aquí, en realidad">
-          <p>
-            La arquitectura en este campo es un puñado de decisiones caras de revertir, todas tomadas
-            cuando todavía no hay nada que mirar.
-          </p>
-          <p>
-            <strong>Dónde vive la inteligencia.</strong> Un producto con una placa de potencia y una
-            de interfaz de usuario puede poner la lógica en cualquiera de las dos, o en las dos. Una
-            interfaz que solo dibuja lo que le dicen es más barata de cambiar y concentra el riesgo
-            en un sitio; una que piensa por sí misma sobrevive a un enlace lento y permite
-            desarrollar las dos mitades en paralelo. Las dos son defendibles. Lo que no es defendible
-            es acabar en una de ellas sin haberlo decidido nunca.
-          </p>
-          <p>
-            <strong>Qué es hardware y qué es software.</strong> Parte de esa frontera la fija la
-            norma de seguridad, parte el coste, y parte qué lado del proyecto tiene capacidad este
-            año. Lo último es una entrada real, y las arquitecturas que fingen lo contrario no se
-            llegan a construir.
-          </p>
-          <p>
-            <strong>Cómo se hablan las placas entre sí.</strong> Donde el enlace entre placas es
-            propietario, diseñé el mediador que permite que cada módulo de software sea dueño de las
-            tramas de su propio periférico, en vez de acumular el protocolo de todos ellos en un
-            único archivo. Esa es la diferencia entre un protocolo que puedes ampliar y uno que
-            reescribes.
-          </p>
-          <p>
-            <strong>Qué varía entre modelos.</strong> Una familia de producto no son N firmwares
-            distintos. Trabajo con una técnica que mantiene un firmware base único y desplaza a una
-            tabla de parámetros todo lo específico de cada modelo, de modo que un modelo nuevo es un
-            archivo de datos y no una bifurcación, y una función nueva se implementa una sola vez.
-          </p>
+          <p>La arquitectura en este campo es un puñado de decisiones caras de revertir, todas tomadas cuando todavía no hay nada que mirar.</p>
+          <p><strong>Dónde vive la inteligencia.</strong> Un producto con una placa de potencia y una de interfaz de usuario puede poner la lógica en cualquiera de las dos, o en las dos. Una interfaz que solo dibuja lo que le dicen es más barata de cambiar y concentra el riesgo en un sitio; una que piensa por sí misma sobrevive a un enlace lento y permite desarrollar las dos mitades en paralelo. Las dos son defendibles. Lo que no es defendible es acabar en una de ellas sin haberlo decidido nunca.</p>
+          <p><strong>Qué es hardware y qué es software.</strong> Parte de esa frontera la fija la norma de seguridad, parte el coste, y parte qué lado del proyecto tiene capacidad este año. Lo último es una entrada real, y las arquitecturas que fingen lo contrario no se llegan a construir.</p>
+          <p><strong>Cómo se hablan las placas entre sí.</strong> Donde el enlace entre placas es propietario, diseñé el mediador que permite que cada módulo de software sea dueño de las tramas de su propio periférico, en vez de acumular el protocolo de todos ellos en un único archivo. Esa es la diferencia entre un protocolo que puedes ampliar y uno que reescribes.</p>
+          <p><strong>Qué varía entre modelos.</strong> Una familia de producto no son N firmwares distintos. Trabajo con una técnica que mantiene un firmware base único y desplaza a una tabla de parámetros todo lo específico de cada modelo, de modo que un modelo nuevo es un archivo de datos y no una bifurcación, y una función nueva se implementa una sola vez.</p>
         </Disclosure>
 
         <Disclosure id="architecture-example" summary="Un ejemplo, de un cliente a una plataforma">
-          <p>
-            Un problema de arquitectura que a primera vista no parece técnico: qué tiene que cambiar
-            cuando un producto hecho para un solo cliente empieza a ofrecerse a varios.
-          </p>
-          <p>
-            Físicamente, nada. Lo que cambia es que cada suposición que se dio por buena para el
-            cliente original se convierte en una restricción. El tipo de sensor. Los umbrales de
-            conmutación. La corriente para la que se validó la salida. Y la certificación, que se
-            concedió con la aplicación de un fabricante concreto detrás.
-          </p>
-          <p>
-            Convertir eso en una plataforma es sobre todo una cuestión de alcance, planteada
-            suposición a suposición: ¿esto es un parámetro o es diseño, y qué dice la certificación
-            sobre moverlo? Aquí es donde el criterio de recertificación de más arriba se paga solo.
-            Si un cambio se queda dentro del alcance evaluado, un cliente nuevo es una variante, un
-            cambio de software y una actualización de certificación. Si no, lo que estás ofertando es
-            un desarrollo, y eso se dice pronto.
-          </p>
-          <p>
-            Ese trabajo lo hice como autoridad técnica del producto sin escribir una línea de su
-            firmware, que es la evidencia más limpia que tengo de que este rol es separable de la
-            implementación. El ingeniero que sí la escribió es aquel a quien yo había enseñado a
-            definir un pinout.
-          </p>
+          <p>Un problema de arquitectura que a primera vista no parece técnico: qué tiene que cambiar cuando un producto hecho para un solo cliente empieza a ofrecerse a varios.</p>
+          <p>Físicamente, nada. Lo que cambia es que cada suposición que se dio por buena para el cliente original se convierte en una restricción. El tipo de sensor. Los umbrales de conmutación. La corriente para la que se validó la salida. Y la certificación, que se concedió con la aplicación de un fabricante concreto detrás.</p>
+          <p>Convertir eso en una plataforma es sobre todo una cuestión de alcance, planteada suposición a suposición: ¿esto es un parámetro o es diseño, y qué dice la certificación sobre moverlo? Aquí es donde el criterio de recertificación de más arriba se paga solo. Si un cambio se queda dentro del alcance evaluado, un cliente nuevo es una variante, un cambio de software y una actualización de certificación. Si no, lo que estás ofertando es un desarrollo, y eso se dice pronto.</p>
+          <p>Ese trabajo lo hice como autoridad técnica del producto sin escribir una línea de su firmware, que es la evidencia más limpia que tengo de que este rol es separable de la implementación. El ingeniero que sí la escribió es aquel a quien yo había enseñado a definir un pinout.</p>
         </Disclosure>
       </Competency>
 
       <Competency id="customer" title="Interlocución técnica con cliente">
-        <Fragment slot="claim">
-          Soy el interlocutor técnico del fabricante: el ingeniero con el que discute, y el que tiene
-          que conseguir que la respuesta se sostenga.
-        </Fragment>
+        <Fragment slot="claim">Soy el interlocutor técnico del fabricante: el ingeniero con el que discute, y el que tiene que conseguir que la respuesta se sostenga.</Fragment>
 
         <Fragment slot="evidence">
           <li>Contrapropuestas a las especificaciones de cliente, con el argumento y la evidencia detrás.</li>
           <li>Defensa de decisiones de arquitectura y de calendario, delante de quien las paga.</li>
-          <li>
-            Crisis de calidad en campo: diagnóstico, contención y la comunicación que exigen las dos
-            cosas.
-          </li>
-          <li>
-            El asiento técnico en preventa: viabilidad, soporte a la oferta, muestras a medida y
-            diagnóstico de fallos en muestras que el cliente ya ha probado.
-          </li>
+          <li>Crisis de calidad en campo: diagnóstico, contención y la comunicación que exigen las dos cosas.</li>
+          <li>El asiento técnico en preventa: viabilidad, soporte a la oferta, muestras a medida y diagnóstico de fallos en muestras que el cliente ya ha probado.</li>
           <li>Fabricantes de Europa, Asia y América.</li>
         </Fragment>
 
-        <Disclosure
-          id="customer-specs"
-          summary="Cómo llevo una especificación con la que no estoy de acuerdo"
-        >
-          <p>
-            Las especificaciones de cliente llegan en todas las formas posibles, y la distinción útil
-            no es buena o mala. Es qué clase de problema es cada una.
-          </p>
-          <p>
-            <strong>Equivocada en el detalle, acertada en la intención.</strong> Son las baratas.
-            Implementas la intención, escribes qué hiciste en su lugar y por qué, lo apruebas y
-            sigues.
-          </p>
-          <p>
-            <strong>Ambigua o contradictoria</strong>, que es el caso habitual. Una especificación
-            escrita como un manual de usuario describe cómo debería verse el aparato por fuera y deja
-            el comportamiento implícito, así que cada lector rellena los huecos a su manera y los
-            huecos solo aparecen en integración. La respuesta no es quejarse del documento, es
-            producir el que falta: la máquina de estados a nivel de sistema, redactada como documento
-            de diseño y devuelta como propuesta. Por mi experiencia, se adopta, y a partir de ahí es
-            la referencia contra la que discuten los dos lados, que vale bastante más que haber
-            tenido razón.
-          </p>
-          <p>
-            <strong>Imposible a ese coste, en ese plazo o dentro de esa certificación.</strong> Estas
-            piden una contrapropuesta, nunca una negativa: qué puedo hacer, qué cuesta, qué necesito
-            a cambio y qué evidencia respalda el número. Un no con una alternativa detrás es una
-            negociación. Un no a secas es un escalado, y se escalará por encima de mí.
-          </p>
-          <p>
-            <strong>Y a veces la especificación está bien y el equivocado soy yo.</strong> Decirlo
-            pronto sale más barato que defender la posición, y compra el crédito que necesito para
-            las veces en que no lo estoy.
-          </p>
+        <Disclosure id="customer-specs" summary="Cómo llevo una especificación con la que no estoy de acuerdo">
+          <p>Las especificaciones de cliente llegan en todas las formas posibles, y la distinción útil no es buena o mala. Es qué clase de problema es cada una.</p>
+          <p><strong>Equivocada en el detalle, acertada en la intención.</strong> Son las baratas. Implementas la intención, escribes qué hiciste en su lugar y por qué, lo apruebas y sigues.</p>
+          <p><strong>Ambigua o contradictoria</strong>, que es el caso habitual. Una especificación escrita como un manual de usuario describe cómo debería verse el aparato por fuera y deja el comportamiento implícito, así que cada lector rellena los huecos a su manera y los huecos solo aparecen en integración. La respuesta no es quejarse del documento, es producir el que falta: la máquina de estados a nivel de sistema, redactada como documento de diseño y devuelta como propuesta. Por mi experiencia, se adopta, y a partir de ahí es la referencia contra la que discuten los dos lados, que vale bastante más que haber tenido razón.</p>
+          <p><strong>Imposible a ese coste, en ese plazo o dentro de esa certificación.</strong> Estas piden una contrapropuesta, nunca una negativa: qué puedo hacer, qué cuesta, qué necesito a cambio y qué evidencia respalda el número. Un no con una alternativa detrás es una negociación. Un no a secas es un escalado, y se escalará por encima de mí.</p>
+          <p><strong>Y a veces la especificación está bien y el equivocado soy yo.</strong> Decirlo pronto sale más barato que defender la posición, y compra el crédito que necesito para las veces en que no lo estoy.</p>
         </Disclosure>
 
         <Disclosure id="customer-presales" summary="Preventa">
-          <p>
-            Antes de que exista un proyecto hay una oferta, y una oferta necesita ingeniería detrás.
-          </p>
-          <p>
-            Lo que aporto ahí: si un microcontrolador dado y un concepto de control dado pueden
-            sostener de verdad el producto que se está pidiendo; el contenido técnico de la oferta,
-            para que lo que se promete sea lo que se puede construir; muestras a medida definidas
-            contra los puntos de trabajo reales del cliente y no contra los de catálogo; y
-            diagnóstico cuando vuelve una muestra reportada como defectuosa, que tantas veces como no
-            resulta ser cómo la cablearon para el ensayo.
-          </p>
-          <p>
-            No todo convierte, y esa es la forma normal de este trabajo. La decisión de invertir en un
-            desarrollo no es una decisión de ingeniería, y el cierre no es mío para atribuírmelo. Lo
-            que sí es mío es que la respuesta técnica que recibió el cliente fuera exacta, incluidas
-            las veces en que la respuesta exacta era que el producto actual no encaja sin un rediseño.
-          </p>
+          <p>Antes de que exista un proyecto hay una oferta, y una oferta necesita ingeniería detrás.</p>
+          <p>Lo que aporto ahí: si un microcontrolador dado y un concepto de control dado pueden sostener de verdad el producto que se está pidiendo; el contenido técnico de la oferta, para que lo que se promete sea lo que se puede construir; muestras a medida definidas contra los puntos de trabajo reales del cliente y no contra los de catálogo; y diagnóstico cuando vuelve una muestra reportada como defectuosa, que tantas veces como no resulta ser cómo la cablearon para el ensayo.</p>
+          <p>No todo convierte, y esa es la forma normal de este trabajo. La decisión de invertir en un desarrollo no es una decisión de ingeniería, y el cierre no es mío para atribuírmelo. Lo que sí es mío es que la respuesta técnica que recibió el cliente fuera exacta, incluidas las veces en que la respuesta exacta era que el producto actual no encaja sin un rediseño.</p>
         </Disclosure>
       </Competency>
 
       <Competency id="requirements" title="Ingeniería de requisitos y proceso">
-        <Fragment slot="claim">
-          Seis años como usuario clave corporativo de gestión de requisitos, que es tiempo suficiente
-          para haber visto lo que cuesta una implantación y lo que de verdad compra.
-        </Fragment>
+        <Fragment slot="claim">Seis años como usuario clave corporativo de gestión de requisitos, que es tiempo suficiente para haber visto lo que cuesta una implantación y lo que de verdad compra.</Fragment>
 
         <Fragment slot="evidence">
-          <li>
-            Usuario clave corporativo, representando a mi unidad de negocio ante la central del grupo
-            y ante el proveedor.
-          </li>
-          <li>
-            <Term>V-Model</Term>: trazabilidad desde una línea de la especificación del cliente hasta
-            el ensayo que la demuestra, y de vuelta.
-          </li>
+          <li>Usuario clave corporativo, representando a mi unidad de negocio ante la central del grupo y ante el proveedor.</li>
+          <li><Term>V-Model</Term>: trazabilidad desde una línea de la especificación del cliente hasta el ensayo que la demuestra, y de vuelta.</li>
           <li>Certificado por Siemens en Requirements Management using V-Model.</li>
         </Fragment>
 
-        <Disclosure
-          id="requirements-lessons"
-          summary="Qué se aprende implantando gestión de requisitos"
-        >
-          <p>
-            La gestión de requisitos se vende como trazabilidad y se compra como cumplimiento, y en la
-            distancia entre esas dos cosas es donde fracasan las implantaciones.
-          </p>
-          <p>
-            <strong>Lo que compra cuando funciona</strong> es una cadena que puedes recorrer en las
-            dos direcciones: de una línea de la especificación del cliente, al requisito de sistema
-            que la interpreta, al diseño que lo implementa, al ensayo que lo demuestra, y de vuelta.
-            Cuando un cliente pregunta por qué el producto se comporta así, o un certificador pregunta
-            qué evidencia cubre una función, la respuesta es una consulta y no una excavación
-            arqueológica.
-          </p>
-          <p>
-            <strong>Lo que cuesta no es la licencia.</strong> Cada requisito tiene que escribirlo
-            alguien que entienda a la vez la intención del cliente y el sistema, y eso es tiempo de
-            ingeniería que no produce código. Las baselines tienen que ser reales, es decir, con
-            diagramas y adjuntos congelados junto al texto y no simplemente referenciados, o la
-            baseline es una foto de nada. Las dos cosas son invisibles en una demo de herramienta e
-            inevitables en la práctica.
-          </p>
-          <p>
-            <strong>Por qué fracasan las implantaciones</strong>, por haber visto una de cerca: la
-            herramienta se elige antes de recoger las necesidades; el proceso viene del proveedor en
-            lugar de salir de cómo trabajan los equipos; y la migración se hace antes de que nadie
-            haya validado que los datos migrados son correctos. Cada una de las tres es evitable, y
-            las tres se evitan con el mismo gesto impopular, que es estar dispuesto a defender una
-            fecha más tarde. Ese argumento lo he hecho por escrito, y lo volvería a hacer.
-          </p>
+        <Disclosure id="requirements-lessons" summary="Qué se aprende implantando gestión de requisitos">
+          <p>La gestión de requisitos se vende como trazabilidad y se compra como cumplimiento, y en la distancia entre esas dos cosas es donde fracasan las implantaciones.</p>
+          <p><strong>Lo que compra cuando funciona</strong> es una cadena que puedes recorrer en las dos direcciones: de una línea de la especificación del cliente, al requisito de sistema que la interpreta, al diseño que lo implementa, al ensayo que lo demuestra, y de vuelta. Cuando un cliente pregunta por qué el producto se comporta así, o un certificador pregunta qué evidencia cubre una función, la respuesta es una consulta y no una excavación arqueológica.</p>
+          <p><strong>Lo que cuesta no es la licencia.</strong> Cada requisito tiene que escribirlo alguien que entienda a la vez la intención del cliente y el sistema, y eso es tiempo de ingeniería que no produce código. Las baselines tienen que ser reales, es decir, con diagramas y adjuntos congelados junto al texto y no simplemente referenciados, o la baseline es una foto de nada. Las dos cosas son invisibles en una demo de herramienta e inevitables en la práctica.</p>
+          <p><strong>Por qué fracasan las implantaciones</strong>, por haber visto una de cerca: la herramienta se elige antes de recoger las necesidades; el proceso viene del proveedor en lugar de salir de cómo trabajan los equipos; y la migración se hace antes de que nadie haya validado que los datos migrados son correctos. Cada una de las tres es evitable, y las tres se evitan con el mismo gesto impopular, que es estar dispuesto a defender una fecha más tarde. Ese argumento lo he hecho por escrito, y lo volvería a hacer.</p>
         </Disclosure>
       </Competency>
 
       <Competency id="mentoring" title="Formar ingenieros">
-        <Fragment slot="claim">
-          Dos ingenieros, uno contratado y otro con mentoría, y las mismas dos cosas enseñadas primero
-          a los dos.
-        </Fragment>
+        <Fragment slot="claim">Dos ingenieros, uno contratado y otro con mentoría, y las mismas dos cosas enseñadas primero a los dos.</Fragment>
 
         <Fragment slot="evidence">
           <li>Contraté e incorporé a un ingeniero de firmware para una línea de producto dedicada, en 2025.</li>
@@ -442,36 +167,13 @@ const SECTIONS = [
 
         <Disclosure id="mentoring-first" summary="Qué enseño primero, y por qué esas dos cosas">
           <p>Dos cosas, en este orden, y el orden es lo importante.</p>
-          <p>
-            <strong>Definición de pinout.</strong> No cómo se rellena la tabla, que es una tarde, sino
-            por qué la tabla es una decisión de arquitectura: qué fija, quién depende de ello y qué
-            cuesta cambiarlo cuando ya existe una placa. Un ingeniero que ha entendido eso ha
-            entendido la frontera entre hardware y software, y ahí está casi todo lo que separa
-            escribir firmware de responder de un producto.
-          </p>
-          <p>
-            <strong
-              >Teoría de termopares, y en concreto la <Term>compensación de junta fría</Term>.</strong
-            > Es el ejemplo más limpio que conozco de un problema que no se puede resolver desde dentro
-            del firmware. Estás compensando con una temperatura medida en algún punto de la placa, y si
-            hay un gradiente térmico en esa placa, la temperatura con la que compensas no es la de la
-            junta. Ninguna cantidad de código lo arregla. Hay que tener el sensor, el circuito y la
-            maqueta en la cabeza al mismo tiempo. En cuanto alguien ha visto un fallo con esa forma,
-            deja de buscar la causa solo dentro de su propio archivo.
-          </p>
+          <p><strong>Definición de pinout.</strong> No cómo se rellena la tabla, que es una tarde, sino por qué la tabla es una decisión de arquitectura: qué fija, quién depende de ello y qué cuesta cambiarlo cuando ya existe una placa. Un ingeniero que ha entendido eso ha entendido la frontera entre hardware y software, y ahí está casi todo lo que separa escribir firmware de responder de un producto.</p>
+          <p><strong>Teoría de termopares, y en concreto la <Term>compensación de junta fría</Term>.</strong> Es el ejemplo más limpio que conozco de un problema que no se puede resolver desde dentro del firmware. Estás compensando con una temperatura medida en algún punto de la placa, y si hay un gradiente térmico en esa placa, la temperatura con la que compensas no es la de la junta. Ninguna cantidad de código lo arregla. Hay que tener el sensor, el circuito y la maqueta en la cabeza al mismo tiempo. En cuanto alguien ha visto un fallo con esa forma, deja de buscar la causa solo dentro de su propio archivo.</p>
           <p>Todo lo demás pueden sacarlo del código.</p>
         </Disclosure>
       </Competency>
 
-      <p class="border-t border-rule pt-10 text-lead text-ink-muted">
-        El inventario de lo que uso, normativa incluida, vive en su propia página:
-        <a href="/es/herramientas/" class="text-link underline decoration-1 underline-offset-4"
-          >Herramientas</a
-        >. Dónde y cuándo hice todo lo anterior está en
-        <a href="/es/trayectoria/" class="text-link underline decoration-1 underline-offset-4"
-          >Trayectoria</a
-        >.
-      </p>
+      <p class="border-t border-rule pt-10 text-lead text-ink-muted">El inventario de lo que uso, normativa incluida, vive en su propia página: <a href="/es/herramientas/" class="text-link underline decoration-1 underline-offset-4">Herramientas</a>. Dónde y cuándo hice todo lo anterior está en <a href="/es/trayectoria/" class="text-link underline decoration-1 underline-offset-4">Trayectoria</a>.</p>
     </div>
   </div>
 </BaseLayout>

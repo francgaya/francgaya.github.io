@@ -27,20 +27,10 @@ import TimelineEntry from '../components/TimelineEntry.astro';
 import Disclosure from '../components/Disclosure.astro';
 ---
 
-<BaseLayout
-  locale="en"
-  current="career"
-  title="Career | Franc Gaya"
-  description="Sixteen years in appliance control electronics, a reconversion from mechanic to electronics engineer, and the education and certifications behind both."
->
+<BaseLayout locale="en" current="career" title="Career | Franc Gaya" description="Sixteen years in appliance control electronics, a reconversion from mechanic to electronics engineer, and the education and certifications behind both.">
   <PageHeader>
     <Fragment slot="title">Career</Fragment>
-    <Fragment slot="lead">
-      Where and when, in order. What I can actually do is on the previous page:
-      <a href="/what-i-do/" class="underline decoration-1 underline-offset-4 hover:text-highlight"
-        >What I do</a
-      >.
-    </Fragment>
+    <Fragment slot="lead">Where and when, in order. What I can actually do is on the previous page: <a href="/what-i-do/" class="underline decoration-1 underline-offset-4 hover:text-highlight">What I do</a>.</Fragment>
   </PageHeader>
 
   <div class="mx-auto max-w-shell px-6 pt-16">
@@ -53,142 +43,45 @@ import Disclosure from '../components/Disclosure.astro';
         <h2 class="mt-5 text-h2 text-heading">Experience</h2>
 
         <div class="mt-10">
-          <TimelineEntry
-            role="Application Reference Engineer (ARE), Product & System Architect"
-            org="E.G.O. Appliance Controls, Lliçà de Vall (Barcelona), Spain"
-            dates="November 2017 to present"
-          >
-            <p>
-              The ARE role exists because an organization of specialists leaves nobody accountable
-              for the technical whole of a project: every engineer owns one board or one layer,
-              and the gaps between them belong to no one. The ARE is that person. Architecture,
-              requirements, the hardware and software boundary, certification, and the direct
-              technical relationship with the customer.
-            </p>
-            <p>
-              I was promoted into it from firmware, on an oven control platform, and I kept the
-              firmware work: the role was added on top rather than instead. Since then I have
-              worked across ovens, range cookers, refrigeration, steam generation, dishwashing,
-              industrial laundry, and professional cooking equipment. What I do in each of those
-              is on <a href="/what-i-do/">What I do</a>.
-            </p>
+          <TimelineEntry role="Application Reference Engineer (ARE), Product & System Architect" org="E.G.O. Appliance Controls, Lliçà de Vall (Barcelona), Spain" dates="November 2017 to present">
+            <p>The ARE role exists because an organization of specialists leaves nobody accountable for the technical whole of a project: every engineer owns one board or one layer, and the gaps between them belong to no one. The ARE is that person. Architecture, requirements, the hardware and software boundary, certification, and the direct technical relationship with the customer.</p>
+            <p>I was promoted into it from firmware, on an oven control platform, and I kept the firmware work: the role was added on top rather than instead. Since then I have worked across ovens, range cookers, refrigeration, steam generation, dishwashing, industrial laundry, and professional cooking equipment. What I do in each of those is on <a href="/what-i-do/">What I do</a>.</p>
 
-            <Disclosure
-              id="are-whole"
-              summary="What changes between being the developer and being accountable for the whole"
-            >
+            <Disclosure id="are-whole" summary="What changes between being the developer and being accountable for the whole">
               <p>The work does not become less technical. It becomes less bounded.</p>
-              <p>
-                As a developer, the question is whether the thing I am building is correct. As the
-                person accountable for the whole, correct is necessary and nowhere near
-                sufficient. The question becomes whether it is the right thing at all: whether it
-                can be certified, whether the customer will accept it, whether the engineer who
-                inherits it in four years can maintain it, and whether the decision I am about to
-                take forecloses something we will need later.
-              </p>
-              <p>
-                Two consequences that took me a while to learn. The first is that most of my
-                expensive decisions happen before there is anything to test, so the feedback loop
-                is measured in years and the only real defense is writing down why. The second is
-                that the work no longer arrives from one direction: my own projects, older products
-                whose problems resurface, and questions from product management and from R&amp;D
-                management that are not attached to any project of mine. Measuring that load and
-                putting a limit on it turned out to be part of the job, and it is the part nobody
-                warns you about.
-              </p>
+              <p>As a developer, the question is whether the thing I am building is correct. As the person accountable for the whole, correct is necessary and nowhere near sufficient. The question becomes whether it is the right thing at all: whether it can be certified, whether the customer will accept it, whether the engineer who inherits it in four years can maintain it, and whether the decision I am about to take forecloses something we will need later.</p>
+              <p>Two consequences that took me a while to learn. The first is that most of my expensive decisions happen before there is anything to test, so the feedback loop is measured in years and the only real defense is writing down why. The second is that the work no longer arrives from one direction: my own projects, older products whose problems resurface, and questions from product management and from R&amp;D management that are not attached to any project of mine. Measuring that load and putting a limit on it turned out to be part of the job, and it is the part nobody warns you about.</p>
             </Disclosure>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Firmware Engineer (Embedded Software)"
-            org="E.G.O. Appliance Controls, Lliçà de Vall (Barcelona), Spain"
-            dates="November 2012 to October 2017"
-          >
-            <p>
-              Bare-metal C firmware for home appliance control electronics, from washing machines
-              to ovens: HAL, peripheral drivers, control algorithms, and user interfaces on 8-bit
-              and 16-bit microcontrollers. This is where the platform and safety-concept experience
-              came from, and the ARE role was built on top of it in 2017.
-            </p>
+          <TimelineEntry role="Firmware Engineer (Embedded Software)" org="E.G.O. Appliance Controls, Lliçà de Vall (Barcelona), Spain" dates="November 2012 to October 2017">
+            <p>Bare-metal C firmware for home appliance control electronics, from washing machines to ovens: HAL, peripheral drivers, control algorithms, and user interfaces on 8-bit and 16-bit microcontrollers. This is where the platform and safety-concept experience came from, and the ARE role was built on top of it in 2017.</p>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Firmware & Hardware Engineer, UAV project"
-            org="SingularAircraft (Singular Ideas), Hospitalet de Llobregat, Spain"
-            dates="May to October 2012"
-          >
-            <p>
-              The only role in my career with hardware and firmware in equal parts, and the only
-              one outside appliances. I built the link between the radio receiver and the
-              aircraft's actuators and sensors, and I did the aircraft's electrical and data wiring
-              myself.
-            </p>
+          <TimelineEntry role="Firmware & Hardware Engineer, UAV project" org="SingularAircraft (Singular Ideas), Hospitalet de Llobregat, Spain" dates="May to October 2012">
+            <p>The only role in my career with hardware and firmware in equal parts, and the only one outside appliances. I built the link between the radio receiver and the aircraft's actuators and sensors, and I did the aircraft's electrical and data wiring myself.</p>
 
             <Disclosure id="uav-detail" summary="What the aircraft actually needed">
-              <p>
-                PPM demodulation of the radio receiver signal, a PID position control loop,
-                electro-hydraulic valve control for the control surfaces, throttle servo control,
-                landing gear deployment, water load and hatches, external digital encoders for
-                position feedback, and remote configuration over RS-232. Plus the PCB design and
-                the complete electrical and data wiring of the aircraft.
-              </p>
-              <p>
-                Six months, an 8-bit microcontroller, and an aircraft that had to fly. It was also
-                the first PID loop of my career, which draws a straight line from there to the
-                temperature loops I tune now.
-              </p>
+              <p>PPM demodulation of the radio receiver signal, a PID position control loop, electro-hydraulic valve control for the control surfaces, throttle servo control, landing gear deployment, water load and hatches, external digital encoders for position feedback, and remote configuration over RS-232. Plus the PCB design and the complete electrical and data wiring of the aircraft.</p>
+              <p>Six months, an 8-bit microcontroller, and an aircraft that had to fly. It was also the first PID loop of my career, which draws a straight line from there to the temperature loops I tune now.</p>
             </Disclosure>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Firmware Engineer, LED lighting and building automation"
-            org="SAKMA Electrónica Industrial, Hospitalet de Llobregat, Spain"
-            dates="December 2010 to May 2012"
-          >
-            <p>
-              My first engineering job: firmware for LED luminaires, building automation, and
-              signage devices, all designed and manufactured in-house.
-            </p>
+          <TimelineEntry role="Firmware Engineer, LED lighting and building automation" org="SAKMA Electrónica Industrial, Hospitalet de Llobregat, Spain" dates="December 2010 to May 2012">
+            <p>My first engineering job: firmware for LED luminaires, building automation, and signage devices, all designed and manufactured in-house.</p>
 
             <Disclosure id="sakma-detail" summary="What I built there, and what stayed with me">
-              <p>
-                DALI and DMX lighting controllers, including a twelve-channel DMX controller. A
-                temperature and humidity probe for matrix displays. A light dimmer. A bootloader
-                and firmware updater. A communication link through light itself. And a test station
-                for the production line.
-              </p>
-              <p>
-                Three things started there and have followed me ever since: bootloaders,
-                end-of-line test stations, and proprietary communication buses between boards.
-                Fifteen years later I am still doing all three, on considerably larger
-                microcontrollers.
-              </p>
+              <p>DALI and DMX lighting controllers, including a twelve-channel DMX controller. A temperature and humidity probe for matrix displays. A light dimmer. A bootloader and firmware updater. A communication link through light itself. And a test station for the production line.</p>
+              <p>Three things started there and have followed me ever since: bootloaders, end-of-line test stations, and proprietary communication buses between boards. Fifteen years later I am still doing all three, on considerably larger microcontrollers.</p>
             </Disclosure>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Engineering internships"
-            org="Aquatec (AGBAR group), FECSA-ENDESA, and EUETIB-UPC, Barcelona"
-            dates="2009 to 2010"
-          >
-            <p>
-              SCADA screen migration for a drinking water treatment plant (Aquatec). Metering and
-              power upgrade campaigns (FECSA-ENDESA). Mathematics tutoring for first-year
-              engineering students, on an EnginyCat scholarship (EUETIB-UPC), which is the first
-              time I taught anybody anything.
-            </p>
+          <TimelineEntry role="Engineering internships" org="Aquatec (AGBAR group), FECSA-ENDESA, and EUETIB-UPC, Barcelona" dates="2009 to 2010">
+            <p>SCADA screen migration for a drinking water treatment plant (Aquatec). Metering and power upgrade campaigns (FECSA-ENDESA). Mathematics tutoring for first-year engineering students, on an EnginyCat scholarship (EUETIB-UPC), which is the first time I taught anybody anything.</p>
           </TimelineEntry>
 
-          <TimelineEntry
-            role="Automotive and refrigeration mechanic"
-            org="Barcelona"
-            dates="2005 to 2008"
-          >
-            <p>
-              Cars, then Barcelona's street-cleaning fleet, then refrigeration units for
-              refrigerated trucks. A full reconversion from mechanic to electronics engineer, done
-              in parallel with the degree. <a href="/about/">The long version is in About</a>.
-            </p>
+          <TimelineEntry role="Automotive and refrigeration mechanic" org="Barcelona" dates="2005 to 2008">
+            <p>Cars, then Barcelona's street-cleaning fleet, then refrigeration units for refrigerated trucks. A full reconversion from mechanic to electronics engineer, done in parallel with the degree. <a href="/about/">The long version is in About</a>.</p>
           </TimelineEntry>
         </div>
       </section>
@@ -202,71 +95,26 @@ import Disclosure from '../components/Disclosure.astro';
         <h2 class="mt-5 text-h2 text-heading">Education</h2>
 
         <div class="mt-10">
-          <TimelineEntry
-            role="Ingeniero Técnico Industrial en Electrónica Industrial (Industrial Electronics Engineering)"
-            org="EUETIB, Universitat Politècnica de Catalunya (UPC), Barcelona"
-            dates="2006 to 2010"
-          >
-            <p>
-              Best academic record of the 2010 graduating class. University's own specialization
-              track in Computing and Telematics. Final project: a complete retro game console,
-              hardware and software, built on a Microchip PIC microcontroller.
-            </p>
+          <TimelineEntry role="Ingeniero Técnico Industrial en Electrónica Industrial (Industrial Electronics Engineering)" org="EUETIB, Universitat Politècnica de Catalunya (UPC), Barcelona" dates="2006 to 2010">
+            <p>Best academic record of the 2010 graduating class. University's own specialization track in Computing and Telematics. Final project: a complete retro game console, hardware and software, built on a Microchip PIC microcontroller.</p>
 
-            <Disclosure
-              id="final-project"
-              summary="The final project, which was a product and not a program"
-            >
-              <p>
-                It was a product, not a program, and that is why it still belongs on this page
-                sixteen years later.
-              </p>
-              <p>
-                The brief was a retro game console and the deliverable was the machine: schematic
-                and PCB, a PIC microcontroller, an LED matrix display, button controls, and the
-                assembler underneath all of it. Two games run on a small base system that handles
-                the display, the controls, and high-score storage, and the base was deliberately
-                designed so that somebody else could add a third game without touching it.
-              </p>
-              <p>
-                Which is, allowing for sixteen years and a few orders of magnitude, the same
-                argument I make today about a base firmware and a parameter table.
-              </p>
-              <p>
-                It ended up published twice: the project itself, and a conference paper on
-                introducing retro game console design as a final-year project in the electronics
-                syllabus.
-              </p>
+            <Disclosure id="final-project" summary="The final project, which was a product and not a program">
+              <p>It was a product, not a program, and that is why it still belongs on this page sixteen years later.</p>
+              <p>The brief was a retro game console and the deliverable was the machine: schematic and PCB, a PIC microcontroller, an LED matrix display, button controls, and the assembler underneath all of it. Two games run on a small base system that handles the display, the controls, and high-score storage, and the base was deliberately designed so that somebody else could add a third game without touching it.</p>
+              <p>Which is, allowing for sixteen years and a few orders of magnitude, the same argument I make today about a base firmware and a parameter table.</p>
+              <p>It ended up published twice: the project itself, and a conference paper on introducing retro game console design as a final-year project in the electronics syllabus.</p>
             </Disclosure>
           </TimelineEntry>
 
           <!-- One line at L0 against four above it. The whole ABS story is in
                the fold, which is what makes this entry weigh less without
                moving it to a different section. -->
-          <TimelineEntry
-            role="CFGS in Automotive Technology"
-            org="C.E. Monlau, Barcelona"
-            dates="2004 to 2006"
-          >
-            <p>
-              Final project: design of an anti-lock braking (ABS) and traction control system.
-            </p>
+          <TimelineEntry role="CFGS in Automotive Technology" org="C.E. Monlau, Barcelona" dates="2004 to 2006">
+            <p>Final project: design of an anti-lock braking (ABS) and traction control system.</p>
 
-            <Disclosure
-              id="abs-project"
-              summary="Why a braking system is on an embedded engineer's page"
-            >
-              <p>
-                Designing an ABS in 2006 was my first closed loop on a physical system. Measure a
-                wheel speed, compare it against what the vehicle is actually doing, act on a valve,
-                and do all of it fast enough that the physics does not get away from you. A sensor,
-                an actuator, a control law, and a hard real-time constraint.
-              </p>
-              <p>
-                Twenty years later I tune PID loops on ovens and refrigeration circuits. It is the
-                same problem with a slower plant, and it is why I describe what came next as a
-                change of domain rather than a change of interest.
-              </p>
+            <Disclosure id="abs-project" summary="Why a braking system is on an embedded engineer's page">
+              <p>Designing an ABS in 2006 was my first closed loop on a physical system. Measure a wheel speed, compare it against what the vehicle is actually doing, act on a valve, and do all of it fast enough that the physics does not get away from you. A sensor, an actuator, a control law, and a hard real-time constraint.</p>
+              <p>Twenty years later I tune PID loops on ovens and refrigeration circuits. It is the same problem with a slower plant, and it is why I describe what came next as a change of domain rather than a change of interest.</p>
             </Disclosure>
           </TimelineEntry>
         </div>
@@ -280,16 +128,8 @@ import Disclosure from '../components/Disclosure.astro';
         <h2 class="mt-5 text-h2 text-heading">Certifications and professional development</h2>
 
         <div class="mt-10">
-          <TimelineEntry
-            role="Requirements Management using V-Model (Polarion 22.2)"
-            org="Siemens"
-            dates="November 2023"
-          >
-            <p>
-              Official course for corporate key users. It is the formal backing for the
-              requirements engineering work on
-              <a href="/what-i-do/#requirements">What I do</a>.
-            </p>
+          <TimelineEntry role="Requirements Management using V-Model (Polarion 22.2)" org="Siemens" dates="November 2023">
+            <p>Official course for corporate key users. It is the formal backing for the requirements engineering work on <a href="/what-i-do/#requirements">What I do</a>.</p>
           </TimelineEntry>
         </div>
       </section>

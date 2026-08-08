@@ -29,9 +29,7 @@ const { id, title } = Astro.props;
 
   <h2 class="mt-5 text-h2 text-heading">{title}</h2>
 
-  <p class="mt-4 text-lead text-ink">
-    <slot name="claim" />
-  </p>
+  <p class="mt-4 text-lead text-ink"><slot name="claim" /></p>
 
   <ul class="evidence-list mt-6 text-ink">
     <slot name="evidence" />

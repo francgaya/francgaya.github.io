@@ -21,12 +21,8 @@ const { role, org, dates } = Astro.props;
 ---
 
 <article class="relative border-l border-rule pb-10 pl-6 last:pb-0">
-  <span
-    class="absolute -left-[3px] top-2 block h-[5px] w-[5px] rounded-[1px] bg-accent"
-    aria-hidden="true"></span>
-  <p class="font-display text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gray-500">
-    {dates}
-  </p>
+  <span class="absolute -left-[3px] top-2 block h-[5px] w-[5px] rounded-[1px] bg-accent" aria-hidden="true"></span>
+  <p class="font-display text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-gray-500">{dates}</p>
   <h3 class="mt-2 text-h3 text-heading">{role}</h3>
   <p class="mt-1 text-[0.9375rem] font-semibold text-ink-muted">{org}</p>
   <div class="prose-block mt-4 text-ink">

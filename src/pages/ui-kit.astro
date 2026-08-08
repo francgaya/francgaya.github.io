@@ -90,18 +90,9 @@ const CONTRASTS = [
   showCta={false}
 >
   <div class="mx-auto max-w-shell px-6 py-14">
-    <p
-      class="font-display text-overline font-semibold uppercase tracking-[0.14em] text-gray-500"
-    >
-      P-16, internal
-    </p>
+    <p class="font-display text-overline font-semibold uppercase tracking-[0.14em] text-gray-500">P-16, internal</p>
     <h1 class="mt-4 text-heading">UI kit</h1>
-    <p class="mt-6 max-w-prose text-lead text-ink-muted">
-      Every component of the site, on one page. The ramps and the type are frozen in ADR-002 and
-      are shown here only so they can be checked against the components. What is up for
-      discussion is composition: spacing, the shape of the accordion, the treatment of glossary
-      terms, and the purpose tokens below.
-    </p>
+    <p class="mt-6 max-w-prose text-lead text-ink-muted">Every component of the site, on one page. The ramps and the type are frozen in ADR-002 and are shown here only so they can be checked against the components. What is up for discussion is composition: spacing, the shape of the accordion, the treatment of glossary terms, and the purpose tokens below.</p>
   </div>
 
   <!-- ================= colour ================= -->
@@ -109,9 +100,7 @@ const CONTRASTS = [
     <div>
       <div class="section-rule" aria-hidden="true"></div>
       <h2 class="mt-5 text-h2 text-heading">Colour ramps</h2>
-      <p class="mt-3 max-w-prose text-ink-muted">
-        Frozen in ADR-002 section 9. Not a P-16 decision, shown for reference.
-      </p>
+      <p class="mt-3 max-w-prose text-ink-muted">Frozen in ADR-002 section 9. Not a P-16 decision, shown for reference.</p>
     </div>
 
     {
@@ -144,10 +133,7 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 py-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">Purpose tokens</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      These are the P-16 decision. Components never name a ramp step, they name a purpose, so
-      changing the temperament later means editing one block of CSS and nothing else.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">These are the P-16 decision. Components never name a ramp step, they name a purpose, so changing the temperament later means editing one block of CSS and nothing else.</p>
 
     <div class="mt-8 overflow-x-auto">
       <table class="w-full min-w-[42rem] border-collapse text-left text-[0.9375rem]">
@@ -174,17 +160,7 @@ const CONTRASTS = [
 
     <div class="mt-8 max-w-prose rounded-card bg-surface-quiet p-5">
       <h3 class="text-h3 text-heading">One correction to ADR-002</h3>
-      <p class="prose-block mt-3 text-ink">
-        ADR-002 section 4 lists <code class="font-mono text-[0.875rem]">teal-400</code> as the focus
-        ring. Measured against white it is <strong>2.54</strong>, and WCAG 2.2 asks a focus
-        indicator for 3.0. The ring is therefore <code class="font-mono text-[0.875rem]"
-          >accent-strong</code
-        > (teal-700, 7.70) on light surfaces and <code class="font-mono text-[0.875rem]"
-          >highlight</code
-        > (lime-300, 8.54) on deep ones. The same measurement is why list bullets stay teal-400,
-        which is allowed because they are decorative and the list is already a list to a screen
-        reader, while the accordion sign moves to teal-700, because it carries state.
-      </p>
+      <p class="prose-block mt-3 text-ink">ADR-002 section 4 lists <code class="font-mono text-[0.875rem]">teal-400</code> as the focus ring. Measured against white it is <strong>2.54</strong>, and WCAG 2.2 asks a focus indicator for 3.0. The ring is therefore <code class="font-mono text-[0.875rem]">accent-strong</code> (teal-700, 7.70) on light surfaces and <code class="font-mono text-[0.875rem]">highlight</code> (lime-300, 8.54) on deep ones. The same measurement is why list bullets stay teal-400, which is allowed because they are decorative and the list is already a list to a screen reader, while the accordion sign moves to teal-700, because it carries state.</p>
     </div>
   </section>
 
@@ -192,42 +168,20 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 py-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">Type</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      Space Grotesk for headings, IBM Plex Sans for everything read as prose. Two weights and
-      only two: 400 for copy, 600 for headings and accordion summaries. Both self-hosted.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">Space Grotesk for headings, IBM Plex Sans for everything read as prose. Two weights and only two: 400 for copy, 600 for headings and accordion summaries. Both self-hosted.</p>
 
     <div class="mt-8 max-w-prose space-y-8">
       <div>
-        <p class="font-display text-overline font-semibold uppercase tracking-[0.14em] text-gray-500">
-          Overline, 13px, 0.14em tracking
-        </p>
+        <p class="font-display text-overline font-semibold uppercase tracking-[0.14em] text-gray-500">Overline, 13px, 0.14em tracking</p>
         <h1 class="mt-3 text-heading">Heading one, clamped 34 to 52</h1>
       </div>
       <h2 class="text-h2 text-heading">Heading two, 30px</h2>
       <h3 class="text-h3 text-heading">Heading three, 20px</h3>
-      <p class="font-display text-summary font-semibold text-heading">
-        Accordion summary, 18px. It sits between the heading it can follow and the body copy it
-        introduces, which is the whole reason it is not 20 and not 17.
-      </p>
-      <p class="text-lead text-ink">
-        Lead paragraph, 19px. Used for the claim line of a competency block and for a page
-        intro. Acentos, eñes y signos de apertura: ¿la tipografía aguanta el castellano?
-      </p>
-      <p class="text-ink">
-        Body copy, 17px on 1.65. Seventeen and not sixteen, because the longest folded passage on
-        this site is 338 words and the measure is held to 65 to 70 characters. This paragraph is
-        here to show a full measure at the width the site actually uses, so that the line length
-        can be judged rather than assumed.
-      </p>
-      <p class="text-ink-muted">
-        Muted body copy, for closing lines and metadata. Same size, less weight of colour.
-      </p>
-      <p class="text-ink">
-        An <a href="#type" class="text-link underline decoration-1 underline-offset-4">inline link</a
-        >, and a <Term>pinout</Term> as a glossary term, so the two underline treatments can be
-        told apart at a glance.
-      </p>
+      <p class="font-display text-summary font-semibold text-heading">Accordion summary, 18px. It sits between the heading it can follow and the body copy it introduces, which is the whole reason it is not 20 and not 17.</p>
+      <p class="text-lead text-ink">Lead paragraph, 19px. Used for the claim line of a competency block and for a page intro. Acentos, eñes y signos de apertura: ¿la tipografía aguanta el castellano?</p>
+      <p class="text-ink">Body copy, 17px on 1.65. Seventeen and not sixteen, because the longest folded passage on this site is 338 words and the measure is held to 65 to 70 characters. This paragraph is here to show a full measure at the width the site actually uses, so that the line length can be judged rather than assumed.</p>
+      <p class="text-ink-muted">Muted body copy, for closing lines and metadata. Same size, less weight of colour.</p>
+      <p class="text-ink">An <a href="#type" class="text-link underline decoration-1 underline-offset-4">inline link</a>, and a <Term>pinout</Term> as a glossary term, so the two underline treatments can be told apart at a glance.</p>
     </div>
   </section>
 
@@ -235,10 +189,7 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 py-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">Buttons</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      One primary per screen, and on this site there is exactly one: the email button in the CTA.
-      It never appears on /what-i-do, whose six section rules already spend the coral quota.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">One primary per screen, and on this site there is exactly one: the email button in the CTA. It never appears on /what-i-do, whose six section rules already spend the coral quota.</p>
 
     <div class="mt-8 flex flex-wrap items-center gap-4">
       <Button href="#buttons" variant="primary">Primary, coral fill</Button>
@@ -250,10 +201,7 @@ const CONTRASTS = [
         <Button href="#buttons" variant="primary">Primary, on deep</Button>
         <Button href="#buttons" variant="ghost-deep">Ghost, deep surface</Button>
       </div>
-      <p class="mt-4 text-[0.9375rem] text-ink-on-deep-muted">
-        The lime ghost exists only here. On white it fails contrast in every role, so it has no
-        light-surface variant at all.
-      </p>
+      <p class="mt-4 text-[0.9375rem] text-ink-on-deep-muted">The lime ghost exists only here. On white it fails contrast in every role, so it has no light-surface variant at all.</p>
     </div>
   </section>
 
@@ -261,10 +209,7 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 py-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">Chips and badges</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      A chip is an inventory item and a badge is a credential, so they are not interchangeable:
-      the chip is a pill, the badge is squared off at 8px. Chips are the only pills on the site.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">A chip is an inventory item and a badge is a credential, so they are not interchangeable: the chip is a pill, the badge is squared off at 8px. Chips are the only pills on the site.</p>
 
     <div class="mt-8 space-y-6">
       <div>
@@ -302,18 +247,12 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 py-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">Competency block, and the accordion</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      The compound component of /what-i-do, shown once. Native details, closed by default, and
-      the content is in the HTML whether it is open or not. The summary promises what is inside.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">The compound component of /what-i-do, shown once. Native details, closed by default, and the content is in the HTML whether it is open or not. The summary promises what is inside.</p>
 
     <div class="mt-8 max-w-prose">
       <div class="section-rule" aria-hidden="true"></div>
       <h3 class="mt-5 text-h2 text-heading">Growing engineers</h3>
-      <p class="mt-4 text-lead text-ink">
-        Two engineers, one recruited and one mentored, and the same two things taught first to
-        both.
-      </p>
+      <p class="mt-4 text-lead text-ink">Two engineers, one recruited and one mentored, and the same two things taught first to both.</p>
       <ul class="evidence-list mt-6 text-ink">
         <li>Recruited and onboarded a firmware engineer for a dedicated product line, in 2025.</li>
         <li>Mentored another, now the top-rated firmware developer in the department.</li>
@@ -321,18 +260,11 @@ const CONTRASTS = [
 
       <Disclosure summary="What I teach first, and why those two things">
         <p>Two things, in this order, and the order is the point.</p>
-        <p>
-          <strong>Pinout definition.</strong> Not how to fill in the table, which takes an
-          afternoon, but why the table is an architecture decision: what it locks in, who else
-          depends on it, and what it costs to change once a board exists.
-        </p>
+        <p><strong>Pinout definition.</strong> Not how to fill in the table, which takes an afternoon, but why the table is an architecture decision: what it locks in, who else depends on it, and what it costs to change once a board exists.</p>
       </Disclosure>
 
       <Disclosure summary="A second fold, to show the vertical rhythm">
-        <p>
-          Two folds in a row is the common case on the reference page: four of the six blocks
-          have exactly that shape.
-        </p>
+        <p>Two folds in a row is the common case on the reference page: four of the six blocks have exactly that shape.</p>
       </Disclosure>
     </div>
   </section>
@@ -341,22 +273,12 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 py-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">Cards</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      For the six links on the home page. They carry a title and one line, and they link to the
-      anchor, never to the body of the bullet. No shadows anywhere: flat surfaces separated by
-      colour and a one-pixel rule.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">For the six links on the home page. They carry a title and one line, and they link to the anchor, never to the body of the bullet. No shadows anywhere: flat surfaces separated by colour and a one-pixel rule.</p>
 
     <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <Card href="/what-i-do/#firmware" title="Firmware development">
-        Specimen line. The real one-liners are written in P-16b.
-      </Card>
-      <Card href="/what-i-do/#safety" title="Functional safety and certification">
-        Specimen line. The real one-liners are written in P-16b.
-      </Card>
-      <Card href="/what-i-do/#architecture" title="Product and system architecture">
-        Specimen line. The real one-liners are written in P-16b.
-      </Card>
+      <Card href="/what-i-do/#firmware" title="Firmware development">From the microcontroller pinout to the user interface, in bare-metal C.</Card>
+      <Card href="/what-i-do/#safety" title="Functional safety and certification">Safety concepts for electronic controls, defended before VDE, UL, and the CB scheme.</Card>
+      <Card href="/what-i-do/#architecture" title="Product and system architecture">Architecture, requirements, and the system specification, owned rather than received.</Card>
     </div>
   </section>
 
@@ -364,42 +286,20 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 py-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">Timeline entry</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      For /career. A hairline rail rather than dots and connectors. The two entries below are the
-      density requirement made visible: the vocational diploma has to weigh less than the
-      engineering degree, and it does so by how little sits at L0, not by which section it is in.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">For /career. A hairline rail rather than dots and connectors. The two entries below are the density requirement made visible: the vocational diploma has to weigh less than the engineering degree, and it does so by how little sits at L0, not by which section it is in.</p>
 
     <div class="mt-8 max-w-prose">
-      <TimelineEntry
-        role="Ingeniero Técnico Industrial en Electrónica Industrial"
-        org="EUETIB, Universitat Politècnica de Catalunya (UPC), Barcelona"
-        dates="2006 to 2010"
-      >
-        <p>
-          Best academic record of the 2010 graduating class. University's own specialization track
-          in Computing and Telematics. Final project: a complete retro game console, hardware and
-          software, built on a Microchip PIC microcontroller.
-        </p>
+      <TimelineEntry role="Ingeniero Técnico Industrial en Electrónica Industrial" org="EUETIB, Universitat Politècnica de Catalunya (UPC), Barcelona" dates="2006 to 2010">
+        <p>Best academic record of the 2010 graduating class. University's own specialization track in Computing and Telematics. Final project: a complete retro game console, hardware and software, built on a Microchip PIC microcontroller.</p>
         <Disclosure summary="The final project, which was a product and not a program">
-          <p>
-            It was a product, not a program, and that is why it still belongs on this page sixteen
-            years later.
-          </p>
+          <p>It was a product, not a program, and that is why it still belongs on this page sixteen years later.</p>
         </Disclosure>
       </TimelineEntry>
 
-      <TimelineEntry
-        role="CFGS in Automotive Technology"
-        org="C.E. Monlau, Barcelona"
-        dates="2004 to 2006"
-      >
+      <TimelineEntry role="CFGS in Automotive Technology" org="C.E. Monlau, Barcelona" dates="2004 to 2006">
         <p>Final project: design of an anti-lock braking (ABS) and traction control system.</p>
         <Disclosure summary="Why a braking system is on an embedded engineer's page">
-          <p>
-            Designing an ABS in 2006 was my first closed loop on a physical system. A sensor, an
-            actuator, a control law, and a hard real-time constraint.
-          </p>
+          <p>Designing an ABS in 2006 was my first closed loop on a physical system. A sensor, an actuator, a control law, and a hard real-time constraint.</p>
         </Disclosure>
       </TimelineEntry>
     </div>
@@ -409,23 +309,11 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 py-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">Glossary terms, L2</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      A button driving a native popover: it answers to a tap as well as to a pointer, closes on
-      Escape, and needs no JavaScript. The alternative on the table was a parenthesis in the
-      copy, which the architecture allows and which costs a word every time.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">A button driving a native popover: it answers to a tap as well as to a pointer, closes on Escape, and needs no JavaScript. The alternative on the table was a parenthesis in the copy, which the architecture allows and which costs a word every time.</p>
 
     <div class="mt-8 max-w-prose space-y-4 text-ink">
-      <p>
-        Try them: <Term>Class B</Term>, <Term>PEC</Term>, <Term term="CB scheme">CB scheme</Term>,{' '}
-        <Term>HAL</Term>, <Term term="bare metal">bare metal</Term>, <Term>FOPDT</Term>.
-      </p>
-      <p class="text-[0.9375rem] text-ink-muted">
-        Fifteen terms are defined, in _common.md. A term is marked once per page, on its first
-        occurrence: marking every instance turns body copy into a minefield of dotted underlines.
-        If a term is used and is not in the glossary, the build fails rather than shipping an
-        empty tooltip.
-      </p>
+      <p>Try them: <Term>Class B</Term>, <Term>PEC</Term>, <Term term="CB scheme">CB scheme</Term>, <Term>HAL</Term>, <Term term="bare metal">bare metal</Term>, <Term>FOPDT</Term>.</p>
+      <p class="text-[0.9375rem] text-ink-muted">Fifteen terms are defined, in _common.md. A term is marked once per page, on its first occurrence: marking every instance turns body copy into a minefield of dotted underlines. If a term is used and is not in the glossary, the build fails rather than shipping an empty tooltip.</p>
     </div>
   </section>
 
@@ -433,10 +321,7 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 py-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">Measured contrast</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      Every pair that reaches the screen, calculated rather than estimated. AA from 4.5, AA for
-      large text and interface elements from 3.0, AAA from 7.0.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">Every pair that reaches the screen, calculated rather than estimated. AA from 4.5, AA for large text and interface elements from 3.0, AAA from 7.0.</p>
 
     <div class="mt-8 overflow-x-auto">
       <table class="w-full min-w-[34rem] border-collapse text-left text-[0.9375rem]">
@@ -466,17 +351,8 @@ const CONTRASTS = [
   <section class="mx-auto max-w-shell border-t border-rule px-6 pt-14">
     <div class="section-rule" aria-hidden="true"></div>
     <h2 class="mt-5 text-h2 text-heading">CTA and footer</h2>
-    <p class="mt-3 max-w-prose text-ink-muted">
-      Both are shared blocks, written once and rendered on every page. The CTA closes the page
-      and never the last section, which matters on /career, the only page with sections inside
-      it. The Bits&amp;Roses credit ships without a link until the domain is live.
-    </p>
+    <p class="mt-3 max-w-prose text-ink-muted">Both are shared blocks, written once and rendered on every page. The CTA closes the page and never the last section, which matters on /career, the only page with sections inside it. The Bits&amp;Roses credit ships without a link until the domain is live.</p>
   </section>
 
-  <CallToAction
-    heading="Let's talk"
-    lead="If any of this is close to what you are building, I am easy to reach."
-    email="mail@francgaya.com"
-    linkedin="linkedin.com/in/francgaya"
-  />
+  <CallToAction heading="Let's talk" lead="If any of this is close to what you are building, I am easy to reach." email="mail@francgaya.com" linkedin="linkedin.com/in/francgaya" />
 </BaseLayout>

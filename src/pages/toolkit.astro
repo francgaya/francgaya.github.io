@@ -67,20 +67,10 @@ const CHIPS = {
 };
 ---
 
-<BaseLayout
-  locale="en"
-  current="toolkit"
-  title="Toolkit | Franc Gaya"
-  description="Languages, microcontrollers, communications, control, safety and standards, process and tools, and languages spoken. One rule decides what is on the list."
->
+<BaseLayout locale="en" current="toolkit" title="Toolkit | Franc Gaya" description="Languages, microcontrollers, communications, control, safety and standards, process and tools, and languages spoken. One rule decides what is on the list.">
   <PageHeader>
     <Fragment slot="title">Toolkit</Fragment>
-    <Fragment slot="lead">
-      One rule decides what is on this page: <strong class="font-semibold text-ink-on-deep"
-        >I can take a task on it and deliver it.</strong
-      > Having worked in a codebase that used something does not put it here, and neither does having
-      read about it.
-    </Fragment>
+    <Fragment slot="lead">One rule decides what is on this page: <strong class="font-semibold text-ink-on-deep">I can take a task on it and deliver it.</strong> Having worked in a codebase that used something does not put it here, and neither does having read about it.</Fragment>
   </PageHeader>
 
   <div class="mx-auto max-w-shell px-6 pt-16">
@@ -88,11 +78,7 @@ const CHIPS = {
       <!-- Block 1. The rule is what turns a list into a claim: publishing the
            criterion disarms the inflated-inventory suspicion that every skills
            page invites. -->
-      <p class="text-lead text-ink">
-        That rule takes out more than it leaves in, which is the only reason a list like this is
-        worth reading at all. There are no percentages, no star ratings, and no progress bars
-        anywhere below, because a number would be exactly the claim the rule refuses to make.
-      </p>
+      <p class="text-lead text-ink">That rule takes out more than it leaves in, which is the only reason a list like this is worth reading at all. There are no percentages, no star ratings, and no progress bars anywhere below, because a number would be exactly the claim the rule refuses to make.</p>
 
       <!-- Block 2. Six groups, one shape each: title, chips, visible paragraph.
            Before the 2026-08-06 revision this was two parallel lists with the
@@ -104,12 +90,7 @@ const CHIPS = {
           <ul class="mt-4 flex flex-wrap gap-2">
             {CHIPS.languages.map((c) => <li><Chip>{c}</Chip></li>)}
           </ul>
-          <p class="mt-4 text-ink">
-            C is where I have lived for sixteen years: <Term>bare metal</Term>, no operating system,
-            on parts where a kilobyte is a real constraint. Python is the working language for
-            everything around the product: test benches, data analysis, and plant modeling. The web
-            stack is genuine but occasional, and it comes from a side project.
-          </p>
+          <p class="mt-4 text-ink">C is where I have lived for sixteen years: <Term>bare metal</Term>, no operating system, on parts where a kilobyte is a real constraint. Python is the working language for everything around the product: test benches, data analysis, and plant modeling. The web stack is genuine but occasional, and it comes from a side project.</p>
         </section>
 
         <section>
@@ -117,12 +98,7 @@ const CHIPS = {
           <ul class="mt-4 flex flex-wrap gap-2">
             {CHIPS.mcus.map((c) => <li><Chip>{c}</Chip></li>)}
           </ul>
-          <p class="mt-4 text-ink">
-            Nine vendors over sixteen years, from 8-bit parts written partly in assembler to
-            Cortex-M7 driving a graphical framework. What carries across is never the family, it is
-            the habits: read the errata before the datasheet, respect the peripheral mapping
-            constraints when you fix the pinout, and assume the part will be second-sourced.
-          </p>
+          <p class="mt-4 text-ink">Nine vendors over sixteen years, from 8-bit parts written partly in assembler to Cortex-M7 driving a graphical framework. What carries across is never the family, it is the habits: read the errata before the datasheet, respect the peripheral mapping constraints when you fix the pinout, and assume the part will be second-sourced.</p>
         </section>
 
         <section>
@@ -130,12 +106,7 @@ const CHIPS = {
           <ul class="mt-4 flex flex-wrap gap-2">
             {CHIPS.comms.map((c) => <li><Chip>{c}</Chip></li>)}
           </ul>
-          <p class="mt-4 text-ink">
-            Most of my work is boards talking to each other inside a single appliance, which is
-            where the proprietary buses live, and displays talking to a microcontroller, which is
-            where the bandwidth goes. The wireless side is newer and mostly serves connectivity
-            modules and remote test benches, which is where MQTT earns its place.
-          </p>
+          <p class="mt-4 text-ink">Most of my work is boards talking to each other inside a single appliance, which is where the proprietary buses live, and displays talking to a microcontroller, which is where the bandwidth goes. The wireless side is newer and mostly serves connectivity modules and remote test benches, which is where MQTT earns its place.</p>
         </section>
 
         <section>
@@ -143,15 +114,7 @@ const CHIPS = {
           <ul class="mt-4 flex flex-wrap gap-2">
             {CHIPS.control.map((c) => <li><Chip>{c}</Chip></li>)}
           </ul>
-          <p class="mt-4 text-ink">
-            Thermal plants, mostly: slow, with real dead time, and with a response that changes with
-            the operating mode and the size of the cavity. I model the plant before tuning the loop,
-            because tuning on the real appliance costs hours per attempt and gives an answer that
-            only holds for one configuration. <a
-              href="/what-i-do/#firmware"
-              class="text-link underline decoration-1 underline-offset-4">How that actually works</a
-            >.
-          </p>
+          <p class="mt-4 text-ink">Thermal plants, mostly: slow, with real dead time, and with a response that changes with the operating mode and the size of the cavity. I model the plant before tuning the loop, because tuning on the real appliance costs hours per attempt and gives an answer that only holds for one configuration. <a href="/what-i-do/#firmware" class="text-link underline decoration-1 underline-offset-4">How that actually works</a>.</p>
         </section>
 
         <section>
@@ -159,12 +122,7 @@ const CHIPS = {
           <ul class="mt-4 flex flex-wrap gap-2">
             {CHIPS.safety.map((c) => <li><Chip>{c}</Chip></li>)}
           </ul>
-          <p class="mt-4 text-ink">
-            The hardest part of this inventory to acquire and to fake, because it is learned by
-            defending a concept in front of a certifier rather than by reading the standard. MISRA
-            and static analysis are what make the software side provable: in a certification,
-            evidence and correctness are not the same claim.
-          </p>
+          <p class="mt-4 text-ink">The hardest part of this inventory to acquire and to fake, because it is learned by defending a concept in front of a certifier rather than by reading the standard. MISRA and static analysis are what make the software side provable: in a certification, evidence and correctness are not the same claim.</p>
         </section>
 
         <section>
@@ -172,12 +130,7 @@ const CHIPS = {
           <ul class="mt-4 flex flex-wrap gap-2">
             {CHIPS.process.map((c) => <li><Chip>{c}</Chip></li>)}
           </ul>
-          <p class="mt-4 text-ink">
-            The <Term>V-Model</Term> is how I think about a project rather than a box I tick:
-            requirement, specification, design, and the test that proves each one. Altium and
-            LTspice are here because I read and modify hardware and simulate the changes, not
-            because I am the hardware designer.
-          </p>
+          <p class="mt-4 text-ink">The <Term>V-Model</Term> is how I think about a project rather than a box I tick: requirement, specification, design, and the test that proves each one. Altium and LTspice are here because I read and modify hardware and simulate the changes, not because I am the hardware designer.</p>
         </section>
       </div>
 
@@ -189,11 +142,7 @@ const CHIPS = {
         <ul class="evidence-list mt-6 text-ink">
           <li><strong class="font-semibold">Spanish</strong>, native.</li>
           <li><strong class="font-semibold">Catalan</strong>, native.</li>
-          <li>
-            <strong class="font-semibold">English</strong>, working proficiency (CEFR B2/C1). Daily
-            technical liaison with appliance manufacturers across Europe, Asia, and the Americas:
-            meetings, specifications, counter-proposals, and field support.
-          </li>
+          <li><strong class="font-semibold">English</strong>, working proficiency (CEFR B2/C1). Daily technical liaison with appliance manufacturers across Europe, Asia, and the Americas: meetings, specifications, counter-proposals, and field support.</li>
         </ul>
       </section>
     </div>
