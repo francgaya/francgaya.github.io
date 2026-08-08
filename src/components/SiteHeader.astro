@@ -13,12 +13,14 @@ import { navFor, alternateOf, SWITCH_LABEL, type Locale, type Route } from '../i
 
 interface Props {
   locale: Locale;
-  current: Route['id'];
+  /** 'none' is the 404: no entry is current, and the twin comes in as a prop. */
+  current: Route['id'] | 'none';
+  alternate?: string;
 }
 
-const { locale, current } = Astro.props;
+const { locale, current, alternate: alternateProp } = Astro.props;
 const nav = navFor(locale);
-const alternate = alternateOf(current, locale);
+const alternate = current === 'none' ? (alternateProp ?? '/') : alternateOf(current, locale);
 ---
 
 <header class="sticky top-0 z-40 border-b border-rule bg-surface/95 backdrop-blur-sm">

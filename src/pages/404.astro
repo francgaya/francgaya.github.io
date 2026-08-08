@@ -1,0 +1,50 @@
+---
+/**
+ * The 404, and it is deliberately the ENGLISH one only.
+ *
+ * Verified before writing it (GitHub Docs, "Creating a custom 404 page"):
+ * GitHub Pages serves a single 404.html, taken from the root of the published
+ * artifact, for every path that does not resolve. It does not look for a
+ * /es/404.html on the way down, so a Spanish 404 under /es/ would simply never
+ * be reached. The only way to branch by language is to read location.pathname
+ * in the browser, which would mean a second script on a page nobody plans to
+ * visit, and scripts/verify.py counts scripts for a reason.
+ *
+ * Franc had already decided the fallback for exactly this outcome: if the cheap
+ * route does not exist, the English page stands alone. It carries one Spanish
+ * line as a link rather than a mechanism, which costs nothing and gets a
+ * Spanish reader back to a page they can read.
+ *
+ * No CTA: an error page is a place to leave, not to be persuaded on.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout locale="en" current="none" alternate="/es/" title="Page not found | Franc Gaya" description="That page does not exist." noindex={true} showCta={false}>
+  <PageHeader>
+    <Fragment slot="title">Page not found</Fragment>
+    <Fragment slot="lead">The address you followed does not lead anywhere on this site. It may have been a typo, or a link that has moved.</Fragment>
+  </PageHeader>
+
+  <div class="mx-auto max-w-shell px-6 py-16">
+    <div class="max-w-prose">
+      <div class="section-rule" aria-hidden="true"></div>
+      <h2 class="mt-5 text-h2 text-heading">Where to go instead</h2>
+      <div class="prose-block mt-6 text-ink">
+        <ul class="evidence-list">
+          <li><a href="/what-i-do/">What I do</a>, the six things I am responsible for.</li>
+          <li><a href="/career/">Career</a>, where and when, in order.</li>
+          <li><a href="/toolkit/">Toolkit</a>, the tools, standards, and languages.</li>
+          <li><a href="/about/">About</a>, the part that does not wear a job title.</li>
+        </ul>
+        <p><a href="/es/">Esta página solo existe en inglés. Ir al inicio en castellano.</a></p>
+      </div>
+
+      <div class="mt-10">
+        <Button href="/">Back to the home page</Button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,7 @@
+# Everything is public and indexable. /ui-kit is deliberately NOT disallowed
+# here: it carries its own noindex, and a crawler blocked at robots.txt never
+# gets to read it.
+User-agent: *
+Allow: /
+
+Sitemap: https://francgaya.com/sitemap-index.xml

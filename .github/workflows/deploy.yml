@@ -1,0 +1,78 @@
+# Build and publish francgaya.com to GitHub Pages.
+#
+# Written out in full rather than using withastro/action, and that is a
+# decision, not verbosity for its own sake: the convenience action takes the
+# Node version as one of its own inputs, which would put that number in two
+# places that can drift apart without anyone noticing. Franc asked to be able
+# to build the site locally as well, so local and CI have to run the same
+# commands against the same runtime. See web/design/adr-001-stack.md, 7.3.
+#
+# Local equivalent of this job, in order:
+#   nvm use && npm ci && npm run build && npm run verify
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # So a broken workflow can be re-run without inventing an empty commit.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time, and a queued run is NOT cancelled: cancelling would
+# leave the live site on whatever the previous run happened to publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          # .nvmrc is the single source of the Node version, read here and by
+          # `nvm use` on Franc's laptop. Never a literal in this file.
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # No setup-python step: the runner already ships Python 3, and one fewer
+      # action is one fewer version to track. beautifulsoup4 is the only thing
+      # verify.py needs beyond the standard library.
+      - name: Install verification dependencies
+        run: pip install --quiet beautifulsoup4
+
+      # scripts/verify.py against dist/. A failure here stops the deployment:
+      # publishing a page that lost a word is worse than not publishing.
+      #
+      # Eight of the nine checks run here. The word-by-word transcription
+      # compares against web/content, which lives in the PRIVATE repository and
+      # is not checked out here, so the script says so and skips it. That one
+      # is Franc's to run locally before pushing.
+      - name: Verify the built site
+        run: npm run verify
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

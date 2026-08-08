@@ -37,6 +37,8 @@ cannot reproduce on your own machine is a build you cannot debug on the day it b
 ## Layout
 
 ```
+.github/
+  workflows/     the deployment, written out rather than using withastro/action
 src/
   components/    one file per component, reused across pages
   data/          the L2 glossary
@@ -44,8 +46,33 @@ src/
   layouts/       header, page body, CTA, footer
   pages/         file-based routing: the filename is the URL
   styles/        one global sheet: the theme and a handful of component utilities
-public/          copied verbatim, including the CNAME for the custom domain
+public/          copied verbatim: CNAME, favicons, robots.txt, the share cards
+scripts/         verify.py, og_image.py, reflow.py
 ```
+
+There is exactly one `CNAME`, in `public/`. A second one at the root of the repository would
+never be published, because only what Astro copies into `dist/` reaches Pages.
+
+## Publishing
+
+Every push to `main` runs `.github/workflows/deploy.yml`: `npm ci`, `npm run build`,
+`npm run verify`, and then the Pages deployment. A failed check stops the deployment.
+
+Pages is configured with **Source: GitHub Actions**, not *Deploy from a branch*, and the
+custom domain is `francgaya.com` with *Enforce HTTPS* on.
+
+If the workflow ever breaks on a day the site needs changing, the escape route is the local
+build: `npm run build` produces a publishable `dist/`.
+
+## The share card
+
+`public/og-en.png` and `public/og-es.png` are what LinkedIn, Slack, and WhatsApp show when the
+link is pasted, which is how nearly every reader arrives. They are committed, because a social
+crawler fetches them by URL and they are content rather than build output.
+
+`python3 scripts/og_image.py` regenerates both from the colours in `src/styles/global.css` and
+the real Space Grotesk in `node_modules`. Run it after any change to the palette or the
+wording on it. It needs `pillow`, `fonttools`, and `brotli`.
 
 ## Conventions
 
@@ -94,7 +121,16 @@ its own popover anchor, and finally that each built page still says exactly what
 That last check is the one that pays for the script. It caught three lost spaces before a
 glossary term in P-16, which nobody would find by reading the page.
 
+It is also the only check that reaches outside this repository. `web/content/` is the private
+source of record, so it is there when Franc runs the script and absent in CI, where the script
+says so and skips it. The other eight run in both places. **Run `npm run verify` locally before
+pushing a copy change:** CI cannot catch a lost word for you.
+
 ## Working pages
 
 `/ui-kit` collects every component on one page. It is a working page, marked `noindex`,
 kept because it is the cheapest place to have a visual discussion.
+
+The 404 is English only, and that is a verified limitation rather than an oversight: GitHub
+Pages serves one `404.html`, from the root, for every path that does not resolve, so a Spanish
+one under `/es/` would never be reached. It carries a link to the Spanish home page instead.

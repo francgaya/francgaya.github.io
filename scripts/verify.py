@@ -14,7 +14,9 @@ What it checks, and why each one is here:
   4. Banned characters: em dash, middle dot, en dash, soft hyphen.
   5. WORD-BY-WORD transcription against web/content. This is the one that
      earns its keep: in P-16 it caught three lost spaces before a glossary
-     term that are invisible to the eye.
+     term that are invisible to the eye. It is also the only check that reaches
+     outside this repository, so it runs locally and is SKIPPED in CI, where
+     web/content does not exist. See the note where it runs.
 
 Run:  python3 scripts/verify.py
 """
@@ -198,7 +200,19 @@ print("  SEQUENCE  the order matches too. A pure reordering is legitimate,")
 print("            because the markdown does not encode visual order: on")
 print("            /career the dates are set above the role by TimelineEntry.")
 print()
-for page, source in PAGES.items():
+
+# web/content lives in the PRIVATE repository, one level up from this submodule,
+# so it is present when Franc runs this on his machine and absent in CI, which
+# only ever checks out the public repository. That is the privacy boundary
+# working as designed, not a missing file: this check is local by nature, and
+# skipping it is stated out loud rather than passing quietly.
+transcription_available = CONTENT.is_dir()
+if not transcription_available:
+    print(f"  [SKIP] web/content not present at {CONTENT}.")
+    print("         The source of record is in the private repository, so this")
+    print("         check only runs locally. The other eight still ran.")
+
+for page, source in PAGES.items() if transcription_available else {}.items():
     html_words = words_from_html(DIST / page)
     md_words = words_from_markdown(CONTENT / source)
 
