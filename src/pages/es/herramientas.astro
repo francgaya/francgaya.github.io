@@ -21,13 +21,13 @@ import Chip from '../../components/Chip.astro';
 import Term from '../../components/Term.astro';
 
 const SECTIONS = [
-  { id: 'languages', title: 'Lenguajes' },
+  { id: 'programming-languages', title: 'Lenguajes de programación' },
   { id: 'microcontrollers', title: 'Microcontroladores' },
   { id: 'communications', title: 'Comunicaciones' },
   { id: 'control', title: 'Control' },
   { id: 'safety', title: 'Seguridad y normativa' },
   { id: 'process', title: 'Proceso y herramientas' },
-  { id: 'spoken-languages', title: 'Idiomas en los que trabajo' },
+  { id: 'spoken-languages', title: 'Idiomas hablados' },
 ];
 
 const CHIPS = {
@@ -67,7 +67,7 @@ const CHIPS = {
 };
 ---
 
-<BaseLayout locale="es" current="toolkit" title="Herramientas | Franc Gaya" description="Lenguajes, microcontroladores, comunicaciones, control, seguridad y normativa, proceso y herramientas, e idiomas. Una regla decide qué entra en la lista.">
+<BaseLayout locale="es" current="toolkit" title="Herramientas | Franc Gaya" description="Lenguajes de programación, microcontroladores, comunicaciones, control, seguridad y normativa, proceso y herramientas, e idiomas hablados. Una regla decide qué entra en la lista.">
   <PageHeader>
     <Fragment slot="title">Herramientas</Fragment>
     <Fragment slot="lead">Una sola regla decide qué aparece en esta página: <strong class="font-semibold text-ink-on-deep">puedo aceptar una tarea que dependa de ello y entregarla.</strong> Haber estado en un código que lo usaba no lo mete aquí, y haber leído sobre ello, tampoco.</Fragment>
@@ -79,9 +79,9 @@ const CHIPS = {
     <div class="mx-auto max-w-prose space-y-20">
       <p class="text-lead text-ink">Esa regla quita mucho más de lo que deja. Por eso la lista es corta, y por eso todo lo que hay en ella puede tomarse al pie de la letra.</p>
 
-      <section id="languages" class="scroll-mt-28">
+      <section id="programming-languages" class="scroll-mt-28">
         <div class="section-rule" aria-hidden="true"></div>
-        <h2 class="mt-5 text-h2 text-heading">Lenguajes</h2>
+        <h2 class="mt-5 text-h2 text-heading">Lenguajes de programación</h2>
         <ul class="mt-6 flex flex-wrap gap-2">
           {CHIPS.languages.map((c) => <li><Chip>{c}</Chip></li>)}
         </ul>
@@ -135,7 +135,7 @@ const CHIPS = {
 
       <section id="spoken-languages" class="scroll-mt-28">
         <div class="section-rule" aria-hidden="true"></div>
-        <h2 class="mt-5 text-h2 text-heading">Idiomas en los que trabajo</h2>
+        <h2 class="mt-5 text-h2 text-heading">Idiomas hablados</h2>
         <ul class="evidence-list mt-6 text-ink">
           <li><strong class="font-semibold">Castellano</strong>, nativo.</li>
           <li><strong class="font-semibold">Catalán</strong>, nativo.</li>
