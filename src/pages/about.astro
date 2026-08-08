@@ -38,12 +38,13 @@ import portrait from '../assets/franc-and-cosmo.jpg';
 ---
 
 <BaseLayout locale="en" current="about" title="About | Franc Gaya" description="From mechanic to electronics engineer, a rescue dog called Cosmo, and a web side project that happens to have built this site.">
-  <!-- No lead here on purpose: this is the one page whose first block is the
-       photo, and whose opening line belongs to the first section. Moving that
-       line up into the band would read better and would put it above the
-       photo, which is not the order the content is written in. -->
+  <!-- Lead added 2026-08-08 on Franc's call, superseding the P-16b decision to
+       leave this page without one. It is a NEW line written for the band, not
+       the first section's opening moved up, so the reading order of the
+       content below is untouched. -->
   <PageHeader>
     <Fragment slot="title">About</Fragment>
+    <Fragment slot="lead">Everything on the other pages is true, but it wears a job title. This is the rest: where I come from, what I do when nothing is heating or spinning, and the dog.</Fragment>
   </PageHeader>
 
   <div class="mx-auto max-w-shell px-6 pt-16">
@@ -88,8 +89,8 @@ import portrait from '../assets/franc-and-cosmo.jpg';
         <div class="section-rule" aria-hidden="true"></div>
         <h2 class="mt-5 text-h2 text-heading">Bits&amp;Roses</h2>
         <div class="prose-block mt-6 text-ink">
-          <p>This site was built by Bits&amp;Roses, a side project I co-founded in 2012 with other people.</p>
-          <p>Around eight websites in fourteen years, on demand, with long quiet stretches in between. It is not a parallel career and I am not selling myself as a web developer: it is where the part of me that likes building things gets to build something that is not embedded, on a timescale measured in weeks rather than years. Every so often that is exactly what I need.</p>
+          <p>This site was built by Bits&amp;Roses, a side project I co-founded in 2012.</p>
+          <p>Around eight websites in fourteen years, on commission, with long quiet stretches in between. It is not a parallel career and I am not selling myself as a web developer: it is where the part of me that likes building things gets to build something that is not embedded, in weeks rather than years. Every so often that is exactly what I need.</p>
         </div>
       </section>
     </div>

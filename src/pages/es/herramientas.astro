@@ -70,14 +70,14 @@ const CHIPS = {
 <BaseLayout locale="es" current="toolkit" title="Herramientas | Franc Gaya" description="Lenguajes, microcontroladores, comunicaciones, control, seguridad y normativa, proceso y herramientas, e idiomas. Una regla decide qué entra en la lista.">
   <PageHeader>
     <Fragment slot="title">Herramientas</Fragment>
-    <Fragment slot="lead">Una regla decide qué aparece en esta página: <strong class="font-semibold text-ink-on-deep">puedo coger una tarea de eso y entregarla.</strong> Haber estado en un código que lo usaba no la mete aquí, y haber leído sobre ello, tampoco.</Fragment>
+    <Fragment slot="lead">Una sola regla decide qué aparece en esta página: <strong class="font-semibold text-ink-on-deep">puedo aceptar una tarea que dependa de ello y entregarla.</strong> Haber estado en un código que lo usaba no lo mete aquí, y haber leído sobre ello, tampoco.</Fragment>
   </PageHeader>
 
   <div class="relative mx-auto max-w-shell px-6 pt-16">
     <SectionIndex label="En esta página" items={SECTIONS} />
 
     <div class="mx-auto max-w-prose space-y-20">
-      <p class="text-lead text-ink">Esa regla saca más de lo que deja, que es la única razón por la que una lista así merece leerse. Más abajo no hay porcentajes, ni estrellas, ni barras de nivel, porque un número sería exactamente la afirmación que la regla se niega a hacer.</p>
+      <p class="text-lead text-ink">Esa regla quita mucho más de lo que deja. Por eso la lista es corta, y por eso todo lo que hay en ella puede tomarse al pie de la letra.</p>
 
       <section id="languages" class="scroll-mt-28">
         <div class="section-rule" aria-hidden="true"></div>
@@ -85,7 +85,7 @@ const CHIPS = {
         <ul class="mt-6 flex flex-wrap gap-2">
           {CHIPS.languages.map((c) => <li><Chip>{c}</Chip></li>)}
         </ul>
-        <p class="mt-6 text-ink">En C llevo dieciséis años: <Term>bare metal</Term>, sin sistema operativo, sobre piezas donde un kilobyte es una restricción real. Python es el idioma de trabajo de todo lo que rodea al producto: bancos de ensayo, análisis de datos y modelado de planta. El stack web es real pero ocasional, y viene de un proyecto propio.</p>
+        <p class="mt-6 text-ink">En C llevo dieciséis años: <Term>bare metal</Term>, sin sistema operativo, sobre micros en los que un kilobyte es una restricción real. Python es el lenguaje de trabajo para todo lo que rodea al producto: bancos de ensayo, análisis de datos y modelado de planta. El stack web es real pero ocasional, y viene de un proyecto propio.</p>
       </section>
 
       <section id="microcontrollers" class="scroll-mt-28">
@@ -94,7 +94,7 @@ const CHIPS = {
         <ul class="mt-6 flex flex-wrap gap-2">
           {CHIPS.mcus.map((c) => <li><Chip>{c}</Chip></li>)}
         </ul>
-        <p class="mt-6 text-ink">Nueve fabricantes en dieciséis años, de piezas de 8 bits escritas en parte en ensamblador a un Cortex-M7 moviendo un framework gráfico. Lo que se traslada no es la familia, son los hábitos: leer las erratas antes que la hoja de características, respetar las restricciones de mapeo al fijar el pinout, y contar con que habrá segunda fuente.</p>
+        <p class="mt-6 text-ink">Nueve fabricantes en dieciséis años, de micros de 8 bits escritos en parte en ensamblador a un Cortex-M7 moviendo un framework gráfico. Lo que se traslada no es la familia, son los hábitos: leer las erratas antes que la hoja de características, respetar las restricciones de mapeo al fijar el pinout, y contar con que habrá segunda fuente.</p>
       </section>
 
       <section id="communications" class="scroll-mt-28">
@@ -103,7 +103,7 @@ const CHIPS = {
         <ul class="mt-6 flex flex-wrap gap-2">
           {CHIPS.comms.map((c) => <li><Chip>{c}</Chip></li>)}
         </ul>
-        <p class="mt-6 text-ink">Casi todo mi trabajo son placas hablando entre sí dentro de un mismo aparato, que es donde viven los buses propietarios, y pantallas hablando con un microcontrolador, que es donde se va el ancho de banda. Lo inalámbrico es más reciente y sirve a módulos de conectividad y a bancos de ensayo remotos.</p>
+        <p class="mt-6 text-ink">Casi todo mi trabajo son placas hablando entre sí dentro de un mismo aparato, que es donde viven los buses propietarios, y pantallas hablando con un microcontrolador, que es donde se va el ancho de banda. Lo inalámbrico es más reciente y sirve sobre todo a módulos de conectividad y a bancos de ensayo remotos, que es donde el MQTT se gana el sitio.</p>
       </section>
 
       <section id="control" class="scroll-mt-28">
@@ -112,7 +112,7 @@ const CHIPS = {
         <ul class="mt-6 flex flex-wrap gap-2">
           {CHIPS.control.map((c) => <li><Chip>{c}</Chip></li>)}
         </ul>
-        <p class="mt-6 text-ink">Plantas térmicas, sobre todo: lentas, con retardo puro de verdad, y con una respuesta que cambia con el modo de trabajo. Modelo la planta antes de ajustar el lazo, porque ajustar sobre el aparato real cuesta horas por intento y da una respuesta que solo vale para una configuración. <a href="/es/lo-que-hago/#firmware" class="text-link underline decoration-1 underline-offset-4">Cómo funciona eso</a>.</p>
+        <p class="mt-6 text-ink">Plantas térmicas, sobre todo: lentas, con retardo puro de verdad, y con una respuesta que cambia con el modo de trabajo y con el tamaño de la cavidad. Modelo la planta antes de ajustar el lazo, porque ajustar sobre el aparato real cuesta horas por intento y da una respuesta que solo vale para una configuración. <a href="/es/lo-que-hago/#firmware" class="text-link underline decoration-1 underline-offset-4">Cómo funciona eso</a>.</p>
       </section>
 
       <section id="safety" class="scroll-mt-28">
@@ -130,7 +130,7 @@ const CHIPS = {
         <ul class="mt-6 flex flex-wrap gap-2">
           {CHIPS.process.map((c) => <li><Chip>{c}</Chip></li>)}
         </ul>
-        <p class="mt-6 text-ink">El <Term>V-Model</Term> es cómo pienso un proyecto, no una casilla que marco: requisito, especificación, diseño y el ensayo que demuestra cada uno, emparejados hacia abajo y de vuelta hacia arriba. Altium y LTspice están en la lista porque leo y modifico hardware y simulo los cambios, no porque sea el diseñador de hardware.</p>
+        <p class="mt-6 text-ink">El <Term>V-Model</Term> es cómo pienso un proyecto, no una casilla que marco: requisito, especificación, diseño y el ensayo que demuestra cada uno. Altium y LTspice están en la lista porque leo y modifico hardware y simulo los cambios, no porque sea el diseñador de hardware.</p>
       </section>
 
       <section id="spoken-languages" class="scroll-mt-28">
@@ -139,7 +139,7 @@ const CHIPS = {
         <ul class="evidence-list mt-6 text-ink">
           <li><strong class="font-semibold">Castellano</strong>, nativo.</li>
           <li><strong class="font-semibold">Catalán</strong>, nativo.</li>
-          <li><strong class="font-semibold">Inglés</strong>, competencia profesional de trabajo (MCER B2/C1). Interlocución técnica diaria con fabricantes de electrodomésticos de Europa, Asia y América: reuniones, especificaciones, contrapropuestas y soporte en campo.</li>
+          <li><strong class="font-semibold">Inglés</strong>, competencia profesional (MCER B2/C1). Interlocución técnica diaria con fabricantes de electrodomésticos de Europa, Asia y América: reuniones, especificaciones, contrapropuestas y soporte en campo.</li>
         </ul>
       </section>
     </div>

@@ -24,7 +24,7 @@ const SECTIONS = [
 <BaseLayout locale="es" current="career" title="Trayectoria | Franc Gaya" description="Dieciséis años en electrónica de control de electrodoméstico, una reconversión de mecánico a ingeniero electrónico, y la formación y las certificaciones que hay detrás.">
   <PageHeader>
     <Fragment slot="title">Trayectoria</Fragment>
-    <Fragment slot="lead">Dónde y cuándo, en orden. Lo que sé hacer está en la página anterior: <a href="/es/lo-que-hago/" class="underline decoration-1 underline-offset-4 hover:text-highlight">Lo que hago</a>.</Fragment>
+    <Fragment slot="lead">Dieciséis años en electrónica de control de electrodoméstico, y la reconversión que llevó hasta ellos: mecánico, después ingeniero, después arquitecto. Esta página es el dónde y el cuándo; el qué está en <a href="/es/lo-que-hago/" class="underline decoration-1 underline-offset-4 hover:text-highlight">Lo que hago</a>.</Fragment>
   </PageHeader>
 
   <div class="relative mx-auto max-w-shell px-6 pt-16">
@@ -37,13 +37,13 @@ const SECTIONS = [
 
         <div class="mt-10">
           <TimelineEntry role="Application Reference Engineer (ARE), arquitecto de producto y sistema" org="E.G.O. Appliance Controls, Lliçà de Vall (Barcelona), España" dates="Noviembre de 2017 a hoy">
-            <p>El rol de ARE existe porque una organización de especialistas deja a nadie respondiendo del conjunto técnico de un proyecto: cada ingeniero es dueño de una placa o de una capa, y los huecos entre ellas no son de nadie. El ARE es esa persona. Arquitectura, requisitos, frontera entre hardware y software, certificación y la relación técnica directa con el cliente.</p>
-            <p>Promocioné desde firmware, sobre una plataforma de control de hornos, y conservé el trabajo de firmware: el rol se añadió encima, no en lugar de. Desde entonces he trabajado en hornos, cocinas, refrigeración, generación de vapor, lavavajillas, lavandería industrial y equipamiento de cocina profesional. Qué hago en cada uno está en <a href="/es/lo-que-hago/">Lo que hago</a>.</p>
+            <p>El rol de ARE existe porque una organización de especialistas deja los proyectos sin nadie que responda de su conjunto técnico: cada ingeniero es dueño de una placa o de una capa, y los huecos entre ellas no son de nadie. El ARE es esa persona. Arquitectura, requisitos, frontera entre hardware y software, certificación y la relación técnica directa con el cliente.</p>
+            <p>Promocioné desde firmware, sobre una plataforma de control de hornos, y conservé el trabajo de firmware: el rol se sumó al anterior, no lo sustituyó. Desde entonces he trabajado en hornos, cocinas, refrigeración, generación de vapor, lavavajillas, lavandería industrial y equipamiento de cocina profesional. Qué hago en cada uno está en <a href="/es/lo-que-hago/">Lo que hago</a>.</p>
 
             <Disclosure id="are-whole" summary="Qué cambia entre ser el desarrollador y responder del conjunto">
               <p>El trabajo no se vuelve menos técnico. Se vuelve menos acotado.</p>
-              <p>Como desarrollador, la pregunta es si lo que estoy construyendo es correcto. Como responsable del conjunto, correcto es necesario y no se acerca a ser suficiente. La pregunta pasa a ser si es lo correcto: si se puede certificar, si el cliente lo va a aceptar, si el ingeniero que lo herede dentro de cuatro años podrá mantenerlo, y si la decisión que estoy a punto de tomar cierra la puerta a algo que vamos a necesitar más adelante.</p>
-              <p>Dos consecuencias que tardé en aprender. La primera es que casi todas mis decisiones caras ocurren antes de que haya nada que probar, así que el lazo de realimentación se mide en años y la única defensa real es dejar escrito el porqué. La segunda es que el trabajo deja de llegar por una sola dirección: mis propios proyectos, productos antiguos cuyos problemas reaparecen, y consultas de gestión de producto y de la dirección de I+D que no están atadas a ningún proyecto mío. Medir esa carga y ponerle un límite acabó siendo parte del puesto, y es la parte de la que nadie te avisa.</p>
+              <p>Como desarrollador, la pregunta es si lo que estoy construyendo está bien construido. Como responsable del conjunto, que lo esté es necesario, pero no basta ni de lejos: la pregunta pasa a ser si es lo que había que construir. Si se puede certificar, si el cliente lo va a aceptar, si el ingeniero que lo herede dentro de cuatro años podrá mantenerlo, y si la decisión que estoy a punto de tomar cierra la puerta a algo que vamos a necesitar más adelante.</p>
+              <p>Dos consecuencias que tardé en aprender. La primera es que casi todas mis decisiones caras ocurren antes de que haya nada que probar, así que el lazo de realimentación se mide en años y la única defensa real es dejar escrito el porqué. La segunda es que el trabajo deja de llegar desde una sola dirección: mis propios proyectos, productos antiguos cuyos problemas reaparecen, y consultas de gestión de producto y de la dirección de I+D que no están atadas a ningún proyecto mío. Medir esa carga y ponerle un límite acabó siendo parte del puesto, y es la parte de la que nadie te avisa.</p>
             </Disclosure>
           </TimelineEntry>
 
@@ -61,7 +61,7 @@ const SECTIONS = [
           </TimelineEntry>
 
           <TimelineEntry role="Ingeniero de firmware, iluminación LED y domótica" org="SAKMA Electrónica Industrial, Hospitalet de Llobregat, España" dates="Diciembre de 2010 a mayo de 2012">
-            <p>Mi primer empleo de ingeniero: firmware para luminarias LED, control domótico y dispositivos de señalización, todos diseñados y fabricados en la propia casa.</p>
+            <p>Mi primer empleo de ingeniero: firmware para luminarias LED, control domótico y dispositivos de señalización, todos diseñados y fabricados por la propia empresa.</p>
 
             <Disclosure id="sakma-detail" summary="Qué construí allí, y qué se me quedó">
               <p>Controladores de iluminación DALI y DMX, incluido un controlador DMX de doce canales. Una sonda de temperatura y humedad para displays matriciales. Un regulador de intensidad de luz. Un bootloader y actualizador de firmware. Un enlace de comunicación a través de la propia luz. Y una estación de ensayo para la línea de producción.</p>
@@ -70,11 +70,11 @@ const SECTIONS = [
           </TimelineEntry>
 
           <TimelineEntry role="Prácticas de ingeniería" org="Aquatec (grupo AGBAR), FECSA-ENDESA y EUETIB-UPC, Barcelona" dates="2009 a 2010">
-            <p>Migración de pantallas SCADA de una estación potabilizadora (Aquatec). Campañas de actualización de potencia y equipos de medida (FECSA-ENDESA). Clases de repaso de matemáticas a estudiantes de primero de ingeniería, con beca EnginyCat (EUETIB-UPC), que es la primera vez que enseñé algo a alguien.</p>
+            <p>Migración de pantallas SCADA de una estación potabilizadora (Aquatec). Campañas de actualización de potencia y equipos de medida (FECSA-ENDESA). Clases de repaso de matemáticas a estudiantes de primero de ingeniería, con beca EnginyCat (EUETIB-UPC), que fue la primera vez que enseñé algo a alguien.</p>
           </TimelineEntry>
 
           <TimelineEntry role="Mecánico de automoción y frigorista" org="Barcelona" dates="2005 a 2008">
-            <p>Coches, después la flota de limpieza viaria de Barcelona, después equipos de frío para vehículos isotermos. Una reconversión completa de mecánico a ingeniero electrónico, hecha en paralelo a la carrera. <a href="/es/sobre-mi/">La versión larga está en Sobre mí</a>.</p>
+            <p>Coches, después la flota de limpieza viaria de Barcelona, después equipos de frío para camiones frigoríficos. Una reconversión completa de mecánico a ingeniero electrónico, hecha en paralelo a la carrera. <a href="/es/sobre-mi/">La versión larga está en Sobre mí</a>.</p>
           </TimelineEntry>
         </div>
       </section>
@@ -90,7 +90,7 @@ const SECTIONS = [
             <Disclosure id="final-project" summary="El proyecto final, que era un producto y no un programa">
               <p>Era un producto y no un programa, y por eso sigue teniendo sitio en esta página dieciséis años después.</p>
               <p>El enunciado era una videoconsola retro y el entregable era la máquina: esquemático y PCB, un microcontrolador PIC, una pantalla de matriz de LEDs, controles de botón y el ensamblador debajo de todo. Dos juegos corren sobre un sistema base pequeño que se ocupa de la pantalla, los controles y el almacenamiento de puntuaciones, y la base se diseñó a propósito para que otra persona pudiera añadir un tercer juego sin tocarla.</p>
-              <p>Que es, salvando dieciséis años y unos cuantos órdenes de magnitud, el mismo argumento que hago hoy sobre un firmware base y una tabla de parámetros.</p>
+              <p>Que es, salvando dieciséis años y unos cuantos órdenes de magnitud, el mismo argumento que defiendo hoy sobre un firmware base y una tabla de parámetros.</p>
               <p>Acabó publicado dos veces: el propio proyecto, y una comunicación de congreso sobre introducir el diseño de videoconsolas retro como proyecto de fin de carrera en el plan de estudios de electrónica.</p>
             </Disclosure>
           </TimelineEntry>
