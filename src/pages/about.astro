@@ -24,8 +24,10 @@
  * on the table, because this page is getting more images and the text will end
  * up in columns beside them. Revisit if it does not.
  *
- * The photo keeps 760, now as an explicit cap on the image rather than one
- * inherited from a wrapper.
+ * The photo keeps 760 and stays CENTRED in the full-width body, as an explicit
+ * cap on the image rather than one inherited from a wrapper. mx-auto works on
+ * it because Tailwind's preflight sets img to display:block; on an inline image
+ * it would do nothing.
  *
  * Copy transcribed verbatim from web/content/en/about.md.
  */
@@ -51,7 +53,7 @@ import portrait from '../assets/franc-and-cosmo.jpg';
         alt="Franc and Cosmo"
         widths={[480, 760, 1520]}
         sizes="(min-width: 800px) 760px, 100vw"
-        class="w-full max-w-prose rounded-card"
+        class="w-full mx-auto max-w-prose rounded-card"
         loading="eager"
       />
 
