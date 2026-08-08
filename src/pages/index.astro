@@ -79,7 +79,8 @@ const WAYS = [
       <!-- 3. Six cards. Title plus ONE line, linking to the anchor. Never the
            body of the bullet: that lives on /what-i-do and nowhere else. -->
       <section>
-        <h2 class="text-h2 text-heading">What I do</h2>
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">What I do</h2>
         <div class="mt-8 grid gap-4 sm:grid-cols-2">
           {CARDS.map((card) => <Card href={card.href} title={card.title}>{card.line}</Card>)}
         </div>
@@ -89,7 +90,8 @@ const WAYS = [
            and costs no space: it answers how he fits into a team, and none of
            the four expires when the project assignment changes. -->
       <section>
-        <h2 class="text-h2 text-heading">Four ways of working</h2>
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Four ways of working</h2>
         <p class="mt-4 text-lead text-ink">Every project needs a different shape of engineer, and over the years I have been all four of them:</p>
         <ul class="evidence-list mt-6 text-ink">
           {
@@ -103,7 +105,8 @@ const WAYS = [
 
       <!-- 5. Career in three lines, and the link out. -->
       <section>
-        <h2 class="text-h2 text-heading">Career, in three lines</h2>
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Career, in three lines</h2>
         <p class="mt-4 text-ink">Appliance control electronics since 2012. Application Reference Engineer since 2017, promoted into the role on an oven control platform. Technical counterpart to appliance manufacturers across Europe, Asia, and the Americas, on ovens, range cookers, refrigeration, steam generation, dishwashing, laundry, and professional cooking equipment.</p>
         <p class="mt-6"><a href="/career/" class="text-link underline decoration-1 underline-offset-4"> The whole trajectory, in order </a></p>
       </section>

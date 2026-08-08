@@ -2,19 +2,33 @@
 /**
  * Herramientas, Spanish sibling of /toolkit.
  *
- * Same two exceptions as the English one, for the same reasons: the per-group
- * paragraph is visible rather than folded, and there are no coral section
- * rules on a page of short blocks.
+ * Same shape as the English one, including the change of 2026-08-08: the six
+ * groups are full sections with an h2, a coral rule and an anchor of their own.
  *
- * ⚠️ The 60-word reversion threshold is measured in SPANISH, which runs 10 to
- * 15 percent longer than the English. That is the language that governs it.
+ * ⚠️ The anchors are ENGLISH here too, like every other anchor on the site, so
+ * the language switcher can carry the position across verbatim.
+ *
+ * ⚠️ The 60-word reversion threshold for the visible paragraph is measured in
+ * SPANISH, which runs 10 to 15 percent longer than the English. That is the
+ * language that governs it.
  *
  * Copy transcribed verbatim from web/content/es/herramientas.md.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import SectionIndex from '../../components/SectionIndex.astro';
 import Chip from '../../components/Chip.astro';
 import Term from '../../components/Term.astro';
+
+const SECTIONS = [
+  { id: 'languages', title: 'Lenguajes' },
+  { id: 'microcontrollers', title: 'Microcontroladores' },
+  { id: 'communications', title: 'Comunicaciones' },
+  { id: 'control', title: 'Control' },
+  { id: 'safety', title: 'Seguridad y normativa' },
+  { id: 'process', title: 'Proceso y herramientas' },
+  { id: 'spoken-languages', title: 'Idiomas en los que trabajo' },
+];
 
 const CHIPS = {
   languages: ['C', 'Python', 'JavaScript', 'HTML', 'CSS', 'SQL', 'PHP'],
@@ -59,62 +73,69 @@ const CHIPS = {
     <Fragment slot="lead">Una regla decide qué aparece en esta página: <strong class="font-semibold text-ink-on-deep">puedo coger una tarea de eso y entregarla.</strong> Haber estado en un código que lo usaba no la mete aquí, y haber leído sobre ello, tampoco.</Fragment>
   </PageHeader>
 
-  <div class="mx-auto max-w-shell px-6 pt-16">
-    <div class="mx-auto max-w-prose">
+  <div class="relative mx-auto max-w-shell px-6 pt-16">
+    <SectionIndex label="En esta página" items={SECTIONS} />
+
+    <div class="mx-auto max-w-prose space-y-20">
       <p class="text-lead text-ink">Esa regla saca más de lo que deja, que es la única razón por la que una lista así merece leerse. Más abajo no hay porcentajes, ni estrellas, ni barras de nivel, porque un número sería exactamente la afirmación que la regla se niega a hacer.</p>
 
-      <div class="mt-16 space-y-12">
-        <section>
-          <h2 class="text-h3 text-heading">Lenguajes</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.languages.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">En C llevo dieciséis años: <Term>bare metal</Term>, sin sistema operativo, sobre piezas donde un kilobyte es una restricción real. Python es el idioma de trabajo de todo lo que rodea al producto: bancos de ensayo, análisis de datos y modelado de planta. El stack web es real pero ocasional, y viene de un proyecto propio.</p>
-        </section>
+      <section id="languages" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Lenguajes</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.languages.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">En C llevo dieciséis años: <Term>bare metal</Term>, sin sistema operativo, sobre piezas donde un kilobyte es una restricción real. Python es el idioma de trabajo de todo lo que rodea al producto: bancos de ensayo, análisis de datos y modelado de planta. El stack web es real pero ocasional, y viene de un proyecto propio.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Microcontroladores</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.mcus.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">Nueve fabricantes en dieciséis años, de piezas de 8 bits escritas en parte en ensamblador a un Cortex-M7 moviendo un framework gráfico. Lo que se traslada no es la familia, son los hábitos: leer las erratas antes que la hoja de características, respetar las restricciones de mapeo al fijar el pinout, y contar con que habrá segunda fuente.</p>
-        </section>
+      <section id="microcontrollers" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Microcontroladores</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.mcus.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">Nueve fabricantes en dieciséis años, de piezas de 8 bits escritas en parte en ensamblador a un Cortex-M7 moviendo un framework gráfico. Lo que se traslada no es la familia, son los hábitos: leer las erratas antes que la hoja de características, respetar las restricciones de mapeo al fijar el pinout, y contar con que habrá segunda fuente.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Comunicaciones</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.comms.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">Casi todo mi trabajo son placas hablando entre sí dentro de un mismo aparato, que es donde viven los buses propietarios, y pantallas hablando con un microcontrolador, que es donde se va el ancho de banda. Lo inalámbrico es más reciente y sirve a módulos de conectividad y a bancos de ensayo remotos.</p>
-        </section>
+      <section id="communications" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Comunicaciones</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.comms.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">Casi todo mi trabajo son placas hablando entre sí dentro de un mismo aparato, que es donde viven los buses propietarios, y pantallas hablando con un microcontrolador, que es donde se va el ancho de banda. Lo inalámbrico es más reciente y sirve a módulos de conectividad y a bancos de ensayo remotos.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Control</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.control.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">Plantas térmicas, sobre todo: lentas, con retardo puro de verdad, y con una respuesta que cambia con el modo de trabajo. Modelo la planta antes de ajustar el lazo, porque ajustar sobre el aparato real cuesta horas por intento y da una respuesta que solo vale para una configuración. <a href="/es/lo-que-hago/#firmware" class="text-link underline decoration-1 underline-offset-4">Cómo funciona eso</a>.</p>
-        </section>
+      <section id="control" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Control</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.control.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">Plantas térmicas, sobre todo: lentas, con retardo puro de verdad, y con una respuesta que cambia con el modo de trabajo. Modelo la planta antes de ajustar el lazo, porque ajustar sobre el aparato real cuesta horas por intento y da una respuesta que solo vale para una configuración. <a href="/es/lo-que-hago/#firmware" class="text-link underline decoration-1 underline-offset-4">Cómo funciona eso</a>.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Seguridad y normativa</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.safety.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">La parte más difícil de adquirir de este inventario, y la más difícil de fingir, porque se aprende defendiendo un concepto delante de un certificador y no leyendo la norma. MISRA y el análisis estático hacen demostrable el lado software: en una certificación, evidencia y corrección no son la misma afirmación.</p>
-        </section>
+      <section id="safety" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Seguridad y normativa</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.safety.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">La parte más difícil de adquirir de este inventario, y la más difícil de fingir, porque se aprende defendiendo un concepto delante de un certificador y no leyendo la norma. MISRA y el análisis estático hacen demostrable el lado software: en una certificación, evidencia y corrección no son la misma afirmación.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Proceso y herramientas</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.process.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">El <Term>V-Model</Term> es cómo pienso un proyecto, no una casilla que marco: requisito, especificación, diseño y el ensayo que demuestra cada uno, emparejados hacia abajo y de vuelta hacia arriba. Altium y LTspice están en la lista porque leo y modifico hardware y simulo los cambios, no porque sea el diseñador de hardware.</p>
-        </section>
-      </div>
+      <section id="process" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Proceso y herramientas</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.process.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">El <Term>V-Model</Term> es cómo pienso un proyecto, no una casilla que marco: requisito, especificación, diseño y el ensayo que demuestra cada uno, emparejados hacia abajo y de vuelta hacia arriba. Altium y LTspice están en la lista porque leo y modifico hardware y simulo los cambios, no porque sea el diseñador de hardware.</p>
+      </section>
 
-      <section class="mt-20 border-t border-rule pt-10">
-        <h2 class="text-h2 text-heading">Idiomas en los que trabajo</h2>
+      <section id="spoken-languages" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Idiomas en los que trabajo</h2>
         <ul class="evidence-list mt-6 text-ink">
           <li><strong class="font-semibold">Castellano</strong>, nativo.</li>
           <li><strong class="font-semibold">Catalán</strong>, nativo.</li>

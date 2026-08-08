@@ -2,21 +2,26 @@
 /**
  * Toolkit, English.
  *
- * The question this page answers is answered by SCANNING, which drives two
- * things that look like exceptions and are not:
+ * The question this page answers is answered by SCANNING, which is why the
+ * per-group paragraph is VISIBLE rather than folded. It is the site's one
+ * documented exception to the level system: six clicks defeat a twenty-second
+ * scan, and that paragraph IS the added value over the technical section of
+ * the CV (information-architecture.md section 4.4). Measured in P-15d at 47 to
+ * 58 words per group, under the 60-word threshold that would force them back
+ * into folds.
  *
- *   1. The per-group paragraph is VISIBLE, not folded. It is the site's one
- *      documented exception to the level system: six clicks defeat a
- *      twenty-second scan, and that paragraph IS the added value over the
- *      technical section of the CV (information-architecture.md section 4.4).
- *      Measured in P-15d at 47 to 58 words per group, under the 60-word
- *      threshold that would have forced them back into folds.
+ * ⚠️ CHANGED 2026-08-08, on Franc's call, and it supersedes what P-16b had
+ * decided the other way:
  *
- *   2. No coral section rules here. On /what-i-do the six blocks are long
- *      enough that only one rule is ever in view; these groups are short, so
- *      several rules would share the visual field and break the one-coral-at-
- *      a-time rule of adr-002 section 3. Groups are separated by whitespace,
- *      and the accordion stays a signal exclusive to /what-i-do and /career.
+ *   The six groups are full SECTIONS now: h2, coral rule, own anchor. P-16b
+ *   had them as h3 with no rule, reasoning that groups this short would put
+ *   three or four coral rules in the visual field at once, which adr-002
+ *   section 3 rations against. Consistency across the five pages was judged to
+ *   be worth more than that quota. See p16b-build-notes.md section 14.
+ *
+ *   The anchors are new: the architecture defined nine for the whole site and
+ *   this page had none. They are English in both languages, like every other
+ *   anchor, so the language switcher carries the position across.
  *
  * The six groups are written out rather than generated from a table: each one
  * has its own prose, two of them carry a glossary term or a link, and a table
@@ -27,8 +32,19 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
+import SectionIndex from '../components/SectionIndex.astro';
 import Chip from '../components/Chip.astro';
 import Term from '../components/Term.astro';
+
+const SECTIONS = [
+  { id: 'languages', title: 'Languages' },
+  { id: 'microcontrollers', title: 'Microcontrollers' },
+  { id: 'communications', title: 'Communications' },
+  { id: 'control', title: 'Control' },
+  { id: 'safety', title: 'Safety and standards' },
+  { id: 'process', title: 'Process and tools' },
+  { id: 'spoken-languages', title: 'Languages I work in' },
+];
 
 const CHIPS = {
   languages: ['C', 'Python', 'JavaScript', 'HTML', 'CSS', 'SQL', 'PHP'],
@@ -73,8 +89,10 @@ const CHIPS = {
     <Fragment slot="lead">One rule decides what is on this page: <strong class="font-semibold text-ink-on-deep">I can take a task on it and deliver it.</strong> Having worked in a codebase that used something does not put it here, and neither does having read about it.</Fragment>
   </PageHeader>
 
-  <div class="mx-auto max-w-shell px-6 pt-16">
-    <div class="mx-auto max-w-prose">
+  <div class="relative mx-auto max-w-shell px-6 pt-16">
+    <SectionIndex label="On this page" items={SECTIONS} />
+
+    <div class="mx-auto max-w-prose space-y-20">
       <!-- Block 1. The rule is what turns a list into a claim: publishing the
            criterion disarms the inflated-inventory suspicion that every skills
            page invites. -->
@@ -84,61 +102,66 @@ const CHIPS = {
            Before the 2026-08-06 revision this was two parallel lists with the
            same six titles, which is the shape the "a title appears once per
            page" rule was written to stop. -->
-      <div class="mt-16 space-y-12">
-        <section>
-          <h2 class="text-h3 text-heading">Languages</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.languages.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">C is where I have lived for sixteen years: <Term>bare metal</Term>, no operating system, on parts where a kilobyte is a real constraint. Python is the working language for everything around the product: test benches, data analysis, and plant modeling. The web stack is genuine but occasional, and it comes from a side project.</p>
-        </section>
+      <section id="languages" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Languages</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.languages.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">C is where I have lived for sixteen years: <Term>bare metal</Term>, no operating system, on parts where a kilobyte is a real constraint. Python is the working language for everything around the product: test benches, data analysis, and plant modeling. The web stack is genuine but occasional, and it comes from a side project.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Microcontrollers</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.mcus.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">Nine vendors over sixteen years, from 8-bit parts written partly in assembler to Cortex-M7 driving a graphical framework. What carries across is never the family, it is the habits: read the errata before the datasheet, respect the peripheral mapping constraints when you fix the pinout, and assume the part will be second-sourced.</p>
-        </section>
+      <section id="microcontrollers" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Microcontrollers</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.mcus.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">Nine vendors over sixteen years, from 8-bit parts written partly in assembler to Cortex-M7 driving a graphical framework. What carries across is never the family, it is the habits: read the errata before the datasheet, respect the peripheral mapping constraints when you fix the pinout, and assume the part will be second-sourced.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Communications</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.comms.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">Most of my work is boards talking to each other inside a single appliance, which is where the proprietary buses live, and displays talking to a microcontroller, which is where the bandwidth goes. The wireless side is newer and mostly serves connectivity modules and remote test benches, which is where MQTT earns its place.</p>
-        </section>
+      <section id="communications" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Communications</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.comms.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">Most of my work is boards talking to each other inside a single appliance, which is where the proprietary buses live, and displays talking to a microcontroller, which is where the bandwidth goes. The wireless side is newer and mostly serves connectivity modules and remote test benches, which is where MQTT earns its place.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Control</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.control.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">Thermal plants, mostly: slow, with real dead time, and with a response that changes with the operating mode and the size of the cavity. I model the plant before tuning the loop, because tuning on the real appliance costs hours per attempt and gives an answer that only holds for one configuration. <a href="/what-i-do/#firmware" class="text-link underline decoration-1 underline-offset-4">How that actually works</a>.</p>
-        </section>
+      <section id="control" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Control</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.control.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">Thermal plants, mostly: slow, with real dead time, and with a response that changes with the operating mode and the size of the cavity. I model the plant before tuning the loop, because tuning on the real appliance costs hours per attempt and gives an answer that only holds for one configuration. <a href="/what-i-do/#firmware" class="text-link underline decoration-1 underline-offset-4">How that actually works</a>.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Safety and standards</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.safety.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">The hardest part of this inventory to acquire and to fake, because it is learned by defending a concept in front of a certifier rather than by reading the standard. MISRA and static analysis are what make the software side provable: in a certification, evidence and correctness are not the same claim.</p>
-        </section>
+      <section id="safety" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Safety and standards</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.safety.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">The hardest part of this inventory to acquire and to fake, because it is learned by defending a concept in front of a certifier rather than by reading the standard. MISRA and static analysis are what make the software side provable: in a certification, evidence and correctness are not the same claim.</p>
+      </section>
 
-        <section>
-          <h2 class="text-h3 text-heading">Process and tools</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {CHIPS.process.map((c) => <li><Chip>{c}</Chip></li>)}
-          </ul>
-          <p class="mt-4 text-ink">The <Term>V-Model</Term> is how I think about a project rather than a box I tick: requirement, specification, design, and the test that proves each one. Altium and LTspice are here because I read and modify hardware and simulate the changes, not because I am the hardware designer.</p>
-        </section>
-      </div>
+      <section id="process" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Process and tools</h2>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {CHIPS.process.map((c) => <li><Chip>{c}</Chip></li>)}
+        </ul>
+        <p class="mt-6 text-ink">The <Term>V-Model</Term> is how I think about a project rather than a box I tick: requirement, specification, design, and the test that proves each one. Altium and LTspice are here because I read and modify hardware and simulate the changes, not because I am the hardware designer.</p>
+      </section>
 
       <!-- Block 3. The LEVEL lives here; the CERTIFICATE lives in
            /career#certifications. Neither is duplicated in the other place,
            and that split is what governs the C1 when it arrives. -->
-      <section class="mt-20 border-t border-rule pt-10">
-        <h2 class="text-h2 text-heading">Languages I work in</h2>
+      <section id="spoken-languages" class="scroll-mt-28">
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="mt-5 text-h2 text-heading">Languages I work in</h2>
         <ul class="evidence-list mt-6 text-ink">
           <li><strong class="font-semibold">Spanish</strong>, native.</li>
           <li><strong class="font-semibold">Catalan</strong>, native.</li>

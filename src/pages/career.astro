@@ -24,7 +24,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import TimelineEntry from '../components/TimelineEntry.astro';
+import SectionIndex from '../components/SectionIndex.astro';
 import Disclosure from '../components/Disclosure.astro';
+
+const SECTIONS = [
+  { id: 'experience', title: 'Experience' },
+  { id: 'education', title: 'Education' },
+  { id: 'certifications', title: 'Certifications and professional development' },
+];
 ---
 
 <BaseLayout locale="en" current="career" title="Career | Franc Gaya" description="Sixteen years in appliance control electronics, a reconversion from mechanic to electronics engineer, and the education and certifications behind both.">
@@ -33,7 +40,9 @@ import Disclosure from '../components/Disclosure.astro';
     <Fragment slot="lead">Where and when, in order. What I can actually do is on the previous page: <a href="/what-i-do/" class="underline decoration-1 underline-offset-4 hover:text-highlight">What I do</a>.</Fragment>
   </PageHeader>
 
-  <div class="mx-auto max-w-shell px-6 pt-16">
+  <div class="relative mx-auto max-w-shell px-6 pt-16">
+    <SectionIndex label="On this page" items={SECTIONS} />
+
     <div class="mx-auto max-w-prose space-y-20">
       <!-- A. Experience. Internships stay here rather than moving to Education:
            they are posts, with an organisation and dates, and the section is
